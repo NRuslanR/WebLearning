@@ -40,6 +40,22 @@
 				text-decoration: underline;
 				
 			}
+			
+			::first-letter {
+				color: red;
+				font-size: 50px;
+			}
+			
+			::first-line { font-size: 30x; color: green; }
+			
+			.warning::before { content: "Attention ! "; font-weight: bold; }
+			.warning::after { content: " Be careful !"; font-weight: bold; }
+			
+			::selection {
+				
+				background-color: beige;
+				color: blue;
+			}
 		</style>
 	</head>
 	<body>
@@ -75,5 +91,9 @@
 			</p>
 			<input type="submit" value="Send Info"/>
 		</form>
+		<p>Завтра необходимо явиться в медицинский центр "Академия" к 9:45 по адреса ул.Репина, д. 47А для прохождения обследования на наличие 
+		короновирусной инфекции. При себе иметь маску, перчатки и паспорт. За два часа до прохождения исследования запрещено употребление пищи</p>
+		<span class="warning">Не суйте язык в электрическую розетку</span>
+		<p>Pseudo-elements allows the text editing</p>
 	</body>
 </html>
