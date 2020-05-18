@@ -1,0 +1,79 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>CSS Form's Pseudoclasses</title>
+		<style>
+			:enabled {
+			
+				border: 2px solid black;
+				color: red;
+				
+			}
+			
+			:checked + span {
+				color: red;
+				font-weight: bold;
+			}
+			
+			:default {
+				border: 2px solid green;
+				border-radius: 20px;
+			}
+			
+			input:valid {
+				border: 2px solid green;
+			}
+			
+			input:invalid {
+				border: 2px solid red;
+			}
+			:in-range {
+				border: 2px solid green;;
+			}
+			
+			:out-of-range {
+				border: 2px solid red;
+			}
+			
+			:required {
+				
+				text-decoration: underline;
+				
+			}
+		</style>
+	</head>
+	<body>
+		<p><input type="text" value="Enabled"/></p>
+		<p><input type="text" disabled value="Disabled"/></p>
+		
+		<form method="post" action="#">
+			<h3>Choose a Technology</h3>
+			<div>
+				<p>
+					<input type="checkbox" checked/><span>HTML5</span>
+				</p>
+				<p>
+					<input type="checkbox"><span>.NET</span>
+				</p>
+				<p>
+					<input type="checkbox"><span>Java</span>
+				</p>
+			</div>
+			<h3>Choose a Being's Sense</h3>
+			<div>
+				<p>
+					<input type="radio" checked name="beinge_sense"/><span>Self-Development</span>
+				</p>
+				<p>
+					<input type="radio" name="beinge_sense"/><span>Decadence</span>
+				</p>
+			</div>
+			<p><input type="password" placeholder="Enter a password" required/></p>
+			<p>
+				<label for="age">Age:</label>
+				<input type="number" min="1" max="10" id="age" name="age" value="5"/>
+			</p>
+			<input type="submit" value="Send Info"/>
+		</form>
+	</body>
+</html>
