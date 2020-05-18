@@ -44,6 +44,25 @@
 				border-radius: 25px;
 				border-color: lightgreen;
 			}
+			
+			a:first-child {
+				color: red;
+			}
+			
+			a:last-child {
+				color: green;
+			}
+			
+			p:only-child, span:only-child {
+				
+				color: blue;
+			}
+			
+			tr:nth-child(odd) { background-color: #bbb; }
+            tr:nth-child(even) { background-color: #fff; }
+			tr:nth-child(3) { background-color: orange; }
+			tr:nth-child(4n + 3) { background-color: lightgreen; }
+	
 		</style>
 	</head>
 	<body>
@@ -51,5 +70,47 @@
 	<a href="http://msdn.com">link</a>
 	<div class="blck"></div>
 	<input type="text"/>
+	<h4>Descendant pseudoclasses' examples</h4>
+	
+	<h3>Political systems</h3>
+	<div>
+		<a>Capitalism</a><br/>
+		<a>Socialism</a><br/>
+		<a>Asian production approach</a>
+		<p>Libertarianism</p>
+	</div>
+	<h3>Philosophical directions</h3>
+	<div>
+		<p>Philosophy of life</p><br/>
+		<a>Idealism</a><br/>
+		<a>Materialism</a><br/>
+		<a>Existensialism</a><br/>
+		<a>Rationalism</a><br/>
+		<a>Empiricism</a>
+	</div>
+	<div>
+		<p>Single paragraph</p>
+	</div>
+	
+	<div>
+		<span>single span-element</span>
+	</div>
+	
+	<h3>Смартфоны</h3>
+        <table>
+            <tr><td>Samsung</td><td>Galaxy S7 Edge</td><td>60000</td></tr>
+            <tr><td>Apple</td><td>iPhone SE</td><td>39000</td></tr>
+            <tr><td>Microsoft</td><td>Lumia 650</td><td>13500</td></tr>
+            <tr><td>Alcatel</td><td>Idol S4</td><td>30000</td></tr>
+            <tr><td>Huawei</td><td>P9</td><td>60000</td></tr>
+            <tr><td>HTC</td><td>HTC 10</td><td>50000</td></tr>
+            <tr><td>Meizu</td><td>Pro 6</td><td>40000</td></tr>
+            <tr><td>Xiaomi</td><td>Mi5</td><td>35000</td></tr>
+			<tr><td>Huawei</td><td>P9</td><td>60000</td></tr>
+            <tr><td>HTC</td><td>HTC 10</td><td>50000</td></tr>
+            <tr><td>Meizu</td><td>Pro 6</td><td>40000</td></tr>
+            <tr><td>Xiaomi</td><td>Mi5</td><td>35000</td></tr>
+		</table>
+		
 	</body>
 </html>
