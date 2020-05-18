@@ -23,10 +23,27 @@ li.redListItem {
 li .greenInnerItem {
 	color: green
 }
+
+body > p {
+	text-decoration: underline;
+}
+h4~div {
+	border-radius: 10px;
+	background-color: #d5a887;
+	border-color: beige;
+	width: 100px;
+	height: 50px;
+	margin: 10px;
+}
+h4~div > p {
+font-size: 50pt;
+}
 </style>
 </head>
 <body>
 
+	<p>Body text</p>
+	
 	<div id="main">
 		<p>Main paragraph</p>
 	</div>
@@ -43,4 +60,9 @@ li .greenInnerItem {
 		</ul>
 	</div>
 	
+	<h4>Sibling elements</h4>
+	<p>Intermediate paragraph</p>
+	<div>
+		<p>FFFF</p>
+	</div>
 </body>
