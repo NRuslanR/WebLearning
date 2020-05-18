@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf8">
+		<title>Form experience</title>
+	</head>
+	<body>
+		<form name="test_form" enctype="multipart/form-data" method="post" action="#">
+		
+		<div>
+			<label for="text">Text:</label>
+			<input type="text" required id="text" name="text" placeholder="input a text" list="dataList"/>
+		</div>
+		
+		<div>
+			<label for="email">Email:</label>
+			<input required type="email" id="email" placeholder="user@mail.com" name="email"/>
+		</div>
+		
+		<div>
+			<label for="tel">Telephone:</label>
+			<input required type="tel" id="tel" name="tel" placeholder="(XXX)-XXX-XXXX"/>
+		</div>
+		
+		<div>
+			<label for="date">Date:</label>
+			<input type="date" id="date" name="date"/>
+		</div>
+		
+		<div>
+			<label for="time">Time:</label>
+			<input type="time" id="time" name="time"/>
+		</div>
+		
+		<div>
+			<label for="range">Range:</label>
+			5<input type="range" min="5" max="50" step="2" value="15" id="range" name="range"/>50
+		</div>
+		
+		<div>
+			<h2>Weather</h2>
+			<div>
+				<p><input type="radio" name="weather" value="cold"/>Cold</p>
+				<p><input type="radio" name="weather" value="warm"/>Warm</p>
+				<p><input type="radio" name="weather" value="hot"/>Hot</p>
+			</div>
+			<h2>System Kinds</h2>
+			<div>
+				<p><input type="radio" name="sys_kinds" value="hierarchical"/>Hierarchical</p>
+				<p><input type="radio" name="sys_kinds" value="Atomical"/>Atomical</p>
+				<p><input type="radio" name="sys_kinds" value="mixed"/>Mixed</p>
+			</div>
+		</div>
+		
+		<div>
+			<label for="color">Choose a color:</label>
+			<input type="color" list="colorList" id="color" name="color"/>
+			<datalist id="colorList">
+				<option value="#FF0000" label="Red"/>
+				<option value="#00FF00">Green</option>
+				<option value="#0000FF" label="Blue"/>
+			</datalist>
+		</div>
+		
+		<div>
+			<label for="file">Choose a file:</label>
+			<input type="file" id="file" name="file" multiple required accept="text/plain"/>
+		</div>
+		
+		<input type="submit" value="Send" formaction="index.html"/>
+		<button type="reset">Reset</button>
+		<datalist id="dataList">
+			<option value="Value1" label="label1"/>
+			<option value="Value2">Label2</option>
+			<option value="Value3"/>
+		</datalist>
+		</form>
+	</body>
+</html>

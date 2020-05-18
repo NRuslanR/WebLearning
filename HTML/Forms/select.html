@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Select test</title>
+		<meta charset="utf-8">
+	</head>
+	
+	<body>
+		
+		<header>
+		</header>
+		
+		<main>
+			<form method="get" action="select.html">
+				
+				<fieldset>
+					<legend>Basic of select</legend>
+					<div>
+						<label for="art">Art's direction:</label>
+						<p>
+							<select required id="art" name="art" multiple>
+								<option value="classicism">Classicism</option>
+								<option value="baroque">Baroque</option>
+								<option value="sentimentalism">Sentimentalism</option>
+								<option value="realism">Realism</option>
+								<option value="surrealism">Surrealism</option>
+							</select>
+						</p>
+					</div>
+					
+					<div>
+						<label for="it_companies">Choose a IT-Company</label>
+						<p>
+							<select id="it_companies" name="it_companies">
+								<optgroup label="Russia">
+									<optgroup label="Ulyanovsk">
+										<option>SimbirSoft</option>
+										<option>MediaSoft</option>
+									</optgroup>
+									<optgroup label="Moscow">
+										<option>65apps</option>
+									</optgroup>
+								</optgroup>
+								<optgroup label="USA">
+									<option>Amazon</option>
+									<option>Netflix</option>
+								</optgroup>
+							</select>
+						</p>
+					</div>
+				</fieldset>
+				
+				<fieldset>
+					<legend>"input"-elements</legend>
+					<div>
+						<label for="comment">Your comment:</label>
+						<p>
+							<textarea id="comment" name="comment" cols="30" rows="7" placeholder="input a text with length no more 200 signs">
+							</textarea>
+						</p>
+					</div>
+					
+					<div>
+						<label for="number">A number:</label>
+						<input type="number" min="1" max="10" id="number" name="number"/>
+					</div>
+					
+					<div>
+						<label for="tel">Telephone:</label>
+						<input type="tel" pattern="\+\d-\(\d{3}\)-\d{3}-\d{4}" id="tel" name="tel"/>
+					</div>
+				</fieldset>
+				
+				<div style="margin-top:10px">
+					<input type="submit" value="Confirm"/>
+				</div>
+			</form>
+			
+			<aside style="float:right">
+				Test "aside" tag
+			</aside>
+		</main>
+		
+		<footer>
+			<address>
+			Contacts: World, Planet, Universe
+			</address>
+		</footer>
+	
+		
+	</body>
+</html>
