@@ -1,0 +1,55 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>CSS Pseudoclasses</title>
+		<style>
+			p:hover {
+					background-color: red;
+			}
+			
+			a:hover {
+				text-decoration: underline overline;
+			}
+			
+			a:visited {
+				text-decoration: line-through;
+			}
+			
+			a: link 
+			{
+				text-decoration: overline;
+			}
+			
+			a:active
+			{
+				color: green;
+			}
+			
+			input:hover 
+			{
+				border-radius: 25px;
+			}
+			
+			input:focus
+			{
+				border-color: red;
+			}
+			
+			.blck {
+				width: 100px;
+				height: 100px;
+			}
+			
+			div.blck:hover, div.blck:focus {
+				border-radius: 25px;
+				border-color: lightgreen;
+			}
+		</style>
+	</head>
+	<body>
+	<p>Paragraph</p>
+	<a href="http://msdn.com">link</a>
+	<div class="blck"></div>
+	<input type="text"/>
+	</body>
+</html>
