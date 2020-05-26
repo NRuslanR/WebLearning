@@ -1,18 +1,43 @@
-<html>
+<!doctype html>
 	<head>
 		<meta charset="utf-8">
 		<title>CSS Table Stylization</title>
 		<style>
 			table {
-				border: 1px solid #ccc;
+				border: 1px solid #fcc;
+				border-spacing: 10px;
+				table-layout: auto;
 			}
 			
 			tr {
-				border: 1px solid #ccc;
+				border: 1px solid #fcc;
 			}
 			
 			td, th {
-				border: 1px solid #ccc;
+				border: 1px solid #fcc;
+				vertical-align: middle;
+				align: middle;
+			}
+			
+			.collapsed {
+				border-collapse: collapse;
+			}
+			
+			.separated {
+				border-collapse: separate;
+			}
+			
+			caption {
+			
+				font-weight: bold;
+			}
+			
+			.captionTop {
+				caption-side: top;
+			}
+			
+			.captionBottom {
+				caption-side: bottom;
 			}
 		</style>
 	</head>
@@ -22,8 +47,10 @@
 		<h3>Simple table</h3>
 		<table>
 			<thead>
-				<th>Object</th>
-				<th>Count</th>
+				<tr>
+					<th>Object</th>
+					<th>Count</th>
+				</tr>
 			</thead>
 			<tbody>
 				<tr>
@@ -36,6 +63,24 @@
 				</tr>
 			</tbody>
 		</table>
+		
+		<h3>Collapsed table</h3>
+		<table class="collapsed captionTop">
+			<caption>Top caption</caption>
+            <tr><th>Модель</th><th>Производитель</th><th>Цена</th></tr>
+            <tr><td>Lumia 950</td><td>Microsoft</td><td>29900</td></tr>
+            <tr><td>iPhone 6S</td><td>Apple</td><td>52900</td></tr>
+            <tr><td>Nexus 6P</td><td>Huawei</td><td>49000</td></tr>
+        </table>
+		
+        <h3>Separated Table</h3>
+        <table class="separated captionBottom">
+			<caption>Bottom caption</caption>
+            <tr><th>Модель</th><th>Производитель</th><th>Цена</th></tr>
+            <tr><td>G 5</td><td>LG</td><td>44900</td></tr>
+            <tr><td>HTC 10</td><td>HTC</td><td>49900</td></tr>
+            <tr><td>Nexus 5X</td><td>Google/LG</td><td>25000</td></tr>
+        </table>
 		
 	</body>
 </html>
