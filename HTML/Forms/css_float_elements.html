@@ -1,0 +1,79 @@
+<!doctype html>
+	<head>
+		<meta charset="utf-8">
+		<title>CSS Floating</title>
+		
+		<style>
+
+			.image {
+				
+				margin: 0px 10px 10px 10px;
+				float: left;
+			}
+			
+			.sidebar {
+			
+				border: 2px solid #ccc;
+				background-color: #eee;
+				width: 150px;
+				padding: 10px;
+				margin-left: 10px;
+				font-size: 20px;
+				float: right;
+				
+			}
+			
+			.footer {
+				border-top: 2px solid #ccc;
+				clear: both;
+			}
+			
+			.article1 {
+				
+				margin: 15px;
+				width: 200px;
+				height: 200px;
+				border: 2px solid red;
+				background-color: beige;
+				overflow: auto;
+			}
+			
+			.article2 {
+				width: 200px;
+				height: 200px;
+				border: 2px solid red;
+				background-color: beige;
+				overflow: hidden;
+			}
+		</style>
+		
+	</head>
+	
+	<body>
+		
+		<div class="sidebar">Л. Толстой. Война и мир. Том второй. Часть третья</div>
+		<img class="image" src="imgs/dubi.jpg" alt="Война и мир"/>
+		<p>Старый дуб, весь преображенный, раскинувшись шатром сочной, темной зелени, млел, 
+            чуть колыхаясь в лучах вечернего солнца...</p>
+        <p>«Нет, жизнь не кончена в 31 год, – вдруг окончательно, беспеременно решил князь Андрей...</p>
+		<div class="footer">Copyright © MyCorp. 2016</div>
+		
+		<div class="article1">
+			<p>
+			Старый дуб, весь преображенный, раскинувшись шатром сочной, темной зелени, млел, чуть 
+            колыхаясь в лучах вечернего солнца. Ни корявых пальцев, ни болячек, ни старого недоверия и 
+            горя – ничего не было видно. Да, это тот самый дуб», – подумал князь 
+            Андрей, и на него вдруг нашло беспричинное весеннее чувство радости и обновления.
+			</p>
+		</div>
+		
+		<div class="article2">
+			<p>
+				Старый дуб, весь преображенный, раскинувшись шатром сочной, темной зелени, млел, чуть 
+				колыхаясь в лучах вечернего солнца. Ни корявых пальцев, ни болячек, ни старого недоверия и 
+				горя – ничего не было видно. Да, это тот самый дуб», – подумал князь 
+				Андрей, и на него вдруг нашло беспричинное весеннее чувство радости и обновления.
+			</p>
+		</div>
+	</body>
+</html>
