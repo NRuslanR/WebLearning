@@ -8,22 +8,37 @@
 			div {
 				
 				border: 2px solid black;
-				margin: 15px;
+				margin-bottom: 15px;
 				height: 80px;
 				font-size: 20px;
 				text-align: center;
+				vertical-align: middle;
 			}
 			
 			#header {
+			
 				background-color: #ccc;
 			}
 			
-			#sidebar {
+			#leftSidebar {
+			
 				background-color: #eee;
+				width: 20%;
+				float: left;
+			}
+			
+			#rightSidebar {
+				
+				background-color: #bbb;
+				width: 20%;
+				float: right;
 			}
 			
 			#main {
+			
 				background-color: #ddd;
+				margin-right: 21%;
+				margin-left: 21%;
 			}
 			
 			#footer {
@@ -35,7 +50,8 @@
 	
 	<body>
 		<div id="header">Site Logo</div>
-		<div id="sidebar">Sidebar</div>
+		<div id="leftSidebar">Left Sidebar</div>
+		<div id="rightSidebar">Right Sidebar</div>
 		<div id="main">Main</div>
 		<div id="footer">Footer</div>
 	</body>
