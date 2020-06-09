@@ -5,24 +5,38 @@
 		
 		<style>
 			
-			ul.nav a {
+			ul.nav {
+				
+				margin-left: 0;
+				padding-left: 0;
+				list-style: none;
+			}
 			
+			ul.nav li {
+			
+				display: inline;
+			
+			}
+			
+			ul.nav a {
+				
+				display: inline-block;
 				width: 7em;
 				padding: 10px;
-				border-top: 1px dashed #333;
-				border-right: 1px dashed #333;
-				border-left: 5px black solid;
+				margin: 0 5px;
+				border: 1px dashed #333;
 				background-color: beige;
+				text-decoration: none;
 				color: #333;
 				
 			}
 			
-			ul.nav li:last-child a {
-			
-				border-bottom: 1px dashed #333;
+			ul.nav li a:hover {
 				
-			}
-			
+				background-color: #333;
+				color: beige;
+				
+			}	
 			
 		</style>
 		
