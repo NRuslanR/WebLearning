@@ -1,0 +1,66 @@
+<!doctype html>
+	<head>
+		<meta charset="utf-8">
+		<title>CSS Block Layout</title>
+		
+		<style>
+			
+			span {
+				color: red;
+				width: 100px;
+				height: 30px;
+				background-color: #3f3;
+			}
+			
+			.blockSpan {
+				display: block;
+			}
+			
+			.inlineBlockSpan {
+				display: inline-block;
+			}
+			
+			.inlineDiv {
+				display: inline;
+				background-color: #f33;
+				height: 500px;
+			}
+			
+			.tableUl {
+				display: table;
+				padding: 5px;
+				background-color: orange;
+			}
+			
+			.tableCellLi {
+				display: table-cell;
+				background-color: yellow;
+				margin: 5px;
+				padding: 15px;
+			}
+			
+			.invisible {
+				display: none;
+			}
+			
+		</style>
+		
+	</head>
+	
+	<body>
+		<p>This is <span>inline</span> span element</p>
+		<p>This is <span class="blockSpan">block</span> span element</p>
+		<p>This is <span class="inlineBlockSpan">inline-block</span> span element</p>
+		<p>This is another <span>inline</span> span element</p>
+		<div class="inlineDiv">First inline-div</div>
+		<div class="inlineDiv">Second inline-div</div>
+		<div>First block-div</div>
+		<ul class="tableUl">
+			<li class="tableCellLi">Item 1</li>
+			<li class="tableCellLi">Item 2</li>
+			<li class="tableCellLi">Item 3</li>
+		</ul>
+		<p class="invisible">Invisible paragraph</p>
+	</body>
+	
+</html>
