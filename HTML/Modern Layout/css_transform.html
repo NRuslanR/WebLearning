@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>CSS Transformation</title>
+		
+		<style>
+            
+			div {
+			
+				padding: 10px 20px;
+				margin: 50px;
+				background-color: rgba(255, 30, 20, 0.5);
+				text-align: center;
+				color: beige;
+				width: 200px;
+				height: 50px;
+				border: 2px solid #ccc;
+				box-sizing: border-box;
+				display: inline-block;
+				vertical-align: center;
+			}
+			
+			.rotated {
+				transform: rotate(30deg);
+			}
+				
+			.halfScaled {
+				transform: scale(0.5, 0.5);
+			}
+			
+			.doubleScaled {
+				transform: scale(2.0, 2.0);
+			}
+			
+			.halfDoubleScaled {
+				transform: scale(2.0, 0.5);
+			}
+			
+			.mirrored {
+				display: block;
+				transform: scaleY(-1.0);
+			}
+			
+			.translated {
+				transform: translate(30px, 100px);
+			}
+			
+			.skewed {
+				display: block;
+				transform: skew(20deg, 30deg);
+				background-color: green;
+			}
+			
+			.combined {
+				display: block;
+				transform: skew(-50deg, 0) scaleY(2) rotate(-70deg) translate(45px, 9px);
+				background-color: lightblue;
+			}
+			
+        </style>
+    </head>
+    <body>
+        <div class="doubleScaled">scale(2.0, 2.0)</div>
+		<div class="rotated">rotate(30deg)</div>
+		<div class="halfScaled">scale(0.5, 0.5)</div>
+		<div class="halfDoubleScaled">scale(2.0, 0.5)</div>
+		<div class="mirrored">scaleY(-1.0)</div>
+		<div class="translated">translate(30px, 100px)</div>
+		<div class="skewed">skew(20deg, 30deg)</div>
+		<div class="combined">combined</div>
+    </body>
+</html>
