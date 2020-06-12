@@ -1,0 +1,167 @@
+[33mcommit a8d9f46bf28a593b7cad751a4a9e48c0f168c87f[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: Ruslan Radikovich <nruslanr95@gmail.com>
+Date:   Fri Jun 12 13:21:13 2020 +0300
+
+    Absolute positioning with respect to outer container
+
+[33mcommit d2b7b104c23f608f7a7ead42c7e158fd8b30ee09[m
+Author: Ruslan Radikovich <nruslanr95@gmail.com>
+Date:   Fri Jun 12 13:08:10 2020 +0300
+
+    CSS Positioning introduction
+
+[33mcommit 7992ec0ca2dad51853d9be74bf8187df4dc3025d[m
+Author: Ruslan Radikovich <nruslanr95@gmail.com>
+Date:   Fri Jun 12 10:54:29 2020 +0300
+
+    Unsuccessful attempt to inject submenus in the top-level navigation menu
+
+[33mcommit 9e1a6d029d6d161c267ef688bbba37b206ae266d[m
+Author: Ruslan Radikovich <nruslanr95@gmail.com>
+Date:   Fri Jun 12 09:57:09 2020 +0300
+
+    Making simple site layout. Using flex technology for block layout
+
+[33mcommit a7a3a9dfb17327bedb7b6588966df1fa7d417236[m
+Author: Ruslan Radikovich <nruslanr95@gmail.com>
+Date:   Fri Jun 12 07:20:37 2020 +0300
+
+    CSS float alignment part 2
+
+[33mcommit fac45f400161622cd7270af2f8e9158ed6609398[m
+Author: Ruslan Radikovich <nruslanr95@gmail.com>
+Date:   Tue Jun 9 20:48:08 2020 +0300
+
+    CSS Float alignment learnt
+
+[33mcommit 3db6686fdb4e5adaf6e343a44984eee5f63e69c3[m
+Author: Ruslan Radikovich <nruslanr95@gmail.com>
+Date:   Tue Jun 9 19:57:23 2020 +0300
+
+    CSS Navigation menu introduction
+
+[33mcommit 8fe4e5bc6dde1c4c03ad4ff71db301209d543b12[m
+Author: Ruslan Radikovich <nruslanr95@gmail.com>
+Date:   Thu May 28 20:11:02 2020 +0300
+
+    block layout alignment resolved
+
+[33mcommit d8cb44b87efaeb25af6837461e734fdffb0b67a2[m
+Author: Ruslan Radikovich <nruslanr95@gmail.com>
+Date:   Thu May 28 19:54:51 2020 +0300
+
+    Block Alignment concern reveal
+
+[33mcommit a06293231c0076406f6b7690ebb584e5f0f992db[m
+Author: Ruslan Radikovich <nruslanr95@gmail.com>
+Date:   Thu May 28 19:40:06 2020 +0300
+
+    Nested Block Floating studied
+
+[33mcommit 905a02d78505557b16cd2afee35c67361c322bec[m
+Author: Ruslan Radikovich <nruslanr95@gmail.com>
+Date:   Thu May 28 19:32:44 2020 +0300
+
+    Block Layout introduction finished
+
+[33mcommit 65b8316f8a2d2b63a597f36932e375227a468a8f[m
+Author: Ruslan Radikovich <nruslanr95@gmail.com>
+Date:   Thu May 28 19:19:15 2020 +0300
+
+    Block Layout Added
+
+[33mcommit 34473afba36aba00995a4f8eff968c6f3a559cd1[m
+Author: Ruslan Radikovich <nruslanr95@gmail.com>
+Date:   Thu May 28 19:11:27 2020 +0300
+
+    CSS Properties learnt
+
+[33mcommit cca5b61bed8d359c484cfa96608c12eed2603055[m
+Author: Ruslan Radikovich <nruslanr95@gmail.com>
+Date:   Tue May 26 20:12:46 2020 +0300
+
+    Continious stylization learnt
+
+[33mcommit c13aef1673cfda0e0f170860a07e55ea5184ec3f[m
+Author: Ruslan Radikovich <nruslanr95@gmail.com>
+Date:   Tue May 26 19:48:51 2020 +0300
+
+    CSS Block Model learnt
+
+[33mcommit a23542c5948c113251d543a71540bde3f6e3e3d1[m
+Author: Ruslan Radikovich <nruslanr95@gmail.com>
+Date:   Tue May 26 19:34:21 2020 +0300
+
+    CSS Block Model studying beginning
+
+[33mcommit 0295cfddda30e4d956fa6405542a22f60e0d8476[m
+Author: Ruslan Radikovich <nruslanr95@gmail.com>
+Date:   Tue May 26 19:20:13 2020 +0300
+
+    CSS Table Stylization learnt
+
+[33mcommit ffa8eaa853fa51aaccce6722b926631edf21fdaf[m
+Author: Ruslan Radikovich <nruslanr95@gmail.com>
+Date:   Tue May 26 18:51:40 2020 +0300
+
+    CSS Table Simple stylization
+
+[33mcommit 6b1853f8f4b6f21e2082ad8dd18fbb181cd575ec[m
+Author: Ruslan Radikovich <nruslanr95@gmail.com>
+Date:   Tue May 26 18:45:56 2020 +0300
+
+    CSS Table Stylization learning beginning
+
+[33mcommit 0dc6f11ce160228436fcc36ad5cc0f0c12a7c3bb[m
+Author: Ruslan Radikovich <nruslanr95@gmail.com>
+Date:   Mon May 18 20:29:36 2020 +0300
+
+    CSS Style Inheritance learnt
+
+[33mcommit a707ef8531724c18145ebb32bc3a3d03a840aa50[m
+Author: Ruslan Radikovich <nruslanr95@gmail.com>
+Date:   Mon May 18 20:21:57 2020 +0300
+
+    CSS Attributes' selectors learnt
+
+[33mcommit 2336816c39f9f110a83e0a1a24b758de740c1619[m
+Author: Ruslan Radikovich <nruslanr95@gmail.com>
+Date:   Mon May 18 19:18:16 2020 +0300
+
+    CSS Form's pseudoclasses learnt
+
+[33mcommit c0da434a4ba207e23efce9c6840596f4fc6c7a1e[m
+Author: Ruslan Radikovich <nruslanr95@gmail.com>
+Date:   Mon May 18 15:40:44 2020 +0300
+
+    CSS Descendant element's pseudoclasses learnt
+
+[33mcommit 0e216a483cb5a44f60978653a967e7e1e481f089[m
+Author: Ruslan Radikovich <nruslanr95@gmail.com>
+Date:   Mon May 18 15:17:22 2020 +0300
+
+    CSS Pseudoclasses Introduction
+
+[33mcommit 5a6d8e8873a9fc5c8554a6ce51684157390cfd20[m
+Author: Ruslan Radikovich <nruslanr95@gmail.com>
+Date:   Mon May 18 15:02:05 2020 +0300
+
+    CSS Selector's stylezing ending
+
+[33mcommit 9c75a02fcbf030702d60ebfa11169ece6c51ae08[m
+Author: Ruslan Radikovich <nruslanr95@gmail.com>
+Date:   Mon May 18 14:12:54 2020 +0300
+
+    CSS Selectors' Ancestor-Child Relations
+
+[33mcommit 27df6f2b3a836f40704a1b4b5a87efee2d4a0346[m
+Author: Ruslan Radikovich <nruslanr95@gmail.com>
+Date:   Mon May 18 14:01:42 2020 +0300
+
+    CSS Selectors's basics learning
+
+[33mcommit 4e96ba31446eac36b3359324fc3a42af84d35418[m
+Author: Ruslan Radikovich <nruslanr95@gmail.com>
+Date:   Mon May 18 13:42:16 2020 +0300
+
+    HTML Learning finished
