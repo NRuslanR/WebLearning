@@ -7,12 +7,35 @@
 		<style>
 			#header {
 			
-				position: relative;
+				position: absolute;
 				left: 100px;
 				top: 200px;
 				background-color: rgba(128, 0, 0, 0.3);
+				border: 3px solid black;
 				width: 50%;
 				height: 25%;
+				
+			}
+			
+			.outer {
+			
+				position: absolute;
+				left: 50px;
+				top: 50px;
+				width: 400px;
+				height: 500px;
+				background-color: rgb(200, 20, 20, 0.4);
+				
+			}
+			
+			.inner {
+			
+				position: absolute;
+				left: 5px;
+				top: 5px;
+				width: 100px;
+				height: 100px;
+				background-color: rgba(10, 255, 30, 0.5);
 				
 			}
 		</style>
@@ -22,5 +45,8 @@
 	<body>
 		<div id="header"></div>
 		<p>Hello, HTML !</p>
+		<div class="outer">
+			<div class="inner"></div>
+		</div>
 	</body>
 </html>
