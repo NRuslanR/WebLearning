@@ -7,7 +7,7 @@
 	
 	<body>
 		
-		<canvas id="myCanvas" width="500" height="500">
+		<canvas id="myCanvas" width="700" height="700">
 			Your browser isn't supporing a canvas
 		</canvas>
 		
@@ -17,12 +17,18 @@
 				context = canvas.getContext("2d");
 				
 				context.strokeStyle = "#f22";
-				context.fillStyle = "beige";
-				context.lineWidth = 6.5;
-				
-				context.setLineDash([30, 8, 15, 10]);
+				context.fillStyle = "lightgreen";
+				context.lineWidth = 16.5;
+				context.lineJoin = "bevel";
+			
 				context.strokeRect(50, 40, 300, 300);
 				context.fillRect(50, 40, 300, 300);
+				
+				context.globalAlpha = 0.5;
+				
+				context.strokeStyle = "white";
+				context.fillStyle = "red";
+				context.fillRect(150, 150, 300, 300);
 		
 		</script>
 		
