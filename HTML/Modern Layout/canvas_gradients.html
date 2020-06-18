@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Canvas - Gradients</title>	
+	</head>
+	
+	<body>
+		
+		<canvas id="myCanvas" width="700" height="700" style="background-color: #fe3; border: 1px solid green;">
+			Your browser isn't supporing a canvas
+		</canvas>
+		
+		<script type="text/javascript">
+			
+			var canvas = document.getElementById("myCanvas"),
+				context = canvas.getContext("2d");
+				
+			var gradient = context.createLinearGradient(10, 200, 410, 200);
+			
+			gradient.addColorStop(0, "rgba(0, 0, 255, 1.5)");
+			gradient.addColorStop(1, "rgba(255, 255, 255, 1.0)");
+			
+			context.fillStyle = gradient;
+			context.fillRect(10, 10, 400, 400);
+		
+		</script>
+		
+	</body>
+	
+</html>
