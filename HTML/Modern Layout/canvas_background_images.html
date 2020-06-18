@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Canvas - Background Images</title>	
+	</head>
+	
+	<body>
+		
+		<canvas id="myCanvas" width="700" height="700" style="background-color: #fe3; border: 1px solid green;">
+			Your browser isn't supporing a canvas
+		</canvas>
+		
+		<script type="text/javascript">
+			
+			var canvas = document.getElementById("myCanvas"),
+				context = canvas.getContext("2d");
+				
+			var img = new Image();
+			
+            img.src = "imgs/dubi.jpg";
+            img.onload = function() {
+                 
+                var pattern = context.createPattern(img, "repeat-x");
+				
+                context.fillStyle = pattern;
+				
+                context.fillRect(10, 10, 600, 600);
+                context.strokeRect(10, 10, 600, 600);
+            };
+			
+		
+		</script>
+		
+	</body>
+	
+</html>
