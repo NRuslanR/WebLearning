@@ -7,7 +7,7 @@
 	
 	<body>
 		
-		<canvas id="myCanvas" width="700" height="700" style="background-color: #fe3; border: 1px solid green;">
+		<canvas id="myCanvas" width="800" height="800" style="background-color: #fe3; border: 1px solid green;">
 			Your browser isn't supporing a canvas
 		</canvas>
 		
@@ -23,6 +23,14 @@
 			
 			context.fillStyle = gradient;
 			context.fillRect(10, 10, 400, 400);
+			
+			var radial = context.createRadialGradient(520, 520, 10, 520, 520, 200);
+			
+			radial.addColorStop(0, "green");
+			radial.addColorStop(1, "blue");
+			
+			context.fillStyle = radial;
+			context.fillRect(420, 420, 200, 200);
 		
 		</script>
 		
