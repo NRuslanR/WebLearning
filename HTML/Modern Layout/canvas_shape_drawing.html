@@ -47,9 +47,7 @@
 			context.beginPath();
 			context.rect(300, 300, 100, 200);
 			context.closePath();
-			
-			context.clip();
-			
+
 			context.strokeStyle = "lightgreen";
 			context.stroke();
 			
@@ -58,6 +56,37 @@
 			context.closePath();
 			
 			context.strokeStyle = "#3f4";
+			context.stroke();
+			
+			context.lineWidth = 1;
+			context.strokeStyle = "red";
+			
+			context.beginPath();
+			context.moveTo(10, 500);
+			context.arc(10, 500, 35, 0, Math.PI / 2, false);
+			context.closePath();
+			
+			context.stroke();
+			
+			context.beginPath();
+			context.moveTo(100, 500);
+			context.arc(100, 500, 35, 0, Math.PI, false);
+			context.closePath();
+			
+			context.stroke();
+			
+			context.beginPath();
+			context.moveTo(200, 500);
+			context.arc(200, 500, 35, 0, Math.PI * 3 / 2, false);
+			context.closePath();
+			
+			context.stroke();
+			
+			context.beginPath();
+			context.moveTo(300, 500);
+			context.arc(300, 500, 35, 0, Math.PI * 2, true);
+			context.closePath();
+			
 			context.stroke();
 			
 		</script>
