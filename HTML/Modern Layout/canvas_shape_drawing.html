@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Canvas - Shape Drawing</title>	
+	</head>
+	
+	<body>
+		
+		<canvas id="myCanvas" width="800" height="800" style="background-color: #fe3; border: 1px solid green;">
+			Your browser isn't supporing a canvas
+		</canvas>
+		
+		<script type="text/javascript">
+			
+			var canvas = document.getElementById("myCanvas"),
+				context = canvas.getContext("2d");
+				
+			context.beginPath();
+			
+			context.moveTo(10, 10);
+			context.lineTo(20, 20);
+			context.lineTo(30, 30);
+			context.lineTo(20, 20);
+			context.lineTo(10, 10);
+			
+			context.closePath();
+		
+		</script>
+		
+	</body>
+	
+</html>
