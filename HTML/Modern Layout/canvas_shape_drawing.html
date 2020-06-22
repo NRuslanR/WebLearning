@@ -44,6 +44,22 @@
 			context.fill();
 			context.stroke();
 			
+			context.beginPath();
+			context.rect(300, 300, 100, 200);
+			context.closePath();
+			
+			context.clip();
+			
+			context.strokeStyle = "lightgreen";
+			context.stroke();
+			
+			context.beginPath();
+			context.rect(270, 350, 200, 50);
+			context.closePath();
+			
+			context.strokeStyle = "#3f4";
+			context.stroke();
+			
 		</script>
 		
 	</body>
