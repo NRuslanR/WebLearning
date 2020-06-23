@@ -28,12 +28,17 @@
 			var canvas = document.getElementById("myCanvas"),
 				context = canvas.getContext("2d");
 				
+			context.lineWidth = 2;
+			context.strokeStyle = "black";
+			
 			context.beginPath();
 			context.arc(300, 300, 300, 0, Math.PI * 2, false);
 			context.closePath();
 			
 			context.fillStyle = "yellow";
+			
 			context.fill();
+			context.stroke();
 			
 			context.beginPath();
 			context.arc(200, 200, 60, 0, Math.PI * 2, false);
@@ -41,6 +46,7 @@
 			context.closePath();
 			
 			context.fillStyle = "#eee";
+			
 			context.fill();
 			
 			context.beginPath();
@@ -49,7 +55,17 @@
 			context.closePath();
 			
 			context.fillStyle = "brown";
+			
 			context.fill();
+			
+			context.beginPath();
+			context.arc(300, 350, 100 + 60 + 30, 0, Math.PI, false);
+			context.closePath();
+			
+			context.fillStyle = "red";
+			
+			context.fill();
+			context.stroke();
 			
 		</script>
 		
