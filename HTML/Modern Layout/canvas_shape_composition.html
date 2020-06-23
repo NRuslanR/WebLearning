@@ -9,7 +9,7 @@
 			
 			#myCanvas {
 				
-				background-color: #ccc;
+				background-color: #aaa;
 				display: block;
 				margin: auto;
 				
@@ -33,6 +33,14 @@
 			context.closePath();
 			
 			context.fillStyle = "yellow";
+			context.fill();
+			
+			context.beginPath();
+			context.arc(200, 200, 60, 0, Math.PI * 2, false);
+			context.arc(400, 200, 60, 0, Math.PI * 2, false);
+			context.closePath();
+			
+			context.fillStyle = "#eee";
 			context.fill();
 			
 		</script>
