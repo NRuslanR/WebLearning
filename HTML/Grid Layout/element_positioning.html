@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Grid Layout. Element positioning</title>
+		
+		<style>
+			
+			* {
+			
+				box-sizing: border-box;
+				
+			}
+			
+			.grid_container {
+				
+				display: grid;
+				border: 2px solid #ccc;	
+				grid: repeat(3, auto) / repeat(3, auto);
+			}
+			
+			.special_item {
+				
+				grid-column-start:  2;
+				grid-column-end: 4;
+				grid-row-start: 2;
+				grid-row-end: 4;
+			}
+			
+			.grid_item {
+				
+				font-size: 1.1em;
+				padding: 1em;
+				color: white;
+				text-align: center;
+				
+			}
+				
+			.color1 { background-color: #f42; }
+			.color2 { background-color: #2f4; }
+			.color3 { background-color: #24f; }
+			.color4 { background-color: #5fe; }
+			.color5 { background-color: #a3f; }
+			
+		</style>
+	</head>
+	
+	<body>
+		<div class="grid_container">
+			<div class="grid_item color1">Item 1</div>
+			<div class="grid_item color2 special_item">Item 2</div>
+			<div class="grid_item color3">Item 3</div>
+			<div class="grid_item color4">Item 4</div>
+			<div class="grid_item color5">Item 5</div>
+			<div class="grid_item color1">Item 1</div>
+			<div class="grid_item color2">Item 2</div>
+			<div class="grid_item color3">Item 3</div>
+		</div>
+	</body>
+</html>
