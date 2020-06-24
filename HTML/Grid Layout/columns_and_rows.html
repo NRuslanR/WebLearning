@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Grid Layout. Rows and Columns</title>
+		
+		<style>
+			
+			.grid_container {
+				
+				display: grid;
+				border: 2px solid #ccc;
+				grid-template-columns: 8em 8em;
+				
+			}
+			
+			.grid_item {
+				
+				box-sizing: border-box;
+				font-size: 1.1em;
+				padding: 1em;
+				color: white;
+				text-align: center;
+				
+			}
+				
+			.color1 { background-color: #f42; }
+			.color2 { background-color: #2f4; }
+			.color3 { background-color: #24f; }
+			.color4 { background-color: #5fe; }
+			.color5 { background-color: #a3f; }
+			
+		</style>
+	</head>
+	
+	<body>
+		<div class="grid_container">
+			<div class="grid_item color1">Item 1</div>
+			<div class="grid_item color2">Item 2</div>
+			<div class="grid_item color3">Item 3</div>
+			<div class="grid_item color4">Item 3</div>
+			<div class="grid_item color5">Item 3</div>
+		</div>
+	</body>
+</html>
