@@ -49,6 +49,7 @@
 			var img = new Image();
 			img.src = "https://i.ebayimg.com/images/g/mzIAAOxyQj9RQSzV/s-l400.jpg";
 			img.crossOrigin = "Anonymous";
+			
 			img.onload = 
 				function() {
 					
@@ -92,6 +93,22 @@
 						
 	
 					};
+					
+					var red, green, blue, greyscale;
+					
+					for (var i = 0; i < imageData.data.length; i += 4)
+					{
+						red = imageData.data[i], green = imageData.data[i + 1], blue = imageData.data[i + 2];
+						
+						greyscale = red * 0.3 + green * 0.59 + blue * 0.11;
+						
+						imageData.data[i] = greyscale;
+						imageData.data[i + 1] = greyscale;
+						imageData.data[i + 2] = greyscale;
+						
+					}
+					
+					context.putImageData(imageData, cx + img.width / 2, cy + img.height / 2);
 					
 					canvas.onclick = function(event) {
 						
