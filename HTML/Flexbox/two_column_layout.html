@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Two-Column Layout with Flexbox</title>
+		
+		<style>
+			
+			* {
+				box-sizing: border-box;
+			}
+			
+			html, body {
+				
+				padding: 0;
+				margin: 0;
+				font-family: verdana, arial, times new romain, sans-serif;
+				
+			}
+			
+			body {
+			
+				display: flex;
+				padding: 1em;
+				flex-direction: column;
+				
+			}
+			
+			.item {
+				
+				background-color: #455a64;
+				font-size: 1.1em;
+				padding: 1em;
+				color: white;
+			}
+			
+			.item:nth-child(even) {
+				background-color: #607d8b;
+			}
+			
+			@media screen and (min-width: 600px) {
+				
+				body {
+					flex-flow: row nowrap;
+				}
+			}
+			
+		</style>
+		
+	</head>
+	
+	<body>
+		<div class="item">
+			AngularJS is a JavaScript-based open-source front-end web framework mainly maintained by 
+			Google and by a community of individuals and corporations to address many of the challenges 
+			encountered in developing single-page applications. It aims to simplify both the development and 
+			the testing of such applications by providing a framework for 
+			client-side model–view–controller (MVC) and model–view–viewmodel (MVVM) architectures, 
+			along with components commonly used in rich Internet applications.
+
+			AngularJS is the frontend part of the MEAN stack, consisting of MongoDB database, 
+			Express.js web application server framework, Angular.js itself, and Node.js server runtime environment. 
+			Version 1.7.x is on Long Term Support until July 1st 2021. After that date 
+			AngularJS will no longer be updated and Angular (2.0+) is suggested instead
+		</div>
+		
+		<div class="item">
+			Redis popularized the idea of a system that can be considered 
+			at the same time a store and a cache, using a design where data is 
+			always modified and read from the main computer memory, but also stored on 
+			disk in a format that is unsuitable for random access of data, 
+			but only to reconstruct the data back in memory once the system restarts. 
+			At the same time, Redis provides a data model that is very unusual compared 
+			to a relational database management system (RDBMS). User commands do 
+			not describe a query to be executed by the database engine but rather specific 
+			operations that are performed on given abstract data types. Hence, data must 
+			be stored in a way which is suitable later for fast retrieval, without help 
+			from the database system in form of secondary indexes, aggregations or other common features 
+			of traditional RDBMS. The Redis implementation makes heavy use of the fork system call, 
+			to duplicate the process holding the data, so that the parent process continues to serve clients, 
+			while the child process creates a copy of the data on disk.
+		</div>
+	</body>
+</html>
