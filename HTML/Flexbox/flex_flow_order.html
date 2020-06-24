@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Flex-flow. Element order</title>
+		
+		<style>
+			.flex-container {
+				display: flex;
+				border: 1px solid #ccc;
+				width: 25%;
+				height: 8.25em;
+				flex-flow: row wrap;
+			}
+			
+			.group1 {
+				
+				order: -1;
+				
+			}
+			
+			.group2 {
+				
+				order: 1;
+				
+			}
+			
+			.flex-item {
+				text-align: center;
+				font-size: 1em;
+				padding: 1.5em;
+				color: white;
+			}
+			
+			.color1 { background-color: #675BA7; }
+			.color2 { background-color: #9BC850; }
+			.color3 { background-color: #A62E5C; }
+			.color4 { background-color: #2A9FBC; }
+			.color5 { background-color: #F15B2A; }	
+			.color6 { background-color: #2A5BF1; }	
+			
+		</style>
+		
+	</head>
+	
+	<body>
+		<h3>Row</h3>
+		<div class="flex-container">
+			<div class="flex-item color1">Item 1</div>
+			<div class="flex-item color2">Item 2</div>
+			<div class="flex-item color3 group2">Item 3</div>
+			<div class="flex-item color4 group2">Item 4</div>
+			<div class="flex-item color5 group1">Item 5</div>
+			<div class="flex-item color6 group1">Item 6</div>
+		</div>
+	</body>
+</html>
