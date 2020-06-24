@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>Canvas - Pixel Editing</title>
+		<title>Canvas - Mouse Drawing</title>
 	</head>
 		
 		<style>
@@ -49,6 +49,7 @@
 				var x = e.pageX - this.offsetLeft, y = e.pageY - this.offsetTop;
 				
 				context.lineTo(x, y);
+				context.stroke();
 				
 			});
 			
@@ -58,11 +59,20 @@
 				
 				drawing = false;
 				
+				var x = e.pageX - this.offsetLeft, y = e.pageY - this.offsetTop;
+				
+				context.lineTo(x, y);
+				context.stroke();
 				context.closePath();
 				
-				context.stroke();
 			});
 				
+			canvas.addEventListener("contextmenu", function(e) {
+				
+				context.clearRect(0, 0, this.width, this.height);
+				
+			});
+			
 		</script>
 		
 	</body>
