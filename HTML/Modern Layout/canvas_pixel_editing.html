@@ -96,6 +96,16 @@
 					
 					var red, green, blue, greyscale;
 					
+					var otherImageData = context.createImageData(imageData);
+					
+					for (var i = 0; i < imageData.data.length; ++i)
+					{
+						otherImageData.data[i] = imageData.data[i];
+						
+						if ( (i + 1) % 4 === 0)
+							otherImageData.data[i] = 100;
+					}
+					
 					for (var i = 0; i < imageData.data.length; i += 4)
 					{
 						red = imageData.data[i], green = imageData.data[i + 1], blue = imageData.data[i + 2];
@@ -107,6 +117,8 @@
 						imageData.data[i + 2] = greyscale;
 						
 					}
+						
+					context.putImageData(otherImageData, cx - img.width / 2, cy - img.height / 2);
 					
 					context.putImageData(imageData, cx + img.width / 2, cy + img.height / 2);
 					
