@@ -12,19 +12,38 @@
 				
 			}
 			
-			.grid_container {
+			.grid_gap {
 				
-				display: grid;
-				border: 2px solid #ccc;
-				grid-template-rows: 2fr 4fr 1fr;
-				grid-template-columns: 1fr 3fr 1fr;
+				grid-column-gap: 10px;
+				grid-row-gap: 15px;
 				
 			}
 			
-			.auto_grid_container {
-				display: inline-grid;
-				border: 2px solid #ccc;
+			.auto_cell_size {
+			
 				grid: repeat(3, auto) / repeat(2, auto);
+				
+			}
+			
+			.fraction_cell_size {
+			
+				grid-template-rows: 2fr 4fr 1fr;
+				grid-template-columns: 1fr 3fr 1fr;	
+			
+			}
+			
+			.grid_container {
+				
+				display: grid;
+				border: 2px solid #ccc;	
+				
+			}
+			
+			.inline_grid_container {
+				
+				display: inline-grid;
+				border: 2px solid #ccc;	
+				
 			}
 			
 			.grid_item {
@@ -46,8 +65,8 @@
 	</head>
 	
 	<body>
-		<h3>Fixed-cell-size grid-container</h3>
-		<div class="grid_container">
+		<h3>Fraction-cell-size grid-container</h3>
+		<div class="grid_container fraction_cell_size grid_gap">
 			<div class="grid_item color1">Item 1</div>
 			<div class="grid_item color2">Item 2</div>
 			<div class="grid_item color3">Item 3</div>
@@ -59,7 +78,7 @@
 		</div>
 		
 		<h3>Auto-cell-size grid-container</h3>
-		<div class="auto_grid_container">
+		<div class="inline_grid_container auto_cell_size grid_gap">
 			<div class="grid_item color1">Item 1</div>
 			<div class="grid_item color2">Item 2</div>
 			<div class="grid_item color3">Item 3</div>
