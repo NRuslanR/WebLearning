@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Page Layout by Flexbox</title>
+		
+		<style>
+			
+			* {
+				box-sizing: border-box;
+			}
+			
+			html, body {
+				
+				padding: 0;
+				margin: 0;
+				font-family: verdana, arial, times new romain, sans-serif;
+				
+			}
+			
+			body {
+			
+				color: #fff;
+                font-size: 1.1em;
+				display: flex;
+				padding: 1em;
+				flex-direction: column;
+				
+			}
+			
+			header, footer {
+				
+				flex: 0 0 5em;
+				background-color: #37474f;
+				
+			}
+			
+			main {	
+				
+				display: flex;
+				flex-direction: column;
+				
+			}
+			
+			article {
+			
+				padding: 1em;
+				background-color: #546e7a;
+				flex 2 2 12em;
+				
+			}
+			
+			nav, aside {
+				
+				background-color: #455a64;
+				flex: 1;
+				
+			}
+			
+			nav {
+			
+				order: -1;
+				
+			}
+					
+			@media screen and (min-width: 600px) {
+				
+				body {
+					
+					min-height: 100vh;
+					
+				}
+				
+				main {
+					
+					flex-flow: row nowrap;
+					min-height: 100%;
+					flex: 1 1 auto;
+				}
+				
+			}
+			
+		</style>
+		
+	</head>
+	
+	<body>
+		<header>
+			<h2>Header</h2>
+		</header>
+		<main>
+			<article>
+				React (also known as React.js or ReactJS) is an open-source JavaScript library
+				for building user interfaces. It is maintained by Facebook and a community of individual developers and companies.
+				React can be used as a base in the development of single-page or mobile applications. 
+				However, React is only concerned with rendering data to the DOM, and so creating React 
+				applications usually requires the use of additional libraries for state management and routing. 
+				Redux and React Router are respective examples of such libraries.
+			</article>
+			<nav>
+				Navigation
+			</nav>
+			<aside>
+				Sidebar
+			</aside>
+		</main>
+		<footer>
+			Footer
+		</footer>
+	</body>
+</html>
