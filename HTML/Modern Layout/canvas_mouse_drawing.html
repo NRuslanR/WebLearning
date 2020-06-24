@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Canvas - Pixel Editing</title>
+	</head>
+		
+		<style>
+			canvas {
+				
+				display: block;
+				margin: 0 auto;
+				background-color: #eee;
+				
+			}
+		</style>
+		
+	<body>
+	
+		<canvas id="myCanvas" width="600" height="600">
+			Canvas feature isn't being supported at your platform !
+		</canvas>
+		
+		<script type="text/javascript">
+		
+			var canvas = document.getElementById("myCanvas"),
+				context = canvas.getContext("2d");
+				
+			var drawing = false;
+			
+			context.lineWidth = 3;
+			context.strokeStyle = "black";
+			
+			canvas.addEventListener("mousedown", function(e) {
+			
+				var x = e.pageX - this.offsetLeft, y = e.pageY - this.offsetTop;
+				
+				drawing = true;
+				
+				context.beginPath();
+				context.moveTo(x, y);
+				
+			});
+			
+			canvas.addEventListener("mousemove", function(e) {
+			
+				if (!drawing) return;
+				
+				var x = e.pageX - this.offsetLeft, y = e.pageY - this.offsetTop;
+				
+				context.lineTo(x, y);
+				
+			});
+			
+			canvas.addEventListener("mouseup", function(e) {
+			
+				if (!drawing) return;
+				
+				drawing = false;
+				
+				context.closePath();
+				
+				context.stroke();
+			});
+				
+		</script>
+		
+	</body>
+	
+</html>
