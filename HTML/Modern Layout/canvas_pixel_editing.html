@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Canvas - Pixel Editing</title>
+		
+		<style>
+			
+			input[name="PixelX"], input[name="PixelY"] {
+				display: inline-block;
+				border: 1px solid blue;
+			}
+			
+			#myCanvas {
+				
+				background-color: #aaa;
+				display: block;
+				margin: auto;
+				
+			}
+			
+		</style>
+	</head>
+	
+	<body>
+		<div>
+			<label for="PixelX">Pixel X Offset:</label>&nbsp;
+			<input type="number" id="PixelX" name="PixelX" disabled/>
+		</div>
+		<br/>
+		<div>
+			<label for="PixelY">Pixel Y Offset:</label>&nbsp;
+			<input type="number" id="PixelY" name="PixelY" disabled/>
+		</div>
+		<br/>
+		<div>
+			<input type="button" id="PixelRGBAButton" name="PixelRGBAButton" disabled value="Get Pixel RGBA"/>
+		</div>
+		
+		<canvas id="myCanvas" width="600" height="600">
+			Canvas feature isn't being supported at your platform !
+		</canvas>
+		
+		<script type="text/javascript">
+		
+			var canvas = document.getElementById("myCanvas"),
+				context = canvas.getContext("2d");
+				
+			var img = new Image();
+			img.src = "https://i.ebayimg.com/images/g/mzIAAOxyQj9RQSzV/s-l400.jpg";
+			img.crossOrigin = "Anonymous";
+			img.onload = 
+				function() {
+					
+					var cx = (canvas.width - img.width) / 2, cy = (canvas.height - img.height) / 2;
+					
+					context.drawImage(img, cx, cy);
+					
+					console.log(this.width);
+					console.log(this.height);
+					
+					var imageData = context.getImageData(cx, cy, this.width, this.height);
+
+					var pixelXOffset = document.getElementById("PixelX"),
+					    pixelYOffset = document.getElementById("PixelY"),
+						GettingPixelRGBABtn = document.getElementById("PixelRGBAButton");
+						
+					pixelXOffset.disabled = false;
+					pixelYOffset.disabled = false;
+					GettingPixelRGBABtn.disabled = false;
+					
+					pixelXOffset.min = 0;
+					pixelXOffset.value = 0;
+					pixelXOffset.max = this.width - 1;
+					
+					pixelYOffset.min = 0;
+					pixelYOffset.value = 0;
+					pixelYOffset.max = this.height - 1;
+					
+					GettingPixelRGBABtn.onclick = function(event) {
+					
+						
+						var x = pixelXOffset.value, 
+							y = pixelYOffset.value,
+							pixelNum = y * this.width * 4 + x * 4,
+							pixelRNum = pixelNum + 0, pixelGNum = pixelNum + 1, pixelBNum = pixelNum + 2, pixelANum = pixelNum + 3,
+							data = imageData.data;
+							
+						alert('R(' + x + ', ' + y + ') -> ' + data[pixelRNum] + ', G(' + x + ', ' + y + ') -> ' 
+								+ data[pixelGNum] + ', B(' + x + ', ' + y + ') -> ' + data[pixelBNum] + 
+								', A(' + x + ', ' + y + ') -> ' + (data[pixelANum] / 255));
+						
+	
+					};
+					
+					canvas.onclick = function(event) {
+						
+						const rect = canvas.getBoundingClientRect();
+						
+						var pixelRow = event.clientY - rect.top - cy, pixelCol = event.clientX - rect.left - cx; 
+						
+						if ((pixelRow >= 0 && pixelRow < img.width) && (pixelCol >= 0 && pixelCol < img.height))
+						{
+							pixelXOffset.value = pixelCol;
+							pixelYOffset.value = pixelRow;
+						}
+					};
+					
+				};
+			
+				
+		</script>
+		
+	</body>
+	
+</html>
