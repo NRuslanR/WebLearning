@@ -10,6 +10,10 @@
 				border: 1px solid #ccc;
 			}
 			
+			.column {
+				flex-direction: column;
+			}
+			
 			.flex-start {
 				justify-content: flex-start;
 			}
@@ -43,6 +47,10 @@
 			.color4 { background-color: #2A9FBC; }
 			.color5 { background-color: #F15B2A; }	
 			.color6 { background-color: #2A5BF1; }	
+			
+			h2 {
+				margin-top: 25px;
+			}
 			
 		</style>
 		
@@ -91,6 +99,57 @@
 		
 		<h3>Space-around</h3>
 		<div class="flex-container space-around">
+			<div class="flex-item color1">Item 1</div>
+			<div class="flex-item color2">Item 2</div>
+			<div class="flex-item color3">Item 3</div>
+			<div class="flex-item color4">Item 4</div>
+			<div class="flex-item color5">Item 5</div>
+			<div class="flex-item color6">Item 6</div>
+		</div>
+		
+		<h2>Column Layout</h2>
+		<h3>Flex-start</h3>
+		<div class="flex-container column flex-start">
+			<div class="flex-item color1">Item 1</div>
+			<div class="flex-item color2">Item 2</div>
+			<div class="flex-item color3">Item 3</div>
+			<div class="flex-item color4">Item 4</div>
+			<div class="flex-item color5">Item 5</div>
+			<div class="flex-item color6">Item 6</div>
+		</div>
+		
+		<h3>Flex-end</h3>
+		<div class="flex-container column flex-end">
+			<div class="flex-item color1">Item 1</div>
+			<div class="flex-item color2">Item 2</div>
+			<div class="flex-item color3">Item 3</div>
+			<div class="flex-item color4">Item 4</div>
+			<div class="flex-item color5">Item 5</div>
+			<div class="flex-item color6">Item 6</div>
+		</div>
+		
+		<h3>Center</h3>
+		<div class="flex-container center column">
+			<div class="flex-item color1">Item 1</div>
+			<div class="flex-item color2">Item 2</div>
+			<div class="flex-item color3">Item 3</div>
+			<div class="flex-item color4">Item 4</div>
+			<div class="flex-item color5">Item 5</div>
+			<div class="flex-item color6">Item 6</div>
+		</div>
+		
+		<h3>Space-between</h3>
+		<div class="flex-container column space-between">
+			<div class="flex-item color1">Item 1</div>
+			<div class="flex-item color2">Item 2</div>
+			<div class="flex-item color3">Item 3</div>
+			<div class="flex-item color4">Item 4</div>
+			<div class="flex-item color5">Item 5</div>
+			<div class="flex-item color6">Item 6</div>
+		</div>
+		
+		<h3>Space-around</h3>
+		<div class="flex-container column space-around">
 			<div class="flex-item color1">Item 1</div>
 			<div class="flex-item color2">Item 2</div>
 			<div class="flex-item color3">Item 3</div>
