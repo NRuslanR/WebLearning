@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>Two-Column Layout with Flexbox</title>
+		<title>Multi-Column Layout with Flexbox</title>
 		
 		<style>
 			
@@ -32,16 +32,26 @@
 				font-size: 1.1em;
 				padding: 1em;
 				color: white;
+				flex: 1;
 			}
 			
-			.item:nth-child(even) {
+			.item:nth-child(1), item:nth-child(3) {
 				background-color: #607d8b;
+			}
+			
+			.item:nth-child(1)
+			{
+				flex: 0 0 50%;
 			}
 			
 			@media screen and (min-width: 600px) {
 				
 				body {
 					flex-flow: row nowrap;
+				}
+				
+				.item:last-child {
+					order: -1;
 				}
 			}
 			
@@ -79,6 +89,15 @@
 			of traditional RDBMS. The Redis implementation makes heavy use of the fork system call, 
 			to duplicate the process holding the data, so that the parent process continues to serve clients, 
 			while the child process creates a copy of the data on disk.
+		</div>
+		
+		<div class="item">
+			Redux is an open-source JavaScript library for managing application state. 
+			It is most commonly used with libraries such as React or Angular for building user interfaces. 
+			Similar to (and inspired by) Facebook's Flux architecture, it was created by Dan Abramov and Andrew Clark.
+			Redux is a small library with a simple, limited API designed to be a predictable container for application state. 
+			It operates in a similar fashion to a reducing function, a functional programming concept.
+			It is influenced by the functional programming language Elm
 		</div>
 	</body>
 </html>
