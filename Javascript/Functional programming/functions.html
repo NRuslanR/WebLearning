@@ -32,6 +32,19 @@
 			}
 			
 			output(...a);
+			
+			console.log("optional arguments");
+			
+			function optionalArgFunc(x, y)
+			{
+				if (x === undefined) x = "not specified";
+				if (y === undefined) y = "not specified";
+				
+				console.log(x);
+				console.log(y);
+			}
+			
+			optionalArgFunc();
 				
 		</script>
 		
