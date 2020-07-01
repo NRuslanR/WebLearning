@@ -10,7 +10,8 @@
 		
 			var emptyArr = [],
 				initArr = [1, 2, 3, 4],
-				heterArr = [ "First", 2, 3.0, true ];
+				heterArr = [ "First", 2, 3.0, true ],
+				twoDimArr = [ [1, 2, "Third"], [4, 5, "Fifth"] ];
 				
 			console.log(emptyArr);
 			console.log(initArr);
@@ -21,6 +22,13 @@
 			console.log(emptyArr);
 			
 			console.log(...initArr);
+			console.log(twoDimArr);
+			
+			let otherTwoDimArr = [];
+			
+			otherTwoDimArr[2] = [3.432, 8.434, "String"];
+			
+			console.log(otherTwoDimArr);
 			
 		</script>
 		
