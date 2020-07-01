@@ -113,6 +113,26 @@
 				console.log(tmp1);
 			}
 			
+			function global()
+			{
+				foo = "global variable";
+				
+				console.log(foo);
+			}
+			
+			global();
+			console.log(foo);
+			
+			function globalError()
+			{
+				"use strict";
+				
+				bar = "global variable";
+			}
+			
+			globalError();
+			
+			
 		</script>
 		
 	</body>
