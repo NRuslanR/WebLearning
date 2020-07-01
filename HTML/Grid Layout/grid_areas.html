@@ -30,14 +30,36 @@
 				
 				display: grid;
 				height: 100vh;
-				grid-template-columns: 200px 5px 1fr 5px 200px;
-				grid-template-rows: 150px 5px 1fr 5px 200px;
-				grid-template-areas: "header header header header header"
-									 ". . . . ."
-									 "menu . content . sidebar"
-									 ". . . . ."
-									 "footer footer footer footer footer";
+				grid-template-columns: 1fr;
+				grid-template-rows: 1fr 5px 1fr 5px 1fr 5px 1fr 5px 1fr;
+				grid-template-areas: "header"
+									 "."
+									 "menu"
+									 "."
+									 "content"
+									 "."
+									 "sidebar"
+									 "."
+									 "footer";
 									 
+			}
+			
+			@media screen and (min-width: 668px) {
+			
+				.grid-layout {
+					
+					display: grid;
+					height: 100vh;
+					grid-template-columns: 200px 5px 1fr 5px 200px;
+					grid-template-rows: 150px 5px 1fr 5px 200px;
+					grid-template-areas: "header header header header header"
+										 ". . . . ."
+										 "menu . content . sidebar"
+										 ". . . . ."
+										 "footer footer footer footer footer";
+										 
+				}
+				
 			}
 			
 			.text-decorator {
@@ -81,7 +103,6 @@
 				background-color: #f3f;
 			
 			}
-				
 			
 		</style>
 		
