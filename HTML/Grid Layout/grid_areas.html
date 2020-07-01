@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Grid Layout. Line naming and repeat</title>
+		
+		<style>
+		
+			* {
+				box-sizing: border-box;
+			}
+			
+			html, body {
+				margin: 0;
+				padding: 0;
+			}
+			
+			.grid-container {
+			
+				display: grid;
+				grid-template-columns: 350px 1fr;
+				grid-template-rows: 200px 1fr 300px;
+				grid-template-areas: "header header"
+									 "sidebar content"
+									 "sidebar content";
+				height: 100vh;
+			}
+			
+			.grid-layout {
+				
+				display: grid;
+				height: 100vh;
+				grid-template-columns: 200px 5px 1fr 5px 200px;
+				grid-template-rows: 150px 5px 1fr 5px 200px;
+				grid-template-areas: "header header header header header"
+									 ". . . . ."
+									 "menu . content . sidebar"
+									 ". . . . ."
+									 "footer footer footer footer footer";
+									 
+			}
+			
+			.text-decorator {
+			
+				color: white;
+				font-size: 2.5em;
+				text-align: center;
+				
+			}
+			
+			.header {
+				
+				grid-area: header;
+				background-color: #f02;
+				
+			}
+			
+			.menu {
+				
+				grid-area: menu;
+				background-color: #4ef;
+			}
+			
+			.sidebar {
+			
+				grid-area: sidebar;
+				background-color: #0f4;
+				
+			}
+			
+			.content {
+				
+				grid-area: content;
+				background-color: #4af;
+				
+			}
+			
+			.footer {
+				
+				grid-area: footer;
+				background-color: #f3f;
+			
+			}
+				
+			
+		</style>
+		
+	</head>
+	
+	<body>
+	
+		<div class="grid-layout">
+			<div class="header text-decorator">Header</div>
+			<div class="menu text-decorator">Menu</div>
+			<div class="content text-decorator">Content</div>
+			<div class="sidebar text-decorator">Sidebar</div>
+			<div class="footer text-decorator">Footer</div>
+		</div>
+		
+	</body>
+	
+</html>
