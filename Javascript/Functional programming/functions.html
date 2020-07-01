@@ -46,6 +46,37 @@
 			
 			optionalArgFunc();
 				
+			console.log("function's arguments keyword");
+			
+			function args()
+			{
+				for (var i = 0; i < arguments.length; ++i)
+					console.log(arguments[i]);
+			}
+			
+			args(1, 2, ['2', true, 9.433], "String");
+			
+			console.log("variable arguments");
+			
+			var varArgF = function (...items) { 
+				
+				for (item of items)
+					console.log(item);
+			};
+			
+			varArgF(3, 4, 6, "Item");
+			
+			console.log("high-order func:");
+			
+			function highOrderFunc(a, b, subFunc)
+			{
+				console.log(a + b);
+				subFunc();
+			}
+			
+			highOrderFunc(5, 6, () => console.log("subFunc example"));
+			highOrderFunc(5, '5', function() { console.log("subFunc example 2") });
+			
 		</script>
 		
 	</body>
