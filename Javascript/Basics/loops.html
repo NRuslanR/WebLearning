@@ -11,9 +11,21 @@
 		
 			var arr = [1, 2, 3, 4, 5, 6];
 			
+			console.log("for");
+			
 			for (var i = 0; i < arr.length; ++i)
 				console.log(arr[i]);
+				
+			console.log("for..in");
 			
+			for (i in arr)
+				console.log(arr[i]);
+				
+			console.log("for..of");
+			
+			for (i of arr)
+				console.log(i);
+				
 		</script>
 		
 	</body>
