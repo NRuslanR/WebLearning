@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Grid Layout. Line naming and repeat</title>
+		
+		<style>
+		
+			* {
+				box-sizing: border-box;
+			}
+			
+			html, body {
+				margin: 0;
+				padding: 0;
+			}
+			
+			.grid-container {
+				display: grid;
+				grid-template-columns: auto repeat(3, [column] 1fr [colgutter] 10px);
+				grid-template-rows: auto repeat(3, [row] 1fr [rowgutter] 10px);
+				height: 100vh;
+			}
+			
+			.color1 {
+				
+				background: #f00;
+				
+			}
+			
+			.color2 {
+				background: #0f0;
+			}
+			
+			.color3 {
+				background: #00f;
+			}
+			
+			.color4 {
+				background: #ef2;
+			}
+			
+			.color5 {
+				background: #2ef;
+			}
+			
+			.color6 {
+				background: #f266aa;
+			}
+			
+			.special-item {
+				
+				grid-column: column 3;
+				grid-row: row 1;
+				background-color: #fe2;
+				
+			}
+			
+			.item1 {
+			
+				grid-column: column: 1;
+				grid-row: row 1;
+				
+			}
+			
+			.item2 {
+				grid-column: column 2;
+				grid-row: row 1;
+			}
+			
+			.item3 {
+				
+				grid-column: 1 / 2;
+				grid-row: row 2;
+				
+			}
+			
+			.item4 {
+				grid-column: column 3;
+				grid-row: row 2;
+			}
+			
+			.item5 {
+			
+				grid-column: column 2;
+				grid-row: row 3;
+				
+			}	
+			
+			.item6 {
+			
+				grid-column: 1 / 2;
+				grid-row: row 1;
+				
+			}
+			
+		</style>
+		
+	</head>
+	
+	<body>
+	
+		<div class="grid-container">
+			<div class="special-item">Special Item</div>
+			<div class="item1 color1">Item 1</div>
+			<div class="item2 color2">Item 2</div>
+			<div class="item3 color3">Item 3</div>
+			<div class="item4 color4">Item 4</div>
+			<div class="item5 color5">Item 5</div>
+			<div class="item6 color6">Item 6</div>
+		</div>
+		
+	</body>
+	
+</html>
