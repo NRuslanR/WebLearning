@@ -1,0 +1,134 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>CSS Themes</title>
+		
+		<style>
+		
+			:root[theme='light'] {
+			
+				--panel-bg-color: #dfe4ea;
+				--container-bg-color: #f1f2f6;
+				--text-color: #2f3542;
+				
+			}
+			
+			:root[theme='dark'] {
+				
+				--panel-bg-color: #2f3542;
+				--container-bg-color: #57606f;
+				--text-color: #ced6e0;
+				
+			}
+			
+			* {
+				box-sizing: border-box;
+			}
+			
+			html, body {
+				
+				height: 100%;
+				margin: 0;
+				padding: 0;
+				
+			}
+			
+			body {
+			
+				display: flex;
+				flex-direction: column;
+				color: var(--text-color);
+			}
+			
+			ul.nav {
+				
+				margin: 0;
+				list-style-type: none;
+				
+			}
+			
+			ul.nav li {
+				
+				display: inline-block;
+				margin: 15px;
+				
+			}
+				
+			.nav {
+				background-color: var(--panel-bg-color);
+			}
+			
+			.nav a {
+			
+				text-decoration: none;
+				color: var(--text-color);
+			}
+			
+			.main {
+				
+				flex: 1;
+				background-color: var(--container-bg-color);
+				
+			}
+			
+			.footer {
+				
+				background-color: var(--panel-bg-color);
+				
+			}
+				
+			input[id='toggleThemeBtn'] {
+				
+				background: var(--panel-bg-color);
+				color: var(--text-color);
+				
+			}
+			
+		</style>
+		
+	</head>
+	
+	<body>
+		<ul class="nav">
+			<li><a href="#">First Nav Item</a></li>
+			<li><a href="#">Second Nav Item</a></li>
+			<li><a href="#">Third Nav Item</a></li>
+		</ul>
+		<div class="main">
+			<div>Main Content</div>
+			<input type="button" id="toggleThemeBtn" name="toggleThemeBtn" value="Toggle Theme"/>
+		</div>
+		<div class="footer">
+			Footer Content
+		</div>
+		
+		<script type="text/javascript">
+
+			window.onload=
+				function(e) {
+					document.documentElement.setAttribute("theme", "light");
+				};
+				
+			var toggleThemeBtn = document.querySelector("#toggleThemeBtn");
+			
+			toggleThemeBtn.addEventListener(
+				"click",
+				function(e) {
+					
+					var changedThemeName;
+					
+					if (document.documentElement.getAttribute("theme") === 'light')
+						changedThemeName = 'dark';
+						
+					else changedThemeName = 'light';
+					
+					document.documentElement.setAttribute('theme', changedThemeName);
+					
+				}
+			);
+			
+		</script>
+		
+	</body>
+</html>
