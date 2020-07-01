@@ -28,6 +28,32 @@
 			innerFunc();
 			innerFunc();
 			
+			console.log('Self-called functions:');
+			
+			(
+				(count) => {
+					
+					var args = [1, 2, 3, "Item1", "Item2", [true, false]];
+					
+					console.log("count: " + count);
+					
+					return function(i) {
+						
+						while (i > 0) {
+							
+							console.log('Iteration ' + i + ':');
+						
+							for (var idx in args)
+								console.log(args[idx]);
+								
+							--i;
+							
+						};
+						
+					};
+				}
+			)(5)(3);
+						
 		</script>
 		
 	</body>
