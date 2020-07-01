@@ -1,0 +1,41 @@
+<!doctype>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Javascript's module pattern</title>
+	</head>
+	
+	<body>
+		
+		<script>
+			
+			function getFactorial(n) {
+				
+				if (n === undefined)
+					throw 'n is undefined';
+					
+				if (n < 0) 
+					throw 'n must be non-negative';
+					
+				function internalGetFactorial(n)
+				{
+					return n > 2 ? n * internalGetFactorial(n - 1) : n == 0 ? 0 : n;
+				}
+				
+				return internalGetFactorial(n);
+			};
+			
+			document.write('<h2>Factorial(10) = ' + getFactorial(10));
+			document.write('<h2>Factorial(15) = ' + getFactorial(15));
+			document.write('<h2>Factorial(19) = ' + getFactorial(19));
+			document.write('<h2>Factorial(20) = ' + getFactorial(20));
+			document.write('<h2>Factorial(30) = ' + getFactorial(30));
+			document.write('<h2>Factorial(55) = ' + getFactorial(55));
+			document.write('<h2>Factorial(500) = ' + getFactorial(500));	
+			document.write('<h2>Factorial(1000) = ' + getFactorial(1000));	
+				
+		</script>
+		
+	</body>
+	
+</html>
