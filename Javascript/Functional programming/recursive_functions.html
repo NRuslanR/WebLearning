@@ -31,6 +31,11 @@
 				return internalGetFactorial(n);
 			};
 			
+			var date = new Date();
+			
+			document.write('<h3>Current date: ' + date + '</h3>');
+			document.write('<h3>Current month: ' + date.getMonth() + '</h3>');
+			
 			document.write('<h2>Factorial(10) = ' + getFactorial(10));
 			document.write('<h2>Factorial(15) = ' + getFactorial(15));
 			document.write('<h2>Factorial(19) = ' + getFactorial(19));
