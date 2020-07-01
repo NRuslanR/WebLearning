@@ -77,6 +77,42 @@
 			highOrderFunc(5, 6, () => console.log("subFunc example"));
 			highOrderFunc(5, '5', function() { console.log("subFunc example 2") });
 			
+			{
+				var tmp = 'tmp';
+				
+				{
+					var tmp = 'a';
+					
+					{
+						var tmp = 'b';
+						
+						console.log(tmp);
+					}
+					
+					console.log(tmp);
+				}
+				
+				console.log(tmp);
+			}
+			
+			{
+				let tmp1 = 'tmp';
+				
+				{
+					let tmp1 = 'a';
+					
+					{
+						let tmp1 = 'b';
+						
+						console.log(tmp1);
+					}
+					
+					console.log(tmp1);
+				}
+				
+				console.log(tmp1);
+			}
+			
 		</script>
 		
 	</body>
