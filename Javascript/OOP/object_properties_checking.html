@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>Javascript's nested objects</title>
+		<title>Javascript's objects; properties checking</title>
 	</head>
 	
 	<body>
@@ -35,13 +35,10 @@
 				]
 			};
 			
-			console.log(employee);
-			console.log("addresses:");
+			console.log('fullName in employee: ' + ('fullName' in employee));
+			console.log('addresses in employee: ' + (employee.addresses !== undefined));
+			console.log('abc in employee: ' + (employee.abc != undefined));
 			
-			for (var address of employee.addresses)
-				console.log(address);
-				
-			console.log('full name: ' + employee['fullName']());
 				
 		</script>
 		
