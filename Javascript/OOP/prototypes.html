@@ -35,9 +35,17 @@
 			console.log('ruslan.maxAge: ' + ruslan.maxAge);
 			console.log("dmitry.maxAge: " + dmitry.maxAge);
 			
+			/*
 			ruslan.print();
 			dmitry.print();
-		
+			*/
+			
+			var func = new Function('a', 'b', 'return a * b');
+			
+			func.name = 'prod';
+			
+			console.log('function name: ' + func.name);
+			console.log('prod(4, 5): ' + func(4, 5));	
 		
 		</script>
 		
