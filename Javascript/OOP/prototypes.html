@@ -46,6 +46,8 @@
 			
 			console.log('function name: ' + func.name);
 			console.log('prod(4, 5): ' + func(4, 5));	
+			console.log("func.call(this, 3, 9): " + func.call(this /*global window object*/, 3, 9));
+			console.log("func.apply(null, [6, 7]): " + func.apply(null, [6, 7]));
 		
 		</script>
 		
