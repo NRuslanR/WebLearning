@@ -1,0 +1,50 @@
+<!doctype>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Javascript's object incapsulation</title>
+	</head>
+	
+	<body>
+		
+		<script>
+			
+			
+			function Button(state = 'off') {
+			
+				var _state;
+				
+				this.isOn = function() { return this._state === 'on'; };
+				this.isOff = function() { return this._state === 'off'; };
+				this.on = function() { this._state = 'on'; }
+				this.off = function() { this._state = 'off'; }
+				
+				this.getState = function() { return _state; }
+				this.setState = function(newState) {
+				
+					if (newState !== 'on' && newState !== 'off') {
+						
+						console.log('button state must be only either "on" or "off"');
+						return;
+					}
+					
+					_state = newState;
+				};
+				
+				this.setState(state);
+				
+			};
+			
+			var button1 = new Button(), button2 = new Button('off'), button3 = new Button('on');
+			
+			console.log('button1.isOff: ' + button1.isOff());
+			console.log('button2.isOn: ' + button2.isOn());
+			console.log('button3.isOn: ' + button3.isOn());
+			console.log("button3's state: " + button3.getState());
+			console.log("button1's _state: " + button1._state);
+			
+		</script>
+		
+	</body>
+	
+</html>
