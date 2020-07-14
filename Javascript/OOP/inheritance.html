@@ -1,0 +1,38 @@
+<!doctype>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Javascript's object inheritance</title>
+	</head>
+	
+	<body>
+		
+		<script>
+			
+			function User(name, birth_date) {
+				
+				this.name = name;
+				this.birth_date = birth_date;
+				
+			}
+			
+			function Employee(name, birth_date, speciality) {
+			
+				User.call(this, name, birth_date);
+				
+				this.speciality = speciality;
+				
+			}
+			
+			Employee.prototype = Object.create(User.prototype);
+			
+			var emp = new Employee('Ruslan', '1995-01-30', 'Developer');
+			
+			console.log(emp);
+			
+			
+		</script>
+		
+	</body>
+	
+</html>
