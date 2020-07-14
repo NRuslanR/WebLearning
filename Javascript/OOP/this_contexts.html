@@ -1,0 +1,33 @@
+<!doctype>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Javascript's object this contexts</title>
+	</head>
+	
+	<body>
+		
+		<script>
+			
+			var school = {
+			
+				title: "UlGTU",
+				courses: [ "Physics", "Programming", "Philosophy", "Engineering" ],
+				printCourses: function() {
+					
+					this.courses.forEach(function(course) {
+						
+						this.console.log(this.title + " " + course);
+						
+					});
+				}
+			};
+			
+			school.printCourses()
+			
+			
+		</script>
+		
+	</body>
+	
+</html>
