@@ -15,9 +15,11 @@
 				courses: [ "Physics", "Programming", "Philosophy", "Engineering" ],
 				printCourses: function() {
 					
+					var schoolContext = this;
+					
 					this.courses.forEach(function(course) {
 						
-						this.console.log(this.title + " " + course);
+						this.console.log(schoolContext.title + " " + course);
 						
 					});
 				}
