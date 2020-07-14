@@ -9,11 +9,58 @@
 		
 		<script>
 			
-			class Identity {};
+			class Identity {
+				
+				constructor(user, email)
+				{
+					this.user = user;
+					this.email = email;
+				}
+				
+				static userToUpper(identity)
+				{
+					return identity.user.toUpperCase();
+				}
+				
+				display()
+				{
+					console.log('user: ' + this.user);
+					console.log('email: ' + this.email);
+				}
+			};
 			
 			var identity = new Identity();
 			
 			console.log(identity);
+			
+			identity = new Identity('59968', 'br@ya.ru');
+			
+			identity.display();
+			
+			class TokenizedIdentity extends Identity {
+			
+				constructor(user, email, token)
+				{
+					super(user, email);
+					
+					this.token = token;
+				}
+				
+				display()
+				{
+					super.display();
+					
+					console.log('token: ' + this.token);
+				}
+			};
+			
+			var tokenizedIdentity = new TokenizedIdentity('tom', 'ee@gmail.com', "ergerg342dfga23232");
+			
+			tokenizedIdentity.display();
+			
+			console.log('static method "userToUpper" using: ');
+			
+			console.log(Identity.userToUpper(tokenizedIdentity));
 			
 		</script>
 		
