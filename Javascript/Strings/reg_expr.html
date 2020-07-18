@@ -1,0 +1,42 @@
+<!doctype>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Javascript's Regular Expressions</title>
+	</head>
+	
+	<body>
+		
+		<script>
+			
+			var regExpr = new RegExp("h[el]{3}o");
+			
+			var text = " hello, world !";
+			
+			console.log('regular expression: ' + regExpr);
+			console.log('text: ' + text);
+			console.log('regExpr.test(text): ' + regExpr.test(text));
+			console.log('regExpr.exec(text): ' + regExpr.exec(text));
+			console.log('regExpr.test("43fgdfgd"): ' + regExpr.test("43fgdfgd"));
+			
+			var pattern = /\w{3}/i;
+			
+			"This is simple suggestion: raz , dva , third , fouth".split(pattern).forEach(i => console.log(i));
+			
+			console.log('"Simp23le te555xt".search(/\d{3}/): ' + "Simp23le te555xt".search(/\d{3}/));
+			console.log('"Simp23le te555xt".replace(/(\d{2}|\d{3})/, "NUMBER"): ' + "Simp23le te555xt".replace(/(\d{2}|\d{3})/, "NUMBER"));
+			
+			var html = '<img src="picture.png" alt="This is simple image">';
+			
+			var imgSrcPattern = /\w+\.(jpg|png|gif)/;
+			
+			var matchResult = imgSrcPattern.match(html);
+			
+			for (var matched of matchResult)
+				console.log(matched);
+				
+		</script>
+		
+	</body>
+	
+</html>
