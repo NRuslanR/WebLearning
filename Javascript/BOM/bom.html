@@ -3,24 +3,87 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Javascript's Browser Object Model</title>
+	
+		<style>
+			input[id="showPopupBtn"] {
+				
+				background-color: beige;
+				color: #fe2367;
+			}
+		</style>
+		
 	</head>
 	
 	<body>
 		
+		<input type="button" id="showPopupBtn" name="showPopupBtn" value="Show Popup"/>
+		
 		<script>
 			
-			window.alert('Test message');
+			var showPopupBtn = document.getElementById('showPopupBtn');
 			
-			var defaultAlert = alert;
+			var isPopupShow = false;
 			
-			var alert = function(message) { document.write(`Message: <b>${message}</b>`); };
+			showPopupBtn.addEventListener(
+				'click',
+				function (ev) {
+					
+					var popup;
+					
+					if (!isPopupShow) {
+						popup = 
+							window.open(
+								'http://msdn.com', 'Microsoft homepage', 'width=400, height=400, ' +
+								'left=100, top=200, titlebar=yes, menubar=yes, ' +
+								'toolbar=yes,location=yes,status=yes,resizable=yes'
+							);
+							
+						this.value = 'Close Popup';
+						
+						isPopupShow = true;
+					}
+					
+					else {
+						
+						popup.close();
+						this.value = 'Show Popup'
+						isPopupShow = false;
+					}
+				}
+			);
 			
-			window.alert('window object testing');
+			function showWindowFeatures() {			
 			
-			alert = defaultAlert;
-			
-			window.alert('Default alert');
+				window.alert('Test message');
 				
+				var defaultAlert = this.alert;
+				
+				this.alert = function(message) { document.write(`<br/>Message: <b>${message}</b>`); };
+				
+				window.alert('window object testing');
+				
+				this.alert = defaultAlert;
+				
+				window.alert('Default alert');
+				
+				if (window.confirm('Are you learning the Javascript ?') === true)
+					document.write('<br/>I am learning the Javascript now');
+					
+				else document.write('<br/>I am not learning the Javascript at all');
+				
+				document.write('<br/>' + window.prompt('Input your age:'));
+							
+			}
+			
+			function showHistoryFeatures() {
+			
+				document.write('<br/>History length: ' + history.length);
+				
+			}
+			
+			showWindowFeatures();
+			showHistoryFeatures();
+			
 		</script>
 		
 	</body>
