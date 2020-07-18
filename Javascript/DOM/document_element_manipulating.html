@@ -45,6 +45,12 @@
 			
 			document.body.appendChild(articleDiv);
 			
+			document.write("<br/>Article's copy:<br/>");
+			
+			var articleNodeClone = articleDiv.cloneNode(true);
+			
+			document.body.appendChild(articleNodeClone);
+			
 		</script>
 		
 	</body>
