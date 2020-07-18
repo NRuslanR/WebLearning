@@ -51,6 +51,15 @@
 			
 			document.body.appendChild(articleNodeClone);
 			
+			setTimeout(
+				function (e) {
+					
+					document.body.removeChild(articleNodeClone);
+					
+				},
+				3000
+			);
+			
 		</script>
 		
 	</body>
