@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>Javascript's Browser Object Model</title>
+		<title>Javascript's Document Object Model</title>
 	
 	</head>
 	
@@ -10,15 +10,43 @@
 		
 		<div>
 			<h3 id="header"><a href="#"><b>Block Header</b></a></h3>
-			<p>Paragraph</p>
+			<p>Paragraph 1</p>
+			<p>Paragraph 2</p>
 		</div>
+		
+		<div class="paragraphBlock">
+			<p>Block paragraph 1</p>
+			<p>Block paragraph 2</p>
+		</div>
+		
+		<div class="block" style="border:1px solid black; color: #f00;">Block 1</div>
+		<div class="block" style="border:2px solid black; color: #0f0;">Block 2</div>
 		
 		<script>
 		
 			var header = document.getElementById('header');
 			
-			document.write("Header's text: " + header.innerText);
+			document.write("Header's text: " + header.innerText + '<br/>');
 			
+			var paragraphs = document.getElementsByTagName('p');
+			
+			document.write('Paragraphs:<br/>');
+			
+			for (var paragraph of paragraphs)
+				document.write(paragraph.innerHTML + '<br/>');
+				
+			var blocks = document.getElementsByClassName('block');
+			
+			document.write('<br/>Blocks:</br>');
+			
+			for (var block of blocks)
+				document.write(block.innerHTML + '<br/>');
+			
+			var blockPs = document.querySelector('.paragraphBlock p');
+			
+			for (var blockP of blockPs)
+				document.write(blockP.innerHTML + '<br/>');
+				
 		</script>
 		
 	</body>
