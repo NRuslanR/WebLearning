@@ -83,6 +83,36 @@
 			
 			showWindowFeatures();
 			showHistoryFeatures();
+			showLocationFeatures();
+			
+			function showLocationFeatures()
+			{
+				var currentDocumentDetails = 
+					`<br/>href: ${location.href}` +
+					`<br/>pathname: ${location.pathname}` +
+					`<br>origin: ${location.origin}` + 
+					`<br/>protocol: ${location.protocol}` +
+					`<br/>port: ${location.port}` +
+					`<br/>host: ${location.host}` +
+					`<br/>hostname: ${location.hostname}` +
+					`<br/>hash: ${location.hash}` +
+					`<br>search: ${location.search}`;
+					
+				document.write(currentDocumentDetails);
+				
+				var previousLocationHref = location.href;
+				
+				location.assign('../../HTML/Modern Layout/simple_site_layout.html');
+
+				setTimeout(
+					function (e) {
+						
+						location.replace(previousLocationHref);
+						
+					},
+					3000
+				);
+			}
 			
 		</script>
 		
