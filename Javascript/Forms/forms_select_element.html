@@ -1,0 +1,96 @@
+<!doctype>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Javascript's Form's Select Element</title>
+	
+		<style>
+			
+		</style>
+	
+	</head>
+	
+	<body>
+	
+		<form name="simple">
+		
+			<select name="languages" size="1">
+				<option value="CSharp">C#</option>
+				<option value="Visual Basic">VB</option>
+				<option value="C++">C++</option>
+				<option value="Java">Java</option>
+			</select>
+			
+			<input type="checkbox" name="multiple">&nbsp;</span>Multiple</span>
+			
+			<span>Size:</span>&nbsp;<input type="number" min="0" name="size" value="1"/>&nbsp;<button name="applySize">Apply</button><br/>
+			
+			<input type="text" name="content"/><br/>
+			<input type="text" name="value"/><br/>
+			
+			<input type="button" name="add" value="Add"/>
+			<input type="button" name="remove" value="Remove"/>
+		</form>
+		
+		<div id="label"></div>
+		
+		<script>
+			
+			var simple = document.simple
+				langSelect = simple.languages,
+				multiple = simple.multiple,
+				label = document.getElementById("label"),
+				size = simple.size,
+				applySize = simple.applySize,
+				content = simple.content,
+				value = simple.value,
+				add = simple.add,
+				remove = simple.remove;
+				
+				langSelect.addEventListener('change', (e) => {
+				
+					label.textContent = e.target.options[e.target.selectedIndex].text;
+					
+				});
+					
+				multiple.addEventListener('click', (e) => {
+				
+					langSelect.multiple = e.target.checked;
+					
+				});
+			
+				applySize.addEventListener("click", (e) => {
+				
+					langSelect.size = size.value;
+					
+					e.preventDefault();
+					
+				});
+				
+				add.addEventListener('click', (e) => {
+				
+					if (value.value.trim() === '' || content.value.trim() === '')
+					{
+						alert('Input content and value !');
+						
+						return;
+					}
+					
+					langSelect.add(new Option(content.value.trim(), value.value.trim()));
+				});
+				
+				remove.addEventListener('click', (e) => {
+				
+					if (langSelect.options.length === 0)
+						return;
+						
+					var selectedIndex = langSelect.options.selectedIndex;
+					
+					langSelect.remove(selectedIndex);
+				});
+			
+		</script>
+		
+	</body>
+	
+</html>
