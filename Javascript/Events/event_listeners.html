@@ -1,0 +1,58 @@
+<!doctype>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Javascript's Event Listeners</title>
+	
+		<style>
+		
+			.block {
+				
+				width: 200px; 
+				height: 200px; 
+				background-color: lightgreen;
+				margin: 10px;
+				text-align: center;
+				font-size: 1.5em;
+				
+			}	
+			
+			
+		</style>
+	
+	</head>
+	
+	<body>
+	
+		<div class="block">Text Inside The Block</div>
+		<div class="block">Other Text Inside The Other Block</div>
+		
+		<script>
+			
+			function getBlockMessage(block)
+			{
+				return `Block "${block.innerText}" Selected !`;
+			}
+			
+			var blocks = document.getElementsByClassName('block');
+			
+			for (var block of blocks) {
+				
+				block.addEventListener("click", function (e) {
+					
+					alert(getBlockMessage(this));
+					
+				});
+				
+				block.addEventListener("click", function (e) {
+					
+					console.log(getBlockMessage(this));
+					
+				});
+			};
+			
+		</script>
+		
+	</body>
+	
+</html>
