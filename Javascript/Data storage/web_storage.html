@@ -1,0 +1,47 @@
+<!doctype>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Javascript's data storage: web storage</title>
+	
+	</head>
+	
+	<body>
+	
+		<input type="button" id="setLocalItemsBtn" onClick="setLocalItems()" value="Set Local Items"/>
+		<input type="button" id="printLocalItemsBtn" onClick="printLocalItems()" value="Print Local Items"/>
+		
+		<div id="textArea"></div>
+		
+		<script>
+			
+			var textArea = document.getElementById("textArea");
+			
+			function setLocalItems() {
+			
+				localStorage.setItem("name", "Ruslan");
+				localStorage.setItem("age", 25);
+				localStorage.setItem("speciality", "Developer");
+			}
+			
+			function printLocalItems()
+			{
+				var content = 
+					'"name": ' + localStorage.getItem("name") + '<br/>' +
+					'"age": ' + localStorage.getItem("age") + '<br/>' +
+					'"speciality": ' + localStorage.getItem("speciality") + '<br/>';
+								
+				textArea.innerHTML = content;
+			}
+			
+			var setCookieBtn = document.getElementById('setLocalItemsBtn'),
+				printCookieBtn = document.getElementById('printLocalItemsBtn');
+				
+			setCookieBtn.onClick = (e) => setLocalItems();
+			printCookieBtn.onClick = (e) => printLocalItems();
+			
+		</script>
+		
+	</body>
+	
+</html>
