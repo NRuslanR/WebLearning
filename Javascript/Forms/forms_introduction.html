@@ -14,7 +14,7 @@
 	
 		<form name='simple1'>
 			<label for="key">Key:<input type="text" id="key" name="key"/>
-			<input type="submit" value="Send"/>
+			<input type="submit" id="sendButton" name="sendButton" value="Send"/>
 		</form>
 		
 		<form name='simple2'>
@@ -48,6 +48,17 @@
 				
 			});
 			
+			var formElementArray = new Array();
+			
+			for (var form of document.forms) 
+				for (var element of form.elements)
+					formElementArray.push(element);
+			
+			console.log("forms' elements:");
+			
+			for (var element of formElementArray)
+				console.log(`node: ${element.nodeName}, name: ${element.name}, value: ${element.value}`);
+
 		</script>
 		
 	</body>
