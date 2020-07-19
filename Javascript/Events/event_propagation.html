@@ -2,21 +2,35 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>Javascript's Event Object discovering</title>
+		<title>Javascript's Event Propagation</title>
 	
 		<style>
 		
-			.block {
-				
-				width: 200px; 
-				height: 200px; 
-				background-color: lightgreen;
-				margin: 10px;
-				text-align: center;
-				font-size: 1.5em;
-				
-			}	
+			* {	
 			
+				box-sizing: border-box;
+				
+			}
+			
+			#redRect {
+			
+				background: red;
+				border: 1px solid black;
+				width: 100px;
+				height: 100px;
+				top: 0;
+				left: 0;
+				position: relative;
+				
+			}
+			
+			#blueRect {
+			
+				background: blue;
+				border: 1px solid black;
+				width: 200px;
+				height: 200px;
+			}
 			
 		</style>
 	
@@ -24,46 +38,37 @@
 	
 	<body>
 	
-		<div class="block">Text Inside The Block</div>
-		<div class="block">Other Text Inside The Other Block</div>
-		
-		<a id="timeDependentLink" href="http://msdn.com">MSDN</a>
+		<div id="blueRect">
+			<ul id="redRect"></ul>
+		</div>
 		
 		<script>
 
-			var blocks = document.getElementsByClassName('block');
+			var count = 0;
 			
-			var eventHandler = (e) => {
+			var clickHandler = (e) => {
 				
-				console.log('bubbles: ' + e.bubbles);
-				console.log('cancelable: ' + e.cancelable);
-				console.log('currentTarget: ' + e.currentTarget.innerText);
-				console.log('defaultPrevented: ' + e.defaultPrevented);
-				console.log('eventPhase: ' + e.eventPhase);
-				console.log('target: ' + e.target.innerText);
-				console.log('timeStamp: ' + e.timeStamp);
-				console.log('type: ' + e.type);
+				if (count++ > 5) {
 				
-			};
-			
-			for (var block of blocks)
-				block.addEventListener("click", eventHandler);
-			
-			var timeDependentLink = document.getElementById("timeDependentLink");
-			
-			timeDependentLink.addEventListener("click", (e) => {
-			
-				var currentDateTime = new Date();
-				
-				var currentSeconds = currentDateTime.getSeconds();
-				
-				if (currentSeconds < 30)
-				{
-					e.preventDefault();
+					e.stopPropagation();
 					
-					alert('Link redirect had disallowed because the seconds of the current minute less than 30');
+					return;
+					
 				}
-			});
+				
+				console.log('Clicked on ' + e.currentTarget.nodeName);
+				
+			}
+			
+			var redRect = document.getElementById('redRect');
+			
+			redRect.addEventListener('click', clickHandler);
+			
+			var blueRect = document.getElementById('blueRect');
+			
+			blueRect.addEventListener('click', clickHandler);
+			
+			document.body.addEventListener('click', clickHandler);
 			
 		</script>
 		
