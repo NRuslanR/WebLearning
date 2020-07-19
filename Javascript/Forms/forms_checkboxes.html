@@ -14,6 +14,10 @@
 	
 		<form name="simple">
 			<input type="checkbox" name="flag" checked/>&nbsp;<span>Enable</span>
+			<br/>
+			<input type="radio" name="activity" checked value="Sport">&nbsp;<span>Sport Activity</span>
+			<input type="radio" name="activity" checked value="Programming">&nbsp;<span>Programming Activity</span>
+			<input type="radio" name="activity" checked value="Philosophy">&nbsp;<span>Philosophy Activity</span>
 		</form>
 		
 		<div id="label"></div>
@@ -29,6 +33,16 @@
 				label.textContent = e.target.checked;
 				
 			});
+			
+			var radioClickHandler = (e) => {
+				
+				label.textContent = e.target.value;
+				
+			};
+			
+			for (var e of document.simple.elements)
+				if (e.type === 'radio')
+					e.addEventListener('click', radioClickHandler);
 			
 	
 		</script>
