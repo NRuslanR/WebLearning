@@ -11,6 +11,11 @@
 		<input type="button" id="setLocalItemsBtn" onClick="setLocalItems()" value="Set Local Items"/>
 		<input type="button" id="printLocalItemsBtn" onClick="printLocalItems()" value="Print Local Items"/>
 		
+		<br/>
+		
+		<input type="button" id="setObjectBtn" onClick="setObject()" value="Set Object"/>
+		<input type="button" id="printObjectBtn" onClick="printObjectLocalItems()" value="Print Object"/>
+		
 		<div id="textArea"></div>
 		
 		<script>
@@ -24,6 +29,25 @@
 				localStorage.setItem("speciality", "Developer");
 			}
 			
+			function setObject()
+			{
+				var user = {
+					
+					"Name": "Nigmatullin Ruslan",
+					"Age" : 25,
+					"Speciality" : "Developer"
+					
+				};
+				
+				sessionStorage.setItem("user", JSON.stringify(user));
+			}
+			
+			function printObject()
+			{
+				textArea.innerHTML = 
+					JSON.stringify(JSON.parse(sessionStorage.getItem("user")));
+			}
+			
 			function printLocalItems()
 			{
 				var content = 
@@ -35,10 +59,15 @@
 			}
 			
 			var setCookieBtn = document.getElementById('setLocalItemsBtn'),
-				printCookieBtn = document.getElementById('printLocalItemsBtn');
+				printCookieBtn = document.getElementById('printLocalItemsBtn'),
+				setObjectBtn = document.getElementById('setObjectBtn'),
+				printObjectBtn = document.getElementById('printObjectBtn');
 				
-			setCookieBtn.onClick = (e) => setLocalItems();
-			printCookieBtn.onClick = (e) => printLocalItems();
+			setCookieBtn.onclick = (e) => setLocalItems();
+			printCookieBtn.onclick = (e) => printLocalItems();
+			
+			setObjectBtn.onclick = (e) => setObject();
+			printObjectBtn.onclick = (e) => printObject();
 			
 		</script>
 		
