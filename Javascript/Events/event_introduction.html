@@ -15,6 +15,12 @@
 				
 			}	
 			
+			a {
+				
+				display: block;
+				
+			}
+			
 		</style>
 	
 	</head>
@@ -25,6 +31,9 @@
 		<div onClick="showBlockSelectedMessage()" class="block"></div>
 		<div onClick="showBlockSelectedMessage(this)" class="block">Text Inside The Block</div>
 		
+		<a href="http://msdn.com" onClick="return onNonRedirectableAnchorClicked(this)">MSDN Non-Redirectable</a>
+		<a href="http://msdn.com" onClick="return onRedirectableAnchorClicked(this)">MSDN Redirectable</a>
+		
 		<script>
 			
 			function showBlockSelectedMessage(block)
@@ -34,6 +43,20 @@
 				alert('Block selected: ' + additional);
 			}
 			
+			function onNonRedirectableAnchorClicked(a) {
+			
+				alert(`href: ${a.href}`);
+				
+				return false;
+				
+			}
+			
+			function onRedirectableAnchorClicked(a) {
+				
+				alert('href: ' + a.href);
+				
+			}
+				
 		</script>
 		
 	</body>
