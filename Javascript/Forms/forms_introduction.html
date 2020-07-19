@@ -1,0 +1,55 @@
+<!doctype>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Javascript's Forms Introduction</title>
+	
+		<style>
+			
+		</style>
+	
+	</head>
+	
+	<body>
+	
+		<form name='simple1'>
+			<label for="key">Key:<input type="text" id="key" name="key"/>
+			<input type="submit" value="Send"/>
+		</form>
+		
+		<form name='simple2'>
+			<input type="button" id="activator" name="activator" value="Activate"/>
+		</form>
+		
+		<script>
+			
+			console.log(`forms ${document.forms.length}:`);
+			
+			for (var form of document.forms)
+				console.log(form.name);
+			
+			var simple1 = document.forms["simple1"];
+			
+			console.log('simple1 elements (' + simple1.elements.length + '):');
+			
+			for (var element of simple1.elements)	
+			{
+				console.log(element.nodeName + (element.tagName === 'input') ? ('=' + element.type) : "");
+			}
+				
+			var simple2 = document.simple2;
+			
+			var activator = simple2.elements["activator"];
+			
+			activator.addEventListener("click", (e) => {
+				
+				simple1.reset();
+				simple1.submit();
+				
+			});
+			
+		</script>
+		
+	</body>
+	
+</html>
