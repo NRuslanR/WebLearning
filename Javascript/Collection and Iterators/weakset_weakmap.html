@@ -1,0 +1,25 @@
+<!doctype>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Javascript's WeakSet and WeakMap</title>
+	
+	</head>
+	
+	<body>
+	
+		<script>
+			
+			var ws = new WeakSet([ { name: "Tom" }, { age: 34 } ]);
+			
+			console.log(ws);
+			
+			var wm = new WeakMap([ [ { key: 1 }, { value: "First" } ], [ { key: 2 }, { value: "Second" } ] ]);
+			
+			console.log(wm);
+			
+		</script>
+		
+	</body>
+	
+</html>
