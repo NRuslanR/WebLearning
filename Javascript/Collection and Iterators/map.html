@@ -1,0 +1,71 @@
+<!doctype>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Javascript's Map</title>
+	
+	</head>
+	
+	<body>
+	
+		<script>
+			
+			var map = new Map([ [ 1, "First" ], [ 2, "Second" ], [ 3, "Third" ] ]);
+			
+			console.log('simple map:');
+			console.log(map);
+			
+			console.log("map's update and insert:");
+			
+			map.set(2, "Second (Changed)");
+			map.set(new Date(), "Date String");
+			
+			console.log(map);
+			
+			console.log('the getting of the elements of the map:');
+			
+			console.log(`item ${map.get(3)} by key 3`);
+			console.log(`item ${map.get(5)} by 5`);
+			console.log(`key 1 is exists: ${map.has(1)}`);
+			console.log(`key 5 is exists: ${map.has(5)}`);
+			
+			console.log('deleting item by the key of 1:');
+			
+			map.delete(1);
+			
+			console.log(map);
+			
+			console.log('map traverse by means of forEach method:');
+			
+			map.forEach((v, k, m) => {
+				
+				console.log('k: ' + k + ', v: ' + v);
+			});
+			
+			console.log('map traverse by means of for..of loop:');
+			
+			for (var pair of map)
+				console.log('k: ' + pair[0] + ', v: ' + pair[1]);
+				
+			console.log('keys:');
+			
+			for (var k of map.keys())
+				console.log(k);
+				
+			console.log('values:');
+			
+			for (var v of map.values())
+				console.log(v);
+				
+			console.log("map's clear method called:");
+			
+			map.clear();
+			
+			console.log(map);
+			
+			
+		</script>
+		
+	</body>
+	
+</html>
