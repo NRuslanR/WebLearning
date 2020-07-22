@@ -1,0 +1,62 @@
+<!doctype>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Javascript's Set</title>
+	
+	</head>
+	
+	<body>
+	
+		<script>
+			
+			var emptySet = new Set();
+			
+			console.log(emptySet);
+			
+			var set = new Set([1, 43.54, "String"]);
+			
+			console.log(set);
+			
+			console.log('adding example:');
+			
+			set.add("some string");
+			set.add(7);
+			set.add(new Date());
+			set.add(1);
+			set.add("String").add(4).add(5);
+			
+			console.log(set);
+			console.log("set's size: " + set.size);
+			
+			console.log('removing example:');
+			
+			set.delete(1);
+			set.delete("String");
+			
+			console.log(set);
+			
+			console.log("checking example:");
+			
+			console.log("4 is exists: " + set.has(4));
+			console.log(`2 is exists: ${set.has(2)}`);
+			
+			console.log('set traverse by means of forEach method: ');
+			
+			set.forEach((item) => {
+			
+				console.log(item);
+				
+			});
+			
+			console.log('set traverse by means of for..of loop version:');
+			
+			for (var item of set)
+				console.log(item);
+				
+			
+		</script>
+		
+	</body>
+	
+</html>
