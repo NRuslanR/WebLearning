@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Javascript's AJAX Promises</title>
+	</head>
+	
+	<body>
+		
+		<div>
+			<h3>Promise's GET:</h3>
+			<div id="get"></div>
+			<h3>Promise's POST</h3>
+			<div id="post"></div>
+		</div>
+		
+		<script>
+			
+			function get(url) {
+				
+				return new Promise(
+					function (succeed, fail) {
+					
+						var request = new XMLHttpRequest();
+						
+						request.open('GET', url, true);
+						
+						request.addEventListener("load", () => {
+						
+							if (request.status < 400)
+								succeed(request.response);
+								
+							else fail(new Error('GET Request failed: ' + request.statusText));
+							
+						});
+						
+						request.addEventListener("error", () => {
+						
+							fail(new Error("Network Error"));
+							
+						});
+						
+						request.send();
+					}
+				);
+			};
+			
+			var getDiv = document.getElementById('get');
+			
+			get('http://localhost/users.json')
+				.then(
+					response => {
+						
+						var content = '';
+						
+						JSON.parse(response)
+							.forEach(user => content += `${user.name} is ${user.age} old<br/>`);
+							
+						return content;
+						
+					},
+					
+					error => `Error occurred:<br/>${error}`
+				)
+				.then(
+					content => getDiv.innerHTML = content
+				);
+					
+			var postDiv = document.getElementById('post');
+			
+			function post(url, requestBody) {
+			
+				return new Promise(	
+					(succeed, fail) => {
+					
+						var request = new XMLHttpRequest();
+						
+						request.open('POST', url, true);
+						request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+						
+						request.addEventListener('load', () => {
+						
+							if (request.status < 400)
+								succeed(request.response);
+								
+							else fail(new Error('POST Request Failed: ' + request.statusText));
+							
+						});
+						
+						request.addEventListener("error", () => {
+						
+							fail(new Error("Network Error"));
+							
+						});
+			
+						request.send(requestBody);
+					}
+				);
+			};
+			
+			post(
+				'http://localhost/postdata.php', 
+				'name=' + encodeURIComponent('Liliya&Nigmatullina') + '&age=' + encodeURIComponent('48')
+			).
+			then(
+				response => response,
+				error => error
+			).
+			then(content => postDiv.innerHTML = content);
+			
+		</script>
+		
+	</body>
+</html>
