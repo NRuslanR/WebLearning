@@ -1,0 +1,50 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>jQuery selectors</title>
+		<script type="text/javascript" src="jquery-3.5.1.js"></script>
+	</head>
+	
+	<body>
+		<button id="btn1">Button 1</button>
+		<button id="btn2" onclick="alert('Pure Javascript')">Button 2</button>
+		
+		<div id="block">
+			<a class="anchor" href="#">Test Link</a>
+		</div>
+		
+		<table id="table">
+			<thead>
+				<tr>
+					<th>First</th>
+					<th>Second</th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr>
+					<td>(1, 1)</td>
+					<td>(1, 2)</td>
+				</tr>
+				<tr>
+					<td>(2, 1)</td>
+					<td>(2, 2)</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<script>
+			$(function() {
+				
+				$('*').forEach((e) => {
+					
+					console.log("page's elements:");
+					console.log(e.innerHTML);
+					
+				});
+				
+				$("
+			});
+		</script>
+	</body>
+</html>
