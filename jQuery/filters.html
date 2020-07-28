@@ -1,0 +1,31 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>jQuery filters</title>
+		<script type="text/javascript" src="jquery-3.5.1.js"></script>
+	</head>
+	
+	<body>
+		
+		<table id="table">
+			<tr><td>Key</td><td>Value</td></tr>
+			<tr><td>1</td><td>First</td></tr>
+			<tr><td>2</td><td>Second</td></tr>
+			<tr><td>3</td><td>Third</td></tr>
+			<tr><td>4</td><td>Fouth</td></tr>
+			<tr><td>5</td><td>Fifth</td></tr>
+		</table>
+		
+		<script>
+			$(function() {
+				
+				$('#table tr:even').each(function () {
+					
+					$(this).css('background-color', 'green');
+					
+					console.log($(this).html());
+				});
+			});
+		</script>
+	</body>
+</html>
