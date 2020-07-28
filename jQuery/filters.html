@@ -16,6 +16,24 @@
 			<tr><td>5</td><td>Fifth</td></tr>
 		</table>
 		
+		<div id="div1">
+			<p>Search text</p>
+			<div>
+				<span>Search text</span>
+			</div>
+			<div>
+				<div>Search Text</div>
+				<p>AAAA</p>
+			</div>
+		</div>
+		
+		<div id="div2">
+			<input type="checkbox" checked/>First</br>
+			<input type="checkbox"/>Second<br/>
+			<input type="checkbox" checked/>Third<br/>
+			<input type="checkbox" checked/>Fouth<br/>
+		</div>
+		
 		<script>
 			$(function() {
 				
@@ -25,6 +43,15 @@
 					
 					console.log($(this).html());
 				});
+				
+				var table = $("#table");
+				
+				$('tr:gt(3)')
+					.css('text-decoration', 'underline')
+					.css('background-color', 'red');
+					
+				$("#div1:contains('Search text')").css('background-color', 'yellow');
+				$("input[type='checkbox']:odd:checked").css('border', '5px solid beige');
 			});
 		</script>
 	</body>
