@@ -1,0 +1,25 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>jQuery introduction</title>
+		<script type="text/javascript" src="jquery-3.5.1.js"></script>
+	</head>
+	
+	<body>
+		<button id="btn1">Button 1</button>
+		<button id="btn2" onclick="alert('Pure Javascript')">Button 2</button>
+		
+		<script>
+			$(function() {
+				
+				$("#btn1").click(function () {
+					
+					$(this).css('background-color', 'red');
+					alert('jQuery alert');
+					
+				});
+				
+			});
+		</script>
+	</body>
+</html>
