@@ -26,24 +26,53 @@
 					<td>(1, 1)</td>
 					<td>(1, 2)</td>
 				</tr>
-				<tr>
+				<tr id="row2">
 					<td>(2, 1)</td>
 					<td>(2, 2)</td>
 				</tr>
 			</tbody>
 		</table>
 		
+		<div id="outer">
+			<div color="red1"></div>
+			<div color="red2">
+				<p>Paragraph 1</p>
+				<p>Paragraph 2</p>
+				<span>Span 1</span>
+				<div>DIV BLOCK</div>
+				<p>Paragraph 3</p>
+			</div>
+		</div>
+		
 		<script>
 			$(function() {
 				
-				$('*').forEach((e) => {
+				console.log("page's elements:");
+				
+				$('*').each(function() {
 					
-					console.log("page's elements:");
-					console.log(e.innerHTML);
+					console.log($(this).html());
 					
 				});
 				
-				$("
+				$("div#block a.anchor").css('border', '1px solid green');
+				$('#table #row2').css('background', 'orange');
+				
+				console.log('outer block:');
+				
+				$("#outer div[color$='2'] > p").each(function () {
+				
+					console.log($(this).html());
+					
+				});
+				
+				console.log("select's context:");
+				
+				$("div#outer div[color='red2']").not('p').each(function () {
+				
+					console.log($(this).html());
+					
+				});
 			});
 		</script>
 	</body>
