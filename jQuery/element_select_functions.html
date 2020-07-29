@@ -1,0 +1,51 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>jQuery selectors</title>
+		<script type="text/javascript" src="jquery-3.5.1.js"></script>
+	</head>
+	
+	<body>
+		
+		<div class="redBlock"></div>
+		<div class="greenBlock"></div>
+		<div class="redBlock"></div>
+		<div class="greenBlock"></div>
+		<div class="redBlock"></div>
+		<div class="greenBlock"></div>
+		
+		<script>
+			
+			$(document).ready(function () {
+				
+				var redBlocks = $('.redBlock');
+				
+				for (var i = 0 ; i < redBlocks.length; ++i)
+				{
+					var redBlock = redBlocks[i];
+					
+					$(redBlock).css('background-color', 'red');
+					$(redBlock).css('height', '16%');
+					$(redBlock).css('border', '1px solid black');
+					
+					redBlock.textContent = 'Red Block';
+				}
+				
+				$('.greenBlock').each(function (index, item) {
+				
+					item.textContent = 'Green Block';
+					
+					$(item).css('background-color', 'green');
+					$(item).css('height', '16%');
+					$(item).css('border', '1px solid black');
+					
+				});
+				
+				var newTable = $('table');
+			
+				$('body').append(newTable);
+			});
+			
+		</script>
+	</body>
+</html>
