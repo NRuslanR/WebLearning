@@ -1,0 +1,83 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>jQuery select filtering</title>
+		<script type="text/javascript" src="jquery-3.5.1.js"></script>
+	</head>
+	
+	<body>
+		
+		<ul class="level-1">
+			<li>Item 1</li>
+			<li>Item 2</li>
+			<li>Item 3
+				<ul class="level-2">
+					<li>SubItem 3.1<li>
+					<li>SubItem 3.2
+						<ul class="level-3">
+							<li>SubItem 3.2.-1</li>
+							<li>SubItem 3.2.0</li>
+							<li class="level-3-1">SubItem 3.2.1</li>
+							<li>SubItem 3.2.2</li>
+							<li>SubItem 3.2.3</li>
+							<li>SubItem 3.2.4</li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+		</ul>
+		
+		<script>
+			
+			var liItems = $('ul.level-1').find('li');
+			
+			console.log('all li item count: ' + liItems.length);
+			
+			$(liItems).each(function (index, item) {
+				
+				console.log(item.textContent);
+				
+			});
+			
+			var closestItems = $('ul.level-1').children('li');
+			
+			console.log('closes li item count: ' + closestItems.length);
+			
+			$(closestItems).each(function (index, item) {
+			
+				console.log(item.textContent);
+			});
+			
+			$('ul.level-1 ul.level-2 > li').closest('ul.level-1').each(
+				function (index, item) {
+					
+					console.log('parent ' + $(item).attr('class'));
+				}
+			);
+			
+			console.log('all next siblings of the li item of the class level-3-1:');
+			
+			$('.level-3-1').nextAll().each(function (index, item) {
+				
+				console.log(item.textContent);
+			});
+			
+			console.log('all siblings of the level-3-1:');
+			
+			$('.level-3-1').siblings().each(function (index, item) {
+			
+				console.log(item.textContent);
+				
+			});
+			
+			console.log('all parents of the level-3-1:');
+			
+			$('.level-3-1').parents().each( function (index, item) {
+				
+				console.log($(item).attr('class'));
+				
+			});
+			
+		</script>
+	</body>
+</html>
