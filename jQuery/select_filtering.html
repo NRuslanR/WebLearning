@@ -1,0 +1,87 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>jQuery select filtering</title>
+		<script type="text/javascript" src="jquery-3.5.1.js"></script>
+	</head>
+	
+	<body>
+		
+		<div class="up"></div>
+		<div class="down"></div>
+		<div class="left"></div>
+		<div class="right"></div>
+		
+		<div class="languages">
+			<div class="natural"></div>
+			<div class="artificial"></div>
+			<div class="formal"></div>
+		</div>
+		
+		<div class="numbers">
+			<div class="num1"></div>
+			<div class="num2"></div>
+			<div class="num3"></div>
+			<div class="num4"></div>
+			<div class="num5"></div>
+		</div>
+		
+		<ul>
+			<li>Item 1</li>
+			</li>
+				Item 2
+				<ul class="submenu">
+					<li>SubItem 2.1</li>
+					<li>SubItem 2.2</li>
+				</ul>
+			</li>
+		</ul>
+		
+		<script>
+			
+			$(function () {
+				
+				var downItems = 
+					$('*')
+						.filter('div')
+						.filter(function () { return $(this).hasClass('down'); });
+				
+				console.log(downItems.length);
+				
+				downItems.css('background-color', 'red');
+				downItems.css('height', '200px');
+				
+				$(downItems).each(function (i, item) {
+					
+					$(item).textContent = 'DOWN';
+					
+				});
+				
+				var notNaturalItems =
+					$('.languages > div').not(function () { return !$(this).hasClass('natural'); });
+				
+				console.log(notNaturalItems.length);
+				
+				notNaturalItems.each(function (index, item) {
+					
+					$(item).css('border', '2px solid green');
+					$(item).css('height', '100px');
+					
+				});
+				
+				$('.numbers > div').slice(1, 4).each(function (index, item) {
+				
+					$(item).val(index + 1);
+					$(item).css('height', '50px');
+					$(item).css('background', 'lightblue');
+					$(item).css('border', '1px solid black');
+				});
+				
+				$('li').has('ul').find("li").css('background-color', 'lightgreen');
+				
+				console.log(`submenu exists ?: ${$('ul').is('.submenu')}`);
+			});
+			
+		</script>
+	</body>
+</html>
