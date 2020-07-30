@@ -1,0 +1,49 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>jQuery attributes and properties</title>
+		<script type="text/javascript" src="jquery-3.5.1.js"></script>
+	</head>
+	
+	<body>
+		
+		<a href="http://google.com">Link 1</a>
+		<a href="http://msdn.com">Link 2</a>
+		<div id="block" style="width:200px;height:200px;background: lightblue;border: 1px solid blue" data-color="lightblue" data-width="width" data-height="height">
+		</div>
+		<button id="reset_anchor">Reset Anchor</button>
+		
+		<script>
+
+			console.log('all anchors href:');
+			
+			$(function () {
+				
+				$('a').each(function (index, item) {
+				
+					console.log($(item).prop('href'));
+					
+				});
+				
+				$('#reset_anchor').click(function () {
+					
+					$('a').first().prop('href', '#');
+					$('a').last().removeAttr('href');
+				});
+				
+				$('a').each(function (index, item) {
+				
+					console.log('href: ' + $(item).prop('href'));
+					
+				});
+				
+				console.log($('#block').data());
+				console.log('data-color: ' + $('#block').data('color'));
+				console.log('data-width: ' + $('#block').data('width'));
+				console.log('data-height: ' + $('#block').data('height'));
+			});
+				
+			
+		</script>
+	</body>
+</html>
