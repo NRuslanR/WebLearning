@@ -1,0 +1,76 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>jQuery element wrapping</title>
+		<script type="text/javascript" src="jquery-3.5.1.js"></script>
+	</head>
+	
+	<body>
+		
+		<ul class="first">
+			<li>Philosophy</li>
+			<li>Neuromorphology</li>
+			<li>Software Engineering</li>
+		</ul>
+		
+		<ul class="second">
+			<li>Edge Computing</li>
+			<li>Function As A Service</li>
+			<li>Internet of Things</li>
+		</ul>
+		
+		<button id="wrapBtn">Wrap List</button>
+		<button id="unWrapBtn">Unwrap List</button>
+		<button id="wrapAllBtn">Wrap All Lists</button>
+		<button id="wrapInner">Wrap List Item Inners</button>
+		<button id="unWrapInner">Unwrap List Item Inners</button>
+		
+		<script>
+			
+			$(function () {
+			
+				function getStylizedDivBlock()
+				{
+					return $('div.block').length ? 
+						$('div.block') : 
+						$('<div class="block" style="margin: 10px; background: lightblue; border: 1px solid black"></div>');
+						
+				}
+				
+				$("#wrapBtn").click( function () {
+					
+					$('ul').wrap(getStylizedDivBlock());
+					
+				});
+				
+				$('#unWrapBtn').click(function () {
+					
+					if ($('ul').parent().is('div.block'))
+						$('ul').unwrap();
+						
+				});
+				
+				$('#wrapAllBtn').click( function () {
+					
+					$('ul').wrapAll(getStylizedDivBlock());
+					
+				});
+				
+				$('#wrapInner').click( function () {
+				
+					$('li').wrapInner('<b></b>');
+					
+				});
+				
+				$('#unWrapInner').click( function () {
+				
+
+					
+				});
+				
+			});
+			
+		</script>
+		
+	</body>
+</html>
