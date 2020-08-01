@@ -1,0 +1,75 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>jQuery Element content manipulating</title>
+		<script type="text/javascript" src="jquery-3.5.1.js"></script>
+	</head>
+	
+	<body>
+		
+		<ul>
+			<li>Item 1</li>
+			<li>
+				Item 2
+				<ul>
+					<li>SubItem 2.1</li>
+					<li>SubItem 2.2.</li>
+				</ul>
+			</li>
+			<li>Item 3</li>
+		</ul>
+		
+		<button id="addItemBtn">Add Item</button>
+		
+		<form method="post" action="#">
+			
+			<div>
+				<label for="login">Login:</label>
+				<input type="text" id="login" name="login"/>
+			</div>
+			
+			<button id="printLoginBtn">Print Login</button>
+			
+		</form>
+		
+		<script>
+
+			$(function () {
+				
+				console.log("ul's html:");
+				
+				$('ul').each(function (index, item) {
+					
+					console.log(`${index + 1}) ${$(item).html()}`);
+					
+				});
+				
+				$('#addItemBtn').click(function () {
+					
+					var firstUl = $('ul').first();
+					var liItems = $(firstUl).children();
+					
+					console.log("first ul's li item count:" + liItems.length);
+					
+					$(firstUl).html($(firstUl).html() + `<li>Item ${liItems.length + 1}</li>`);
+				});			
+				
+				console.log("ul's text:");
+				
+				$("ul").each(function (index, item) {
+					
+					console.log(`${index + 1}) ${$(item).text()}`);
+					
+				});
+				
+				$('#printLoginBtn').click(function () {
+				
+					console.log(`login: ${$('input[type="text"]').val()}`);
+					
+				});
+				
+			});
+			
+		</script>
+	</body>
+</html>
