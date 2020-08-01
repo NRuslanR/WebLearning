@@ -1,0 +1,129 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>jQuery Element Removing</title>
+		<script type="text/javascript" src="jquery-3.5.1.js"></script>
+		
+		<style>
+			
+			.firstList, .secondList {
+				
+				margin: 10px;
+				padding-left: 20px;
+				padding-bottom: 20px;
+				text-decoration: underline;
+				
+			}
+			
+			.firstList {
+			
+				background: lightgreen;
+				border: 1px solid green;
+				
+			}
+			
+			.secondList {
+			
+				background: lightblue;
+				border: 1px solid blue;
+			
+			}
+			
+		</style>
+	</head>
+	
+	<body>
+		
+		<div class="firstList">
+			<h3>First List</h3>
+			<ul>
+			</ul>
+			<button id="fillFirstList">Fill</button>
+			<button id="removeEvenBtn">Remove Even Items</button>
+			<button id="emptyFirstListItemsBtn">Empty</button>
+		</div>
+		
+		<div class="secondList">
+			<h3>Second List</h3>
+			<ul></ul>
+			<button id="fillSecondList">Fill</button>
+			<button id="removeOddBtn">Remove Odd Items</button>
+			<button id="emptySecondListItemsBtn">Empty</button>
+		</div>
+		
+		<button id="detachBtn">Detach First List Items</button>
+		
+		<script>
+			
+			jQuery(document).ready(function () {
+			
+				function emptyList(list)
+				{
+					$(list).empty();
+				}
+				
+				function fillList(list, itemCount) {
+					
+					emptyList(list);
+					
+					for (var i = 1; i <= itemCount; ++i)
+						$(list).append($('<li>').text(`Item ${i}`));
+						
+				}
+				
+				$('div > ul').each(function (index, item) {
+				
+					fillList(item, 5);
+					
+				});
+				
+				$('#removeEvenBtn').click(function () {
+					
+					$('div.firstList > ul li:odd').remove();
+					
+				});
+				
+				$('#removeOddBtn').click(function () {
+				
+					$('div.secondList > ul li').remove(':even');
+					
+				});
+				
+				$('#detachBtn').click(function () {
+				
+					var firstListItems = $('div.firstList > ul li').detach();
+					
+					$('div.secondList > ul').append(firstListItems);
+					
+				});
+				
+				$('#emptyFirstListItemsBtn').click(function () {
+				
+					emptyList($('div.firstList > ul'));
+					
+				});
+				
+				$('#emptySecondListItemsBtn').click(function () {
+					
+					emptyList($('div.secondList > ul'));
+					
+				});
+				
+				$('#fillFirstList').click(function () {
+					
+					fillList($('div.firstList > ul'), 5);
+					
+				});
+				
+				$('#fillSecondList').click(function () {
+					
+					fillList($('div.secondList > ul'), 5);
+					
+				});
+				
+			});
+			
+		</script>
+		
+	</body>
+</html>
