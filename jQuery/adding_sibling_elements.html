@@ -1,0 +1,46 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>jQuery adding sibling elements</title>
+		<script type="text/javascript" src="jquery-3.5.1.js"></script>
+	</head>
+	
+	<body>
+		
+		<ul class="activities">
+			<li>Default...</li>
+		</ul>
+		
+		<div>
+			<label for="activityName">Activity:</label>
+			<input type="text" id="activityName" name="activityName"/>
+		</div><br/>
+		<button id="activityAddBtn">Add Before</button>
+		<button id="addAfterBtn">Add After</button>
+		
+		<script>
+			
+			$(function () {
+				
+				var activityField = $('input[type="text"]#activityName');
+				
+				$('#activityAddBtn').click(function () {		
+					
+					if ($.trim($(activityField).val()) !== '')
+						$('ul.activities li').first().before(`<li>${$(activityField).val()}</li>`);
+					
+				});
+				
+				$("#addAfterBtn").click(function () {
+				
+					if ($.trim($(activityField).val()) !== '')
+						$('ul.activities li').last().after(`<li>${activityField.val()}</li>`);
+						
+				});
+				
+			});
+			
+		</script>
+		
+	</body>
+</html>
