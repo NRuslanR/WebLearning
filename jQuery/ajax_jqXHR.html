@@ -1,0 +1,60 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>jQuery AJAX: jqXHR</title>
+		<script type="text/javascript" src="jquery-3.5.1.js"></script>
+		
+		<style>
+
+		</style>
+	</head>
+	
+	<body>
+		
+		<div>
+			<label for="url">URL:</label>
+			<input type="text" id="url" name="url" value="http://localhost/postdata.php"/>
+		</div>
+		
+		<div id="output"></div>
+		
+		<button id="getDataBtn">Get Data</button>
+	
+		<script>
+			
+			$(function () {
+			
+				var outputDiv = $('div#output');
+	
+				$('#getDataBtn').bind('click', function () {
+				
+					var jqXHR = 
+						$.get(
+							$.trim($('input[type="text"]#url').val()),
+							{ name: "Pavel Sinkevich", age: 25 }
+						);
+						
+					jqXHR.done(function (data, textStatus, jqxhr) {
+						
+						alert('Done with status: ' + textStatus);
+						
+						$(outputDiv).html(data);
+						
+					});
+					
+					jqXHR.fail(function (jqxhr, textStatus, error) {
+						
+						console.log('Fail with status: ' + textStatus);
+						
+						$(outputDiv).text(error);
+						
+					});
+					
+				});
+				
+			});
+			
+		</script>
+		
+	</body>
+</html>
