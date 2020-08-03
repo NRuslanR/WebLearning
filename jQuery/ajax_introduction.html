@@ -1,0 +1,35 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>jQuery AJAX introduction</title>
+		<script type="text/javascript" src="jquery-3.5.1.js"></script>
+		
+		<style>
+
+		</style>
+	</head>
+	
+	<body>
+			
+		<div id="output"></div>
+		
+		<button id="getDataBtn">Get Data</button>
+		
+		<script>
+			
+			$(function () {
+			
+				var outputDiv = $('div#output');
+				
+				$('#getDataBtn').on('click', function () {
+					
+					$(outputDiv).load('http://localhost/');
+					
+				});
+				
+			});
+			
+		</script>
+		
+	</body>
+</html>

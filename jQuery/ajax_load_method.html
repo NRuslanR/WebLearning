@@ -1,0 +1,34 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>jQuery AJAX: Load method</title>
+		<script type="text/javascript" src="jquery-3.5.1.js"></script>
+		
+		<style>
+
+		</style>
+	</head>
+	
+	<body>
+			
+		<div id="output"></div>
+		
+		<button id="loadPostDataBtn">Load Post Data</button>
+		
+		<script>
+			
+			$(function () {
+			
+				var outputDiv = $('div#output');
+				
+				$('#loadPostDataBtn').click(function() {
+				
+					$(outputDiv).load('http://localhost/postdata.php', { name: "Nigmatullin Ruslan", age: 25 }, function () { alert('Load Post Data Completed'); });
+				});
+				
+			});
+			
+		</script>
+		
+	</body>
+</html>
