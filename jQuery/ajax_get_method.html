@@ -1,0 +1,63 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>jQuery AJAX: GET method</title>
+		<script type="text/javascript" src="jquery-3.5.1.js"></script>
+		
+		<style>
+
+		</style>
+	</head>
+	
+	<body>
+			
+		<div id="output"></div>
+		
+		<button id="getDataBtn">Get Data</button>
+		<button id="getJsonDataBtn">Get JSON data</button>
+		
+		<script>
+			
+			$(function () {
+			
+				var outputDiv = $('div#output');
+				
+				$('#getDataBtn').click(function() {
+				
+					$.get(
+						'http://localhost/postdata.php',
+						{ name: "Nigmatullin Ruslan", age: 25 },
+						function (data, textStatus, jqXHR) {
+							
+							$(outputDiv).html(data);
+							
+							console.log('status: ' + textStatus);
+						
+						}
+					);
+					
+				});
+				
+				$('#getJsonDataBtn').click(function () {
+				
+					$.get(
+						'http://localhost/json_postdata.php',
+						{ name: "Sergey Novikov", age: 47 },
+						function (data, textStatus, jqXHR) {
+							
+							$(outputDiv).empty().append(`Your name: ${data.name}<br/>Your age: ${data["age"]}`);
+							
+							console.log('status: ' + textStatus);
+							
+						},
+						"json"
+					);
+						
+				});
+				
+			});
+			
+		</script>
+		
+	</body>
+</html>
