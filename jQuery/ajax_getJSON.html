@@ -1,0 +1,57 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>jQuery AJAX: getJSON</title>
+		<script type="text/javascript" src="jquery-3.5.1.js"></script>
+		
+		<style>
+
+		</style>
+	</head>
+	
+	<body>
+		
+		<h3>Users:</h3>
+		<select id="users" size="1">
+			<option disabled>Users absent</option>
+		</select>
+		<div id="result"></div>
+		<br/>
+		<button id="loadUsersBtn">Load Users</button>
+		
+		<script>
+			
+			jQuery(document).ready(function () {
+				
+				$('#loadUsersBtn').click(function () {
+				
+					var jqXHR = $.getJSON("http://localhost/users.json");
+						
+					jqXHR.done(function (data, textStatus) {
+						
+						$('#users').empty();
+						
+						$.each(data, function (key, val) {
+							
+							$('#users').append($('<option>').text(`${val.name} is ${val.age} years old`).val(val.name));
+							
+						});
+						
+						$('#result').html('Status: ' + textStatus);
+						
+					});
+					
+					jqXHR.fail(function (jqXHR, textStatus, error) {
+					
+						$('#result').html(error + ' (status: ' + textStatus + ')');
+						
+					});
+					
+				});
+				
+			});
+			
+		</script>
+		
+	</body>
+</html>
