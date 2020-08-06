@@ -26,6 +26,8 @@
 			<input type="submit" value="Login"/>
 			
 		</form>
+			
+		<button id="loginSerialize">Login (Serialize)</button>
 		
 		<div id="result"></div>
 		
@@ -40,6 +42,23 @@
 					$.post(
 						'http://localhost/authentification.php',
 						{ login: $('#login').val(), password: $('#password').val() },
+						function (data) {
+							
+							$('#result').html(data);
+							
+						}
+					);
+					
+				});
+				
+				$('#loginSerialize').on('click', function (e) {
+				
+					e.stopPropagation();
+					e.preventDefault();
+					
+					$.post(
+						'http://localhost/authentification.php',
+						$('#loginForm').serialize(),
 						function (data) {
 							
 							$('#result').html(data);
