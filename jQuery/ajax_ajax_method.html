@@ -1,0 +1,78 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>jQuery AJAX: $.ajax method</title>
+		<script type="text/javascript" src="jquery-3.5.1.js"></script>
+		
+		<style>
+
+		</style>
+		
+	</head>
+	
+	<body>
+		
+		<div id="result"></div>
+		<button id="loadUserInfoHtmlBtn">Load User Info HTML</button>
+		
+		<form id="loginForm" method="http://localhost/authentification.php">
+		
+			<div>
+				<label for="login">Login:</label><br/>
+				<input type="text" id="login" name="login"/>
+			</div>
+			
+			<div>
+				<label for="password">Password:</label>
+				<input type="password" id="password" name="password"/>
+			</div>
+			
+			<input type="submit" value="Login"/>
+			
+		</form>
+		
+		<script>
+			
+			$(function () {
+				
+				$('#loadUserInfoHtmlBtn').click(function () {
+					
+					$.ajax(
+						'http://localhost/postdata.php', 
+						{ 
+							dataType: 'html',
+							type: 'POST',
+							success: function (data) { $('#result').html(data); },
+							data: { name: "Ruslan", age: 25 }
+						}	
+					);
+					
+				});
+				
+				$('#loginForm').submit(function (e) {
+				
+					e.preventDefault();
+					e.stopPropagation();
+					
+					$.ajax(
+						{
+							url: "http://localhost/authentification.php",
+							dataType: 'html',
+							type: 'POST',
+							success: function (data) {
+								
+								$('#result').html(data);
+								
+							},
+							data: $('#loginForm').serialize()
+						}
+					);
+					
+				});
+				
+			});
+			
+		</script>
+		
+	</body>
+</html>
