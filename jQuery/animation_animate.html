@@ -1,0 +1,78 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>jQuery Animation: animate</title>
+		<script type="text/javascript" src="jquery-3.5.1.js"></script>
+		
+		<style>
+			
+			.block {
+			
+				border: 1px solid green;
+				background-color: lightgreen;
+				width: 200px;
+				height: 200px;
+				
+			}
+			
+		</style>
+		
+	</head>
+	
+	<body>
+
+		<div class="block"></div>
+		
+		<br/>
+		
+		<div>
+			<label for="marginLeft">Margin Left:</label>
+			<input type="number" id="marginLeft" min="0" max="500" value="0"/>
+		</div>
+		<br/>
+		<div>
+			<label for="opacity">Opacity:</label>
+			<input type="text" id="opacity" value="1.0"/>
+		</div>
+		<br/>
+		<div>
+			<label for="width">Width:</label>
+			<input type="number" id="width" min="200" max="1000" value="200"/>
+		</div>
+		<br/>
+		<div>
+			<label for="height">Height:</label>
+			<input type="number" id="height" min="200" max="1000" value="200"/>
+		</div>
+		<br/>
+		<div>
+			<label for="height">Duration:</label>
+			<input type="number" id="duration" min="400" max="20000" value="400"/>
+		</div>
+		<br/>
+		<button id="animateBtn">Animate</button>
+		
+		<script>
+			
+			$(function () {
+			
+				$('#animateBtn').click(function () {
+					
+					$('.block').animate(
+						{
+							'margin-left' : parseInt($('#marginLeft').val()),
+							opacity: parseFloat($('#opacity').val()),
+							width: parseInt($('#width').val()),
+							height: parseInt($('#height').val())
+						},
+						parseInt($('#duration').val())
+					);
+					
+				});
+				
+			});
+			
+		</script>
+		
+	</body>
+</html>
