@@ -1,0 +1,69 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>jQuery Fade Effects: fadeIn, fadeOut, fadeToggle, fadeTo</title>
+		<script type="text/javascript" src="jquery-3.5.1.js"></script>
+		
+		<style>
+
+		</style>
+		
+	</head>
+	
+	<body>
+
+		<ul id="consciousnessStateList">
+			<li>Awareness</li>
+			<li>Adoption</li>
+			<li>Appeasement</li>
+			<li>Disidentification</li>
+		</ul>
+		
+		<button id="fadeInBtn">Fade In</button>
+		<button id="fadeOutBtn">Fade Out</button>
+		<button id="fadeToggleBtn">Fade Toggle</button>
+		
+		<br/>
+		<br/>
+		
+		<div>
+			<label for="opacity">Opacity:</label>&nbsp;
+			<input type="text" id="opacity" name="opacity"/>
+			<br/><br/>
+			<button id="fadeToBtn">Fade To</button>
+		</div>
+			
+		<script>
+			
+			$(function () {
+			
+				$('#fadeInBtn').click(function () {
+					
+					$('#consciousnessStateList').fadeIn();
+					
+				});
+				
+				$('#fadeOutBtn').click(function () {
+				
+					$('#consciousnessStateList').fadeOut();
+					
+				});
+				
+				$('#fadeToggleBtn').click(function () {
+				
+					$('#consciousnessStateList').fadeToggle();
+					
+				});
+				
+				$('#fadeToBtn').click(function () {
+				
+					$('#consciousnessStateList').fadeTo(400, parseFloat($('#opacity').val()));
+					
+				});
+				
+			});
+			
+		</script>
+		
+	</body>
+</html>
