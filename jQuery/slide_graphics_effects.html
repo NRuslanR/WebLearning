@@ -1,0 +1,96 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>jQuery Graphics Effects: slideUp, slideDown, slideToggle</title>
+		<script type="text/javascript" src="jquery-3.5.1.js"></script>
+		
+		<style>
+
+		</style>
+		
+	</head>
+	
+	<body>
+
+		<ul id="consciousnessStateList">
+			<li>Awareness</li>
+			<li>Adoption</li>
+			<li>Appeasement</li>
+			<li>Disidentification</li>
+		</ul>
+		
+			<div>
+				<label for="animFuncSelect">Animation Function:</label>&nbsp;
+				<select id="animFuncSelect" size="1">
+					<option selected value="">Disable</option>
+					<option value="slow">Slow</option>
+					<option value="swing">Swing</option>
+					<option value="medium">Medium</option>
+					<option value="fast">Fast</option>
+				</select>
+			</div>
+			<br/>
+			<div>
+				<label for="duration">Duration:</label>&nbsp;
+				<input type="number" min="0" max="20000" value="400" id="duration" name="duration"/>
+			</div>
+			
+			<div class="buttonFooter" style="margin-top: 10px">
+				<button id="slideUpBtn">Slide Up</button>
+				<button id="slideDownBtn">Slide Down</button>
+				<button id="slideToggleBtn">Slide Toggle</button>
+			</div>
+			
+		<script>
+			
+			$(function () {
+				
+				function getCurrentAnimationData() {
+					
+					var selectedFunc = $.trim($("#animFuncSelect").children('option:selected').val());
+					var durationValue = parseInt($("#duration").val());
+					
+					return { duration: durationValue, easing: selectedFunc };
+					
+				}
+				
+				$('#slideUpBtn').bind('click', function() {
+					
+					var animData = getCurrentAnimationData();
+					
+					if (animData.easing !== '')
+						$("#consciousnessStateList").slideUp(animData.easing);
+						
+					else $("#consciousnessStateList").slideUp(animData.duration);
+					
+				});
+				
+				$("#slideDownBtn").on('click', function (e) {
+
+					var animData = getCurrentAnimationData();
+					
+					if (animData.easing !== '')
+						$("#consciousnessStateList").slideDown(animData.easing);
+						
+					else $("#consciousnessStateList").slideDown(animData.duration);
+					
+				});
+				
+				$("#slideToggleBtn").click(function () {
+					
+					var animData = getCurrentAnimationData();
+					
+					if (animData.easing !== '')
+						$('#consciousnessStateList').slideToggle(animData.easing);
+					
+					else $('#consciousnessStateList').slideToggle(animData.duration);
+					
+				});
+				
+			});
+			
+			
+		</script>
+		
+	</body>
+</html>
