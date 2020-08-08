@@ -1,0 +1,117 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>jQuery Graphics Effects</title>
+		<script type="text/javascript" src="jquery-3.5.1.js"></script>
+		
+		<style>
+
+		</style>
+		
+	</head>
+	
+	<body>
+		
+		<ul id="consciousnessStateList">
+			<li>Awareness</li>
+			<li>Adoption</li>
+			<li>Appeasement</li>
+			<li>Disidentification</li>
+		</ul>
+		
+		<button id="showBtn">Show</button>
+		<button id="hideBtn">Hide</button>
+		<button id="toggleBtn">Toggle</button>
+		
+		<div style="margin-top: 10px">
+			<label for="animDuration">Animation duration:</label>&nbsp;<input type="number" min="100" max="10000" id="animDuration" name="animDuration" value="20"/>
+			<button id="toggleAnimBtn">Toggle Animation</button>
+		</div>
+		
+		<div class="langs">
+			<p class="first">C</p>
+			<p>Java</p>
+			<p>Python</p>
+			<p>C++</p>
+			<p>C#</p>
+			<p>JavaScript</p>
+			<p class="last">Kotlin</p>
+		</div>
+		
+		<button id="nextBtn">Next</button>
+		<button id="prevBtn">Prev</button>
+		
+		<script>
+			
+			$(function () {
+				
+				$('#showBtn').click(function () {
+				
+					$('#consciousnessStateList').show();
+					
+				});
+				
+				$('#hideBtn').on('click', function () {
+					
+					$('#consciousnessStateList').hide();
+					
+				});
+				
+				$('#toggleBtn').bind('click', function () {
+					
+					$('#consciousnessStateList').toggle();
+					
+				});
+				
+				$("#toggleAnimBtn").click(function () {
+					
+					$("#consciousnessStateList").toggle($("#animDuration").val());
+					
+				});
+				
+				$('div.langs p:not(:first)').hide(function () {
+					
+					$('#prevBtn').prop('disabled', true);
+					
+				});
+				
+				$("#nextBtn").click(function () {
+				
+					var current = $("div.langs p").filter(':visible');
+					
+					$(current).next().show("fast", function () {
+						
+						$(current).hide('slow');
+						
+						current = this;
+						
+						$('#nextBtn').prop('disabled', $(current).is(':last-child'));
+						$('#prevBtn').prop('disabled', false);
+						
+					});
+					
+				});
+				
+				$('#prevBtn').on('click', function () {
+				
+					var current = $('div.langs p').filter(':visible');
+					
+					$(current).prev().show("fast", function () {
+						
+						$(current).hide('fast');
+						
+						current = this;
+						
+						$('#nextBtn').prop('disabled', false);
+						$('#prevBtn').prop('disabled', $(current).is(':first-child'));
+						
+					});
+					
+				});
+			
+			});
+			
+		</script>
+		
+	</body>
+</html>
