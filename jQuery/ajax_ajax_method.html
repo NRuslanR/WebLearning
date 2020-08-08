@@ -1,7 +1,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>jQuery AJAX: $.ajax method</title>
+		<title>jQuery AJAX: $.ajax method, global events</title>
 		<script type="text/javascript" src="jquery-3.5.1.js"></script>
 		
 		<style>
@@ -69,6 +69,26 @@
 					);
 					
 				});
+				
+				$(document).ajaxComplete(
+					function () {
+						
+						console.log('ajaxComplete is triggered');
+						
+					}
+				);
+				
+				$(document).ajaxError(function () {
+					
+					console.log('ajaxError is triggered');
+					
+				
+				});
+				
+				$(document).ajaxSend(function () { console.log('ajaxSend is triggered'); });
+				$(document).ajaxStart(function() { console.log('ajaxStart is triggered'); });
+				$(document).ajaxStop(function () { console.log('ajaxStop is triggered'); });
+				$(document).ajaxSuccess(function () { console.log('ajaxSuccess is triggered'); });
 				
 			});
 			
