@@ -25,18 +25,36 @@
 		<p><button class="button_jqui">Button 1</button></p>
 		<p><button>Button 2</button></p>
 		
+		<div id="langs">
+			<input type="radio" id="java" name="langs"/><label for="java">Java</label>
+			<input type="radio" id="csharp" name="langs"/><label for="csharp">C#</label>
+			<input type="radio" id="js" name="langs"/><label for="js">JavaScript</label>
+		</div>
+		
 		<script>
 				
 			$(function () {
 				
-				$('.a_jqui').button().click(function () {
+				$('.a_jqui').button().click(function (e) {
 				
 					e.preventDefault();
 					alert('jQuery UI Link');
+					$('.button_jqui').button('option', 'disabled', false);
 					
 				});
 				
-				$('.button_jqui').button();
+				$('.button_jqui').button().click( function () {
+				
+					$('.button_jqui').button('disable');
+					
+					$(button2).button({ label: 'jQuery UI Button', icons: { secondary: "ui-icon-help" }, showLabel: true });
+					
+				});
+				
+				var button2 =
+					$('button').filter(function (idx, item) { return $(item).text() === 'Button 2'; }).first();
+					
+				$('#langs').buttonset();
 			
 			});
 			
