@@ -1,0 +1,116 @@
+<html>
+	<head>
+	
+		<meta charset="utf-8">
+		<title>jQuery UI - Accordion</title>
+		<link rel="stylesheet" type="text/css" href="ui/jquery-ui.css">
+		<script type="text/javascript" src="ui/external/jquery/jquery.js"></script>
+		<script type="text/javascript" src="ui/jquery-ui.js"></script>
+		
+		<style>
+			
+			.ui-accordion-header {
+				
+				font-size: 16px;
+				font-style: oblique;
+				
+			}
+			
+			.ui-accordion-content {
+				
+				font-size: 12px;
+				font-style: italic;
+				
+			}
+			
+			.ui-accordion {
+			
+				color: red;
+				background-color: lightblue;
+				
+			}
+			
+		</style>
+		
+	</head>
+	
+	<body>
+		
+		<h3>Состояния сознания:</h3>
+		<div id="accordion">
+			<h3>Осознание</h3>
+			<div>
+				Приобретение мысли о любом случившимся
+			</div>
+			<h3>Принятие</h3>
+			<div>
+				Приобретение понимания истинной природы окружающей реальности
+			</div>
+			<h3>Умиротворение</h3>
+			<div>
+				Переход в состояние спокойного пребывания неожидания
+			</div>
+			<h3>Разотождествление</h3>
+			<div>
+				Потеря собственной идентичности в результате восприятия себя, как безграничного в окружающей реальности
+			</div>
+		</div>
+		
+		<div>
+			<h3>Active block:</h3>
+			<select id="blocks">
+			</select>
+		<div>
+			<h3>Events:</h3>
+			<select id="events">
+				<option value="click">Click</option>
+				<option value="mouseover">Mouseover</option>
+			</select>
+		</div>
+		<div>
+			<h3>Animations:</h3>
+			<select id="anims">
+				<option value="linear">Linear</option>
+				<option value="swing">Swing</option>
+				<option value="easeInCubic">EaseInCubic</option>
+			</select>
+		</div>
+		
+		<script>
+				
+			$(function () {
+				
+				var accordion = $('#accordion');
+				
+				$(accordion).accordion({ collapsible: true });
+				
+				$('#events').on('change', function (e) {
+				
+					$(accordion).accordion({ event: $('#events').children('option:selected').first().val() });
+				
+				});
+				
+				$('#anims').on('change', function (e) {
+					
+					$(accordion).accordion({ animate: $(this).children('option:selected').first().val() });
+				});
+				
+				$.each($('#accordion').children('div'), function (index, item) {
+				
+					$('#blocks').append($('<option>').val(index).text(index));
+					
+				});
+				
+				$('#blocks').on('change', function (e) {
+					
+					$('#accordion').accordion({ active: $(this).children('option:selected').first().val() });
+					
+				});
+			
+			});
+			
+		</script>
+		
+	</body>
+	
+</html>
