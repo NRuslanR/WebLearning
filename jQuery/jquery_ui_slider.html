@@ -1,0 +1,88 @@
+<html>
+	<head>
+	
+		<meta charset="utf-8">
+		<title>jQuery UI - Slider</title>
+		<link rel="stylesheet" type="text/css" href="ui/jquery-ui.css">
+		<script type="text/javascript" src="ui/external/jquery/jquery.js"></script>
+		<script type="text/javascript" src="ui/jquery-ui.js"></script>
+		
+		<style>
+			
+			.ui-slider {
+			
+				background-color: beige;
+				
+			}
+			
+		</style>
+		
+	</head>
+	
+	<body>
+		
+		<div id="horizontalSlider"></div>
+		<div id="verticalSlider"></div>
+		<div id="multiValueSlider"></div>
+		
+		<div>
+			<label for="step">Step:</label>&nbsp;
+			<input type="number" id="step" min="1" max="10" value="1"/>
+			<button id="setStepBtn">Set Step</button>
+		</div>
+		
+		<div id="sliderValue"></div>
+		
+		<script>
+				
+			$(function () {
+			
+				function setSliderStep(slider, stepValue) {
+				
+					$(slider).slider({ step: stepValue });
+					
+				}
+				
+				function showSliderValue(slider) {
+
+					$('#sliderValue').text(
+						`Current slider "${$(slider).prop('id')}" value:` + 
+						
+						($(slider).slider('option', 'values') !== null ? 
+							`[${$(slider).slider('option', 'values')}]` : `${$(slider).slider('value')}`));
+					
+				}
+				
+				var horizontalSlider = $('#horizontalSlider'),
+					verticalSlider = $('#verticalSlider');
+					
+				$(horizontalSlider)
+					.slider({ orientation: 'horizontal' })
+					.css({ width: '400px', margin: '2%' })
+					.slider({ animate: 'slow', range: false, change: function() { showSliderValue(horizontalSlider) } });
+					
+				$(verticalSlider)
+					.slider( { orientation: 'vertical' })
+					.css({ height: '300px', margin: 0 })
+					.slider({ animate: 'fast', range: true, change: function() { showSliderValue(verticalSlider) } });
+					
+				$("#setStepBtn").on('click', function (e) {
+					
+					var sliderStep = parseInt($("#step").val());
+					
+					console.log(sliderStep);
+					
+					setSliderStep(horizontalSlider, sliderStep);
+					setSliderStep(verticalSlider, sliderStep);
+					
+				});
+				
+				$('#multiValueSlider').slider({ values: [15, 28, 56] });
+			
+			});
+			
+		</script>
+		
+	</body>
+	
+</html>
