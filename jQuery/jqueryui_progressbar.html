@@ -1,0 +1,57 @@
+<html>
+	<head>
+	
+		<meta charset="utf-8">
+		<title>jQuery UI: Progressbar</title>
+		<link rel="stylesheet" type="text/css" href="ui/jquery-ui.css">
+		<script type="text/javascript" src="ui/external/jquery/jquery.js"></script>
+		<script type="text/javascript" src="ui/jquery-ui.js"></script>
+		
+	</head>
+	
+	<body>
+		
+		<div id="progressbar"></div>
+		<div id="progressValue"></div>
+		<br/>
+		<button id="plus"></button>&nbsp;&nbsp;<button id="minus"></button>
+		
+		<script>
+				
+			$(function () {
+			
+				var progressValueDiv = $('#progressValue');
+				
+				$('#plus').button({ label: '+' });
+				$('#minus').button({ label: '-' });
+				
+				$('#plus').click(function () {
+					
+					$('#progressbar').progressbar({ value: $("#progressbar").progressbar('value') + 1 });
+					
+				});
+				
+				$('#minus').click(function () {
+					
+					$('#progressbar').progressbar({ value: $("#progressbar").progressbar('value') - 1 });
+					
+				});
+				
+				$('#progressbar').progressbar(
+					{ 
+						value: 33,
+						change: function (e, ui) {
+							
+							$(progressValue).text(`Current progressbar value: ${$('#progressbar').progressbar('option', 'value')}`);
+							
+						}
+					}
+				);
+			
+			});
+			
+		</script>
+		
+	</body>
+	
+</html>
