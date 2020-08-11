@@ -1,0 +1,38 @@
+<!doctype html>
+<html ng-app="testApp">
+	<head>
+		<meta charset="utf-8">
+		<title>AngularJS - $scope</title>
+	</head>
+	
+	<body>
+		
+		<div>
+			<p>{{ testVar1 }}</p>
+			<p>{{ testVar2 }}</p>
+			<div ng-controller="testController">
+				{{ testVar1 }}
+			</div>
+		</div>
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+		<script>
+			
+			angular.module('testApp', []).run(function ($rootScope) {
+				
+				$rootScope.testVar1 = 'Test Var 1';
+				$rootScope.testVar2 = 'Test Var 2';
+				
+			});
+			
+			angular.module('testApp').controller('testController', function ($scope) {
+			
+				$scope.testVar1 = 'Test Var 1 Controller';
+				
+			});
+			
+		</script>
+		
+	</body>
+	
+</html>
