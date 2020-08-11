@@ -9,6 +9,13 @@
 		
 		<style>
 			
+			li.ui-menu-item {
+			
+				font-size: 16px;
+				font-family: Verdana;
+				font-style: italic;
+				
+			}
 			
 		</style>
 		
@@ -17,13 +24,14 @@
 	<body>
 		
 		<input type="text" id="input"/>
+		<div id="langList"></div>
 		<div id="errors"></div>
 		
 		<script>
 				
 			$(function () {
 			
-				$('#input').autocomplete({ source: function (request, response) {
+				$('#input').autocomplete({ autoFocus: true, minLength: 1, delay: 100, appendTo: '#langList', source: function (request, response) {
 					
 					var jqXHR =
 					
@@ -31,8 +39,6 @@
 							'http://localhost/langs.php',
 							{ filter: $('#input').val() },						
 							function (data) {
-								
-								console.log(JSON.stringify(data));
 								
 								response(data);
 								
@@ -45,7 +51,13 @@
 						
 					});
 					
-				} });
+				},
+
+				change: function (e, ui) {
+					
+					console.log('Selected item: ' + ui.item.value);
+				}
+				});
 				
 			});
 			
