@@ -1,0 +1,56 @@
+<html>
+	<head>
+	
+		<meta charset="utf-8">
+		<title>jQuery UI - Autocomplete</title>
+		<link rel="stylesheet" type="text/css" href="ui/jquery-ui.css">
+		<script type="text/javascript" src="ui/external/jquery/jquery.js"></script>
+		<script type="text/javascript" src="ui/jquery-ui.js"></script>
+		
+		<style>
+			
+			
+		</style>
+		
+	</head>
+	
+	<body>
+		
+		<input type="text" id="input"/>
+		<div id="errors"></div>
+		
+		<script>
+				
+			$(function () {
+			
+				$('#input').autocomplete({ source: function (request, response) {
+					
+					var jqXHR =
+					
+						$.getJSON(
+							'http://localhost/langs.php',
+							{ filter: $('#input').val() },						
+							function (data) {
+								
+								console.log(JSON.stringify(data));
+								
+								response(data);
+								
+							}
+						);
+						
+					jqXHR.fail(function (jqXHR, textStatus, error) {
+					
+						$("#errors").html(textStatus);
+						
+					});
+					
+				} });
+				
+			});
+			
+		</script>
+		
+	</body>
+	
+</html>
