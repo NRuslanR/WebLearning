@@ -1,0 +1,29 @@
+<!doctype html>
+<html ng-app="workingModuleApp">
+	<head>
+		<meta charset="utf-8">
+		<title>AngularJS - Modules</title>
+	</head>
+	
+	<body ng-controller="workingController">
+		
+		<input type="text" ng-model="a"/>
+		<input type="text" ng-model="b"/>
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+		<script>
+			
+			var workingModule = angular.module('workingModuleApp', []);
+			
+			workingModule.controller('workingController', function ($scope) {
+			
+				$scope.a = 5;
+				$scope.b = 10;
+				
+			});
+			
+		</script>
+		
+	</body>
+	
+</html>
