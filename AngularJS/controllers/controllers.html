@@ -1,0 +1,61 @@
+<!doctype html>
+<html ng-app="transportApp">
+	<head>
+		<meta charset="utf-8">
+		<title>AngularJS - Controllers</title>
+	</head>
+	
+	<body>
+		<div ng-controller="transportController">
+			<h3>Extended transports's info</h3>
+			<table>
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Route</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="transport in transports">
+						<td>{{transport.name}}</td>
+						<td>{{transport.route}}</td>
+					</tr>
+				</tbody>
+				<tfoot>
+					<tr><td>Summary: {{transports.length}}</td></tr>
+				</tfoot>
+			</table>
+		</div>
+		
+		<div ng-controller="transportController">
+			<h3>Shortend transports's info</h3>
+			<table>
+				<thead>
+					<tr>
+						<th>Name</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="transport in transports">
+						<td>{{transport.name}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		
+		<div ng-controller="noScopeController as noScopeCtrl">
+			{{noScopeCtrl.message}} at {{noScopeCtrl.date}}
+		</div>
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+		<script>
+			
+			var transportApp = angular.module('transportApp', []);
+			
+		</script>
+		<script src="controllers/transportController.js"></script>
+		<script src="controllers/noScopeController.js"></script>
+		
+	</body>
+	
+</html>
