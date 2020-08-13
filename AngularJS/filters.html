@@ -1,0 +1,90 @@
+<!doctype html>
+<html ng-app="testApp">
+
+	<head>
+	
+		<meta charset="utf-8">
+		<title>AngularJS - Filters</title>
+		
+		<style>
+			.questionBlock {
+				
+				background: lightgreen;
+				border: 1px solid green;
+				
+			}
+			
+			.questionSelectedBlock {
+			
+				background: green;
+				border: 1px solid black;
+				
+			}
+			
+			.questionBlock, .questionSelectedBlock, .answerBlock {
+				
+				padding: 15px;
+				margin-bottom: 10px;
+				
+			}
+			
+			.answerBlock {
+				
+				border: 1px solid black;
+				background: yellow;
+				
+			}
+			
+			.voteBtn { 
+			
+				background: #ccc; 
+				border: 1px solid black; 
+				padding: 5px;
+				text-decoration: none;
+				
+			}
+			
+			a.voteBtn:hover { background: lightblue; }
+			
+		</style>
+		
+	</head>
+	
+	<body ng-controller="questionController">
+		
+		<div ng-class="questionColorClass" ng-mouseover="changeQuestionColorClass($event)" ng-mouseenter="changeQuestionColorClass($event)" ng-mouseleave="changeQuestionColorClass($event)">
+			<h3>{{ question.text | lowercase }}</h3>
+			<h4>Author: {{ question.author }}</h3>
+			<h5>Date: {{ question.date }}</h5>
+		</div>
+		
+		<h3>Answers:</h3>
+		<div class="answerBlock" ng-repeat="answer in question.answers | filter: { author: selectedAuthor} | orderBy:selectedOrder | limitTo: 4">
+			<h3>{{ answer.text | uppercase }}</h3>
+			<h4>Author: {{ answer.author }}</h4>
+			<h5>Date: {{ answer.date }}</h4>
+			<a href="#" class="voteBtn" ng-click="voteUp(answer)">+</a>&nbsp;{{ answer.rate }}&nbsp;<a href="#" class="voteBtn" ng-click="voteDown(answer)">-</a>	
+		</div>
+	
+		<select ng-model="selectedAuthor">
+			<option value="" selected>All</option>
+			<option ng-repeat="answer in question.answers" ng-value="answer.author">{{ answer.author }}</option>
+		</select>
+		<select ng-model="selectedOrder">
+			<option selected value="rate">Ascending</option>
+			<option value="-rate">Descending</option>
+		</select>
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+		
+		<script>
+			
+			angular.module('testApp', []);
+		
+		</script>
+		
+		<script src="Event Handling/QuestionController.js"></script>
+		
+	</body>
+	
+</html>
