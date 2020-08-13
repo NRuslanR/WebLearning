@@ -1,0 +1,91 @@
+<!doctype html>
+<html ng-app="testApp">
+	<head>
+	
+		<meta charset="utf-8">
+		<title>AngularJS - Data bingind: ng-bind, ng-non-bindable, ng-model, ng-bind-html, ng-bind-template</title>
+		
+		<style>
+			
+			.odd { background-color: lightgreen; }
+			.even { background: lightblue; }
+			
+		</style>
+		
+	</head>
+	
+	<body>
+		
+		<div ng-controller="testController">
+			<p>Company count: <span ng-bind="model.length"></span></p>
+			<p>First company's name: <span ng-bind="model[0].name"></span></p>
+			<input type="text" ng-model="model[0].name"/>
+			<br/>
+			<input type="text" ng-model="model[0].description"/>
+			<p>First company's name: <span ng-bind="model[0].name"></span></p>
+			<p>Name & Description - <span ng-bind-template="{{ model[0].name }} - {{ model[0].description }}"></span></p>
+			<p>1 + 2 = {{ 1 + 2 }}</p>
+			<p ng-non-bindable>1 + 2 <> {{ 1 + 2 }}</p>
+			
+			<textarea ng-model="htmlcode">
+			</textarea>
+			<p ng-bind-html="htmlcode"></p>
+		</div>
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.8.0/angular-sanitize.min.js"></script>
+		
+		<script type="text/javascript">
+			
+			var testApp = angular.module('testApp', ['ngSanitize']);
+			
+			var companies = 
+				[
+					{
+						name: "Microsoft",
+						products: [
+							{
+								name: "ASP.NET Core MVC",
+								description: "Web-Framework: Razor, C#, HTML, CSS, Blazor, MVC"
+							},
+							
+							{
+								name: "WPF",
+								description: "Windows Presentation Foundation: MVVM-Based GUI Framework"
+							},
+							
+							{
+								name: "SQL Server",
+								description: "Relational database management system"
+							}
+						]
+					},
+					
+					{
+						name: "Oracle",
+						products: [
+							{
+								name: "Java",
+								description: "Multi-purpose Programming Language"
+							},
+							
+							{
+								name: "Oracle DB",
+								description: "Relational database management system"
+							}
+						]
+					}
+				];
+				
+			testApp.controller('testController', function ($scope) {
+			
+				$scope.model = companies;
+				$scope.htmlcode = "Testing of the <b>ng-bind-html</b>";
+				
+			});
+			
+		</script>
+		
+	</body>
+	
+</html>
