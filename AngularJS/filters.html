@@ -59,15 +59,15 @@
 		</div>
 		
 		<h3>Answers:</h3>
-		<div class="answerBlock" ng-repeat="answer in question.answers | filter: { author: selectedAuthor} | orderBy:selectedOrder | limitTo: 4">
-			<h3>{{ answer.text | uppercase }}</h3>
+		<div class="answerBlock" ng-repeat="answer in question.answers | filter: { author: selectedAuthor } | orderBy:selectedOrder | limitTo: 4">
+			<h3>{{ answer.text | answerTextFilter | uppercase }}</h3>
 			<h4>Author: {{ answer.author }}</h4>
 			<h5>Date: {{ answer.date }}</h4>
 			<a href="#" class="voteBtn" ng-click="voteUp(answer)">+</a>&nbsp;{{ answer.rate }}&nbsp;<a href="#" class="voteBtn" ng-click="voteDown(answer)">-</a>	
 		</div>
 	
 		<select ng-model="selectedAuthor">
-			<option value="" selected>All</option>
+			<option value="" selected">All</option>
 			<option ng-repeat="answer in question.answers" ng-value="answer.author">{{ answer.author }}</option>
 		</select>
 		<select ng-model="selectedOrder">

@@ -1,5 +1,15 @@
 var testApp = angular.module('testApp');
 
+testApp.filter('answerTextFilter', function () {
+		
+	return function (answerText) {
+			
+			return (answerText.indexOf('bullshit') !== -1) ? "***" : answerText;
+				
+	};
+	
+});
+
 testApp.controller('questionController', function ($scope) {
 	
 	$scope.question = {
@@ -26,6 +36,13 @@ testApp.controller('questionController', function ($scope) {
 			{
 				author: 'Sam Wildson',
 				text: 'I am using the React JS framework for more than 3 years and i am great with him',
+				date: '2020-08-15',
+				rate: 0
+			},
+			
+			{
+				author: 'Tim Rodney',
+				text: 'Angular is a bullshit ! Nobody is using it !',
 				date: '2020-08-15',
 				rate: 0
 			}
