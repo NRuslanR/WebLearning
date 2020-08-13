@@ -51,6 +51,17 @@ testApp.controller('questionController', function ($scope) {
 		
 	};
 	
+	$scope.addAnswer = function (answer, answerForm) {
+			
+		if (answerForm.$valid)
+		{
+			alert('OK');
+		}
+		
+		else alert('Incorrect answer data');
+		
+	};
+	
 	$scope.voteUp = function (answer) {
 		
 		++answer.rate;

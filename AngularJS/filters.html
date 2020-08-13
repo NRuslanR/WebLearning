@@ -75,6 +75,22 @@
 			<option value="-rate">Descending</option>
 		</select>
 		
+		<form name="answerForm">
+			<div>
+				<label for="answerText">Text:</label>&nbsp;
+				<input id="answerText" ng-model="answer.text" placeholder="Input a answer text" required/>
+			</div>
+			<div>
+				<label for="answerAuthor">Author:</label>&nbsp;
+				<input id="answerAuthor" ng-model="answer.author" placeholder="Input an author" required/>
+			</div>
+			<div>
+				<label for="answerDate">Date:</label>&nbsp;
+				<input type="date" id="answerDate" ng-model="answer.date" placeholder="Input a date" required/>
+			</div>
+			<button ng-click="addAnswer(answer, answerForm)">Add Answer</button>
+		</form>
+		
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 		
 		<script>
