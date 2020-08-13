@@ -42,7 +42,8 @@ testApp.controller('questionController', function ($scope) {
 	
 	$scope.voteDown = function (answer) {
 		
-		--answer.rate;
+		if (answer.rate > 0)
+			--answer.rate;
 		
 	}
 	
