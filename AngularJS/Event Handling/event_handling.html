@@ -1,0 +1,41 @@
+<!doctype html>
+<html ng-app="testApp">
+	<head>
+	
+		<meta charset="utf-8">
+		<title>AngularJS - Event Handling</title>
+		
+		<style>
+
+		</style>
+		
+	</head>
+	
+	<body ng-controller="testController">
+		
+		<div class="questionBlock">
+			<h3>{{ question.text }}</h3>
+			<h4>Author: {{ question.author }}</h3>
+			<h5>Date: {{ question.date }}</h5>
+		</div>
+		
+		<h3>Answers:</h3>
+		<div class="answerBlock" ng-repeat="answer in question.answers">
+			<h3>{{ answer.text }}</h3>
+			<h4>Author: {{ answer.author }}</h4>
+			<h5>Date: {{ answer.date }}</h4>
+			<a ng-click=
+			
+		</div>
+	
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+		<script src="QuestionController.js"></script>
+		<script>
+			
+			
+		
+		</script>
+		
+	</body>
+	
+</html>
