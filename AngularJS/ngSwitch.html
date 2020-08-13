@@ -1,0 +1,95 @@
+<!doctype html>
+<html ng-app="testApp">
+	<head>
+		<meta charset="utf-8">
+		<title>AngularJS - ngSwitch directive</title>
+	</head>
+	
+	<body ng-controller="testController" size="1">
+		
+		<div ng-switch="currentEquipmentType">
+			<div ng-switch-when="computers">
+				<ul>
+					<li ng-repeat="computer in computers">
+						{{ computer.name }}
+						<ul>
+							<li>Company - {{ computer.company }}</li>
+							<li>Price - {{ computer.price }}</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			<div ng-switch-when="washingMachines">
+				<ul>
+					<li ng-repeat="washingMachine in washingMachines">
+						{{ washingMachine.name }}
+						<ul>
+							<li>Price - {{ washingMachine.price }}</li>
+							<li>Guarantee period - {{ washingMachine.guarantee }}</li>
+							<li>Company - {{ washingMachine.company }}</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			<div ng-switch-default>Choose equipment type</div>
+		</div>
+		
+		<select ng-model="currentEquipmentType">
+			<option ng-repeat="type in equipmentTypes" ng-value="type.value">{{ type.label }}</option>
+		</select>
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+		<script>
+			
+			var testApp = angular.module('testApp', []);
+			
+			testApp.controller('testController', function ($scope) {
+			
+				$scope.computers = 
+					[
+						{
+							name: "A315-BC",
+							company: "ACER",
+							price: 30394
+						},
+						
+						{
+							name: "BNH-324C",
+							company: "ASUS",
+							price: 35209
+						},
+						
+						{
+							name: "FHE-434",
+							company: "Lenovo",
+							price: 29874
+						}
+					];
+					
+				$scope.washingMachines = 
+					[
+						{ 
+							name: "Ariel 209C",
+							company: "Bosch",
+							guarantee: 2,
+							price: 18763
+						},
+						
+						{
+							name: "Subject BAW",
+							company: "Bravia",
+							guarantee: 4,
+							price: 16398
+						}
+					];
+					
+				$scope.equipmentTypes = [ { label: 'Computers', value: 'computers' }, { label: 'Washing Machines', value: 'washingMachines' }];
+				
+			});
+			
+		</script>
+	
+		
+	</body>
+	
+</html>
