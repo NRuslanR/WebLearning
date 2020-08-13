@@ -1,0 +1,18 @@
+<h3>Extended transports's info</h3>
+			<table>
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Route</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="transport in transports">
+						<td>{{transport.name}}</td>
+						<td>{{transport.route}}</td>
+					</tr>
+				</tbody>
+				<tfoot>
+					<tr><td>Summary: {{transports.length}}</td></tr>
+				</tfoot>
+			</table>
