@@ -1,0 +1,90 @@
+<!doctype html>
+<html ng-app="testApp">
+	<head>
+		<meta charset="utf-8">
+		<title>AngularJS - Directives. ng-repeat</title>
+		
+		<style>
+			
+			.odd { background-color: lightgreen; }
+			.even { background: lightblue; }
+			
+		</style>
+		
+	</head>
+	
+	<body>
+		
+		<div ng-controller="testController">
+			<ul>
+				<li ng-repeat="company in model">
+					{{$index + 1}}) {{ company.name }}
+					<h4>Products:</h4>
+					<table>
+						<thead>
+							<tr><td><b>Name</b></td><td><b>Description</b></td></tr>
+						</thead>
+						
+						<tbody>
+							<tr ng-repeat="product in company.products" ng-class='$odd ? "odd" : "even"'>
+								<td>{{ product.name }}</td>
+								<td>{{ product.description }}</td>
+							</tr>
+						</tbody>
+					</table>
+				</li>
+			</ul>
+		</div>
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+		<script>
+			
+			var testApp = angular.module('testApp', []);
+			
+			testApp.controller('testController', function ($scope) {
+			
+				$scope.model = [
+					{
+						name: "Microsoft",
+						products: [
+							{
+								name: "ASP.NET Core MVC",
+								description: "Web-Framework: Razor, C#, HTML, CSS, Blazor, MVC"
+							},
+							
+							{
+								name: "WPF",
+								description: "Windows Presentation Foundation: MVVM-Based GUI Framework"
+							},
+							
+							{
+								name: "SQL Server",
+								description: "Relational database management system"
+							}
+						]
+					},
+					
+					{
+						name: "Oracle",
+						products: [
+							{
+								name: "Java",
+								description: "Multi-purpose Programming Language"
+							},
+							
+							{
+								name: "Oracle DB",
+								description: "Relational database management system"
+							}
+						]
+					}
+				];
+					
+				
+			});
+			
+		</script>
+		
+	</body>
+	
+</html>
