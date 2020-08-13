@@ -1,0 +1,50 @@
+<!doctype html>
+<html ng-app="testApp">
+	<head>
+	
+		<meta charset="utf-8">
+		<title>AngularJS - Stylization directives and element management directives</title>
+		
+		<style>
+			.uiClass {
+				
+				width: 100px;
+				height: 100px;
+				background: lightgreen;
+				border: 1px solid green;
+				
+			}
+		</style>
+		
+	</head>
+	
+	<body ng-controller="testController">
+		
+		<div ng-style="style"></div>
+		<div ng-class="uiClass"></div>
+		
+		<div>
+			<p ng-show="options.visible">First paragraph</p>
+			<p ng-hide="options.visible">Second paragraph</p>
+			<p ng-if="options.visible && true">Third paragraph</p>
+			<p ng-if="!options.visible && true">Fouth paragraph</p>
+			
+			<input type="checkbox" ng-model="options.visible"/>&nbsp;Show/Visible
+		</div>
+	
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+		<script>
+			
+			angular.module('testApp', []).controller('testController', function ($scope) {
+				
+				$scope.style = { 'background-color': 'lightblue', border: '1px solid blue', height: '200px', 'margin-bottom' : '15px' };
+				$scope.uiClass = "uiClass";
+				$scope.options = { visible : false };
+				
+			});
+		
+		</script>
+		
+	</body>
+	
+</html>
