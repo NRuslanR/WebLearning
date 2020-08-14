@@ -1,0 +1,5 @@
+<div ng-repeat="answer in data.answers | orderBy: '-rate' | filter { author: '' }">
+	<p>{{ answer.text }}</p>
+	<p>Author: {{ answer.author }}</p>
+	<p><i>Date: {{ answer.date }}</i></p>
+</div>

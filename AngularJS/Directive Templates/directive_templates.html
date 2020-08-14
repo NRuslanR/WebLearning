@@ -1,0 +1,82 @@
+<!doctype html>
+<html ng-app="testApp">
+
+	<head>
+	
+		<meta charset="utf-8">
+		<title>AngularJS - Directive Templates</title>
+		
+		<style>
+		
+			.questionBlock {
+				
+				background: lightgreen;
+				border: 1px solid green;
+				
+			}
+			
+			.questionSelectedBlock {
+			
+				background: green;
+				border: 1px solid black;
+				
+			}
+			
+			.questionBlock, .questionSelectedBlock {
+				
+				padding: 15px;
+				margin-bottom: 10px;
+				
+			}
+			
+		</style>
+		
+	</head>
+	
+	<body ng-controller="questionController">
+		
+		<div ng-class="questionColorClass" ng-mouseover="changeQuestionColorClass($event)" ng-mouseenter="changeQuestionColorClass($event)" ng-mouseleave="changeQuestionColorClass($event)">
+			<h3>{{ question.text | lowercase }}</h3>
+			<h4>Author: {{ question.author }}</h3>
+			<h5>Date: {{ question.date }}</h5>
+		</div>
+		
+		<h3>Answers:</h3>
+		<div answer-list="question"></div>
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+		
+		<script>
+			
+			angular
+				.module('testApp', [])
+					.directive('answerList', function () {
+						
+						return {
+							
+							link: function (scope, element, attrs) {
+								
+								scope.data = scope[attrs["answerList"]];
+								
+							},
+							
+							restrict: "A",
+							template:
+								"<div style=\"background: lightblue; border: 1px solid blue; padding: 10px; margin-bottom: 10px\" ng-repeat=\"answer in data.answers | orderBy: '-rate' | filter: { author: '' }\">" +
+									"<p><b>{{ answer.text }}</b></p>" +
+									"<p>Author: {{ answer.author }}</p>" +
+									"<p><i>Date: {{ answer.date }}</i></p>" +
+									"<p><u>Rate: <span style=\"color: blue\">{{ answer.rate }}</span></u></p>" +
+								"</div>"
+							//templateUrl: "templates/answerListTemplate.html" { Blocked by CORS-Policy }
+						}
+					
+					});
+		
+		</script>
+		
+		<script src="../Event Handling/QuestionController.js"></script>
+
+	</body>
+	
+</html>
