@@ -10,6 +10,7 @@ questionApp.directive('answerList', function () {
 		
 		restrict: 'E',
 		template: 
+			'<h3>Answers:</h3>' +
 			'<div class="answerMark" ng-class="answerBlockClass"' + 
 			    'ng-repeat="answer in data.answers"' + 
 				'ng-mouseover="changeAnswerBlockClass($event)"' + 

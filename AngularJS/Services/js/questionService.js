@@ -1,7 +1,7 @@
 questionApp.factory/*service*/('questionService', function () {
 
-	return {
-		
+	return {	
+	
 		question: {
 		
 			author: 'Joschia Bounschi',
@@ -40,6 +40,6 @@ questionApp.factory/*service*/('questionService', function () {
 			]
 			
 		}
-	};
+	}
 	
 });
