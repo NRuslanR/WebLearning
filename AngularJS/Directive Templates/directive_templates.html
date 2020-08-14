@@ -42,7 +42,7 @@
 		</div>
 		
 		<h3>Answers:</h3>
-		<div answer-list="question"></div>
+		<answer-list source="question">Transcluded Content</answer-list>
 		
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 		
@@ -56,15 +56,17 @@
 							
 							link: function (scope, element, attrs) {
 								
-								scope.data = scope[attrs["answerList"]];
+								scope.data = scope[attrs['answerList'] || attrs["source"]];
 								
 							},
 							
-							restrict: "A",
+							restrict: "E",
+							transclude: true,
 							template:
 								"<div style=\"background: lightblue; border: 1px solid blue; padding: 10px; margin-bottom: 10px\" ng-repeat=\"answer in data.answers | orderBy: '-rate' | filter: { author: '' }\">" +
 									"<p><b>{{ answer.text }}</b></p>" +
 									"<p>Author: {{ answer.author }}</p>" +
+									"<p style=\"color: red; text-transform: uppercase\"><ng-transclude></ng-transclude></p>" +
 									"<p><i>Date: {{ answer.date }}</i></p>" +
 									"<p><u>Rate: <span style=\"color: blue\">{{ answer.rate }}</span></u></p>" +
 								"</div>"
