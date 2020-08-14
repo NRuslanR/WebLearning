@@ -7,6 +7,7 @@
 		<title>AngularJS - Custom Directives</title>
 		
 		<style>
+		
 			.questionBlock {
 				
 				background: lightgreen;
@@ -41,9 +42,21 @@
 		</div>
 		
 		<h3>Answers:</h3>
+		<h3>Attribute Directive:</h3>
 		<div answer-list="question">
 		</div>
 
+		<h3>Element Directive:</h3>
+		<div>
+			<answer-list source="question" />
+		</div>
+		
+		<h3>Class Directive:</h3>
+		<div class="answer-list: question"></div>
+		
+		<h3>Comment Directive:</h3>
+		<!-- directive: answer-list question -->
+		
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 		
 		<script>
@@ -52,26 +65,37 @@
 				.module('testApp', [])
 					.directive('answerList', function () {
 						
-						return function (scope, element, attrs) {
+						return {
+							
+							link: function (scope, element, attrs) {
 						
-							var data = scope[attrs["answerList"]];
-							
-							console.log(data);
-							
-							if (!(angular.isArray(data.answers)))
-								return;
+								var data = scope[attrs["answerList"] || attrs["source"]];
+		
+								if (element[0].nodeName === '#comment')
+								{
+									element[0].nodeValue += '(MARKED)';
+									
+									return;
+								}
 								
-							var answerList = angular.element('<ul>');
-							
-							angular.forEach(data.answers, function (v, k) {
+								if (!(angular.isArray(data.answers)))
+									return;						
 								
-								answerList.append(angular.element('<li>').text(v.text));
+								var answerList = angular.element('<ul>');
+									
+								angular.forEach(data.answers, function (v, k) {
+										
+									answerList.append(angular.element('<li>').text(v.text));
+										
+								});
+									
+								element.append(answerList);
 								
-							});
+							},
 							
-							element.append(answerList);
+							restrict: "EMAC"
 							
-						};
+						}
 					
 					});
 		
