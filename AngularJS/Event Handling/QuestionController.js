@@ -78,7 +78,7 @@ testApp.controller('questionController', function ($scope) {
 	$scope.questionColorClass = "questionBlock";
 	$scope.changeQuestionColorClass = function (e) {
 		
-		$scope.questionColor = (e.type === "mouseover") ? "questionSelectedBlock" : 'questionBlock';
+		$scope.questionColorClass = (e.type === "mouseover") ? "questionSelectedBlock" : 'questionBlock';
 		
 	}
 	

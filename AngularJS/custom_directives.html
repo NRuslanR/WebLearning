@@ -1,0 +1,84 @@
+<!doctype html>
+<html ng-app="testApp">
+
+	<head>
+	
+		<meta charset="utf-8">
+		<title>AngularJS - Custom Directives</title>
+		
+		<style>
+			.questionBlock {
+				
+				background: lightgreen;
+				border: 1px solid green;
+				
+			}
+			
+			.questionSelectedBlock {
+			
+				background: green;
+				border: 1px solid black;
+				
+			}
+			
+			.questionBlock, .questionSelectedBlock {
+				
+				padding: 15px;
+				margin-bottom: 10px;
+				
+			}
+			
+		</style>
+		
+	</head>
+	
+	<body ng-controller="questionController">
+		
+		<div ng-class="questionColorClass" ng-mouseover="changeQuestionColorClass($event)" ng-mouseenter="changeQuestionColorClass($event)" ng-mouseleave="changeQuestionColorClass($event)">
+			<h3>{{ question.text | lowercase }}</h3>
+			<h4>Author: {{ question.author }}</h3>
+			<h5>Date: {{ question.date }}</h5>
+		</div>
+		
+		<h3>Answers:</h3>
+		<div answer-list="question">
+		</div>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+		
+		<script>
+			
+			angular
+				.module('testApp', [])
+					.directive('answerList', function () {
+						
+						return function (scope, element, attrs) {
+						
+							var data = scope[attrs["answerList"]];
+							
+							console.log(data);
+							
+							if (!(angular.isArray(data.answers)))
+								return;
+								
+							var answerList = angular.element('<ul>');
+							
+							angular.forEach(data.answers, function (v, k) {
+								
+								answerList.append(angular.element('<li>').text(v.text));
+								
+							});
+							
+							element.append(answerList);
+							
+						};
+					
+					});
+		
+		</script>
+		
+		<script src="Event Handling/QuestionController.js"></script>
+
+	</body>
+	
+</html>
