@@ -12,14 +12,7 @@ questionApp.factory/*service*/('questionService', function ($http) {
 			
 		getQuestionDataAsync: function(onSuccess, onFail) {
 				
-			//$http.get('http://localhost/questionApp/question.json')
-			$http({
-				method: 'GET',
-				url: 'http://localhost/questionApp/question.json',
-				timeout: 600,
-				params: { question_id: null },
-				headers: { 'Content-Type': 'application/json' }
-			})
+			$http.get('http://localhost/questionApp/loadQuestionHandler.php')
 			.then(
 					
 				function (response) {
@@ -38,6 +31,28 @@ questionApp.factory/*service*/('questionService', function ($http) {
 							
 				}
 			);
+		},
+		
+		postAnswerDataAsync: function (answer, onSuccess, onFail) {
+			
+			$http.post(
+				'http://localhost/questionApp/postAnswerHandler.php', 
+				answer
+			).then(
+			
+				function (response) {
+					
+					onSuccess(response.data);
+					
+				},
+				
+				function (response) {
+					
+					onFail(response.statusText);
+					
+				}
+			);
+			
 		}
 	};
 	

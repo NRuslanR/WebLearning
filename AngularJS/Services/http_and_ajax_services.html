@@ -11,7 +11,26 @@
 	<body ng-controller="questionController">
 		
 		<button id="loadQuestionDataBtn" ng-click="onQuestionDataRequested()">Load Question Data</button>
-	
+		<br/>
+		<form ng-if="question !== undefined" name="answerAddForm">
+			<div>
+				<label for="text">Text:</label>&nbsp;
+				<input type="text" ng-model="answer.text" required/>
+			</div>
+			<br/>
+			<div>
+				<label for="author">Author:</label>&nbsp;
+				<input type="text" ng-model="answer.author" required/>
+			</div>
+			<br/>
+			<div>
+				<label for="date">Date:</label>
+				<input type="date" ng-model="answer.date" required/>
+			</div>
+			<br/>
+			<button id="postAnswerDataBtn" ng-click="onPostAnswerDataRequested(answer, answerForm)">Post Answer Data</button>
+		</form>
+			
 		<div ng-class="questionBlockClass" 
 		     ng-mouseover="changeQuestionBlockClass($event)" 
 			 ng-mouseenter="changeQuestionBlockClass($event)"
