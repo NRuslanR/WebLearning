@@ -2,14 +2,31 @@ questionApp.controller('questionController', function ($scope, questionService) 
 
 	$scope.voteUp = function (answer) {
 		
-		++answer.rate;
+		questionService.changeAnswerRateAsync(
+			answer.id, 
+			answer.rate + 1,
+			function (data) {
+				
+				alert(data);
+				
+				answer.rate = data.rate;
+				
+			}
+		);
 		
 	};
 	
 	$scope.voteDown = function (answer) {
 		
-		if (answer.rate > 0)	
-			--answer.rate;
+		questionService.changeAnswerRateAsync(
+			answer.id,
+			answer.rate - 1,
+			function (data) {
+				
+				answer.rate = date.rate;
+				
+			}
+		);
 		
 	};
 	
@@ -44,6 +61,8 @@ questionApp.controller('questionController', function ($scope, questionService) 
 	};
 	
 	$scope.onQuestionDataRequested = function () {
+		
+		delete $scope.question;
 		
 		questionService.getQuestionDataAsync(
 			function (question) {

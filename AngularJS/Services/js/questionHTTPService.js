@@ -53,6 +53,36 @@ questionApp.factory/*service*/('questionService', function ($http) {
 				}
 			);
 			
+		},
+		
+		changeAnswerRateAsync: function (answerId, newRate, onSuccess, onFail) {
+			
+			$http.get(
+				'http://localhost/questionApp/changeAnswerRateHandler.php',
+				{
+					params: {
+						
+						id: answerId,
+						rate: newRate
+						
+					}
+				}
+				
+			).then(
+				
+				function (response) {
+					
+					onSuccess(response.data);
+					
+				},
+				
+				function (response) {
+					
+					onFail(response.statusText);
+					
+				}
+			);
+			
 		}
 	};
 	
