@@ -1,4 +1,4 @@
-questionApp.controller('questionController', function ($scope, questionService) {
+questionApp.controller('questionController', function ($scope, questionService, $timeout) {
 
 	$scope.voteUp = function (answer) {
 		
@@ -64,19 +64,31 @@ questionApp.controller('questionController', function ($scope, questionService) 
 		
 		delete $scope.question;
 		
-		questionService.getQuestionDataAsync(
-			function (question) {
+		$timeout(
+			function () {
 				
-				$scope.question = question;
-				
-				console.log(question);
-				
+				questionService.getQuestionDataAsync(
+					function (question) {
+						
+						$scope.question = question;
+						
+						console.log(question);
+						
+					},
+					
+					function (error) {
+						
+						alert('Error occured during the question data getting: ' + error)
+					
+					}
+				);
 			},
-			
-			function (error) {
+			3000
+		).then(
+			function () {
 				
-				alert('Error occured during the question data getting: ' + error)
-			
+				alert('Timer has expired');
+				
 			}
 		);
 		
