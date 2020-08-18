@@ -22,6 +22,20 @@ angular
 							controller: 'AnswerController'
 						}
 					)
+					.when(
+						'/edit/:id',
+						{
+							templateUrl: '/routing/question_app/views/answer.html',
+							controller: 'AnswerController'
+						}
+					).
+					when(
+						'/edit/:id/:data*',
+						{
+							templateUrl: '/routing/question_app/views/answer.html',
+							controller: 'AnswerController'
+						}
+					)
 					.otherwise({ redirectTo: '/question' });
 		}
 	);

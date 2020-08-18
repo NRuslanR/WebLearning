@@ -43,6 +43,34 @@ questionApp.factory/*service*/('questionService', function ($http) {
 			
 		},
 		
+		getAnswerData: function (answerId, onSuccess, onFail) {
+				
+			$http.get(
+				'http://localhost/routing/question_app/getAnswerDataHandler.php',
+				{
+					params: {
+					
+						id: answerId
+						
+					}
+				}
+			).then(
+				
+				function (response) {
+					
+					onSuccess(response.data);
+					
+				},
+				
+				function (response) {
+					
+					onFail(response.statusText);
+					
+				}
+			);
+			
+		},
+		
 		changeAnswerRateAsync: function (answerId, newRate, onSuccess, onFail) {
 			
 			$http.get(
