@@ -1,0 +1,17 @@
+<div>
+	<button id="loadQuestionDataBtn" ng-click="onQuestionDataRequested()">Load Question Data</button>
+	
+	<div ng-class="questionBlockClass" 
+		 ng-mouseover="changeQuestionBlockClass($event)" 
+		 ng-mouseenter="changeQuestionBlockClass($event)"
+		 ng-mouseleave="changeQuestionBlockClass($event)"
+	>
+		<h3>{{ question.text }}</h3>
+		<p><b>Author: {{ question.author }}</b></p>
+		<p><i>Date: {{ question.date }}</i></p>
+	</div>
+			
+	<div ng-if="question !== undefined">
+		<answer-list source="question"/>
+	</div>
+</div>

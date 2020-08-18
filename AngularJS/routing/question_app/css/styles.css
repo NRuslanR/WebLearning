@@ -1,0 +1,56 @@
+.questionBlock {
+				
+	background: lightgreen;
+	border: 1px solid green;
+				
+}
+			
+.questionSelectedBlock {
+			
+	background: green;
+	border: 1px solid black;
+				
+}
+			
+.answerBlock {
+			
+	background: lightblue;
+	border: 1px solid blue;
+	
+}
+
+.answerSelectedBlock {
+	
+	background: blue;
+	border: 1px solid black;
+
+}
+			
+.questionBlock, .questionSelectedBlock, .answerBlock, .answerSelectedBlock {
+				
+	padding: 15px;
+	margin-bottom: 10px;
+				
+}
+
+.vote-up, .vote-down {
+	
+	padding: 5px;
+	border: 1px solid darkblue;
+	border-radius: 7px;
+	background: #ccc;
+	
+}
+
+.vote-up:hover, .vote-down:hover {
+	
+	cursor: pointer;
+	
+}
+
+.rate {
+	
+	font-family: 'Verdana';
+	color: #e07b00;
+	
+}
