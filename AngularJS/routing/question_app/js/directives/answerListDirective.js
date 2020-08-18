@@ -17,6 +17,7 @@ questionApp.directive('answerList', function () {
 				'ng-mouseenter="changeAnswerBlockClass($event)"' +
 				'ng-mouseleave="changeAnswerBlockClass($event)"' +
 			'>' +
+				'<div><a href="#!edit/{{answer.id}}" style="border-radius: 7xp; text-decoraton:none; padding: 5px; border:1px solid beige; background: yellow; color:red">Edit</a></div>' +
 				'<h3>{{ answer.text }}</h3>' +
 				'<p><b>Author: {{ answer.author }}</b></p>' +
 				'<p><i>Date: {{ answer.date }}</i></p>' +

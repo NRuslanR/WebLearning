@@ -24,7 +24,18 @@
 			return $_SESSION['question'];
 			
 		}
-
+		
+		public function getAnswer($answerId) {
+			
+			$question = $this->getQuestion();
+			
+			foreach($question->answers as $answer)
+				if ($answer->id == $answerId)
+					return $answer;
+				
+			return null;
+		}
+		
 	}
 	
 ?>
