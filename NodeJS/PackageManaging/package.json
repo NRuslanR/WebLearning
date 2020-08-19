@@ -1,0 +1,10 @@
+{
+  "name": "packageManaging",
+  "version": "1.0.0",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "start": "node package_app.js",
+    "dev": "node package_app.js \"Nigmatullin Ruslan\" 25"
+  }
+}
