@@ -1,5 +1,8 @@
 let currentDate = new Date();
 
+const os = require("os");
+
+module.exports.currentUser = os.userInfo().username;
 module.exports.date = currentDate;
 module.exports.getMessage = function (name) {
 
