@@ -7,15 +7,16 @@ app.use((req, res, next) => {
   next();
 
 })
-.use((req, res, next) => {
+.use("/about", (req, res, next) => {
 
+  res.send('Welcome to Express');
+  
   console.log("Middleware 2");
-  next();
 
 })
 .get("/", (req, res) => {
 
-  response.send('<h1>Welcome to Express</h1>');
+  res.send('<h1>Welcome to Express</h1>');
 
 })
 .listen(3000);
