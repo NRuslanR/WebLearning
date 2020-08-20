@@ -2,7 +2,7 @@ const fs = require("fs");
 
 let writeableStream = fs.createWriteStream("test.txt");
 
-writeableStream.on('end', function () {
+writeableStream.on('finish', function () {
 
   console.log('end has executed');
 
