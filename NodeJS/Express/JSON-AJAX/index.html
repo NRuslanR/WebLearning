@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>User info</title>
+  </head>
+  <body>
+    <form name="userForm" action="/user" method="post">
+      <div class="">
+        <label for="name">Name:</label>
+        <input type="text" name="name" value="">
+      </div>
+      <div class="">
+        <label for="age">Age:</label>
+        <input type="number" name="age" value="25" min="1" max="100">
+      </div>
+      <input type="submit" id="sendBtn" name="sendBtn" value="Send">
+    </form>
+
+    <script type="text/javascript">
+
+      var sendBtn = document.getElementById('sendBtn');
+
+      sendBtn.addEventListener("click", function (e) {
+
+          e.preventDefault();
+          e.stopPropagation();
+
+          var userForm = document.forms['userForm'];
+
+          var requestBody =
+            JSON.stringify(
+              {
+                name: userForm['name'].value,
+                age: userForm['age'].value
+              }
+            );
+
+          var request = new XMLHttpRequest();
+
+          request.open('POST', '/user', true);
+          request.setRequestHeader('Content-Type', 'application/json');
+          request.addEventListener('load', function(e) {
+
+            var user = JSON.parse(request.response);
+
+            alert(`User "${user.name}" is ${user.age} age old`);
+
+          });
+
+          request.send(requestBody);
+
+      });
+
+    </script>
+  </body>
+</html>
