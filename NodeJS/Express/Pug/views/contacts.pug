@@ -1,0 +1,14 @@
+extends layout.pug
+
+block content
+    h1 #{title}
+
+    if emailsVisible
+      h3 E-mails:
+      ul
+        each email in emails
+          li=email
+    else
+      h3 E-mail absent
+
+    h3=phone
