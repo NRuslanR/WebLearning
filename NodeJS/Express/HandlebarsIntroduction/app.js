@@ -1,8 +1,20 @@
 const express = require("express"),
+      expressHbs = require("express-handlebars"),
+      hbs = require("hbs"),
       app = express();
 
-app.set('view engine', 'hbs');
-app.set('views', 'views');
+app
+  .engine("hbs", expressHbs(
+    {
+      layoutsDir: 'views/layouts',
+      defaultLayout: 'layout',
+      extname: 'hbs'
+    }
+  ))
+  .set('view engine', 'hbs')
+  .set('views', 'views');
+
+hbs.registerPartials(__dirname + "/views/partials");
 
 app
   .get('/contacts/:emailsVisible?', (req, res) => {
@@ -30,7 +42,7 @@ app
   })
   .get('/', (req, res) => {
 
-    res.send('<a href="/contacts">Contacts</a>');
+    res.render('home.hbs');
 
   })
   .listen(3000);
