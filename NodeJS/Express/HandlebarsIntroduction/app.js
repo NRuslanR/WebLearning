@@ -4,17 +4,36 @@ const express = require("express"),
       app = express();
 
 app
-  .engine("hbs", expressHbs(
-    {
-      layoutsDir: 'views/layouts',
-      defaultLayout: 'layout',
-      extname: 'hbs'
-    }
-  ))
   .set('view engine', 'hbs')
-  .set('views', 'views');
+  .set('views', 'views')
+  .set('view options', { layout: 'layouts/layout' });
 
 hbs.registerPartials(__dirname + "/views/partials");
+
+hbs.registerHelper("getTime", function () {
+
+    var currentDate = new Date(),
+        hours = currentDate.getHours(),
+        minutes = currentDate.getMinutes(),
+        seconds = currentDate.getSeconds();
+
+    if (minutes < 10) minutes = '0' + minutes;
+    if (seconds < 10) seconds = '0' + seconds;
+
+    return `Current time: ${hours}:${minutes}:${seconds}`;
+
+});
+
+hbs.registerHelper('createStringList', function (arr) {
+
+    var items = '';
+
+    for (var item of arr)
+      items += `<li>${item}</li>`;
+
+    return new hbs.SafeString(`<ul>${items}</ul>`);
+
+});
 
 app
   .get('/contacts/:emailsVisible?', (req, res) => {
@@ -42,7 +61,19 @@ app
   })
   .get('/', (req, res) => {
 
-    res.render('home.hbs');
+    res.render(
+      'home.hbs',
+      {
+        title: 'Home',
+        frameworks: [
+          'Node.js',
+          'Express',
+          'AngularJS',
+          'Vue.js',
+          'React.js'
+        ]
+      }
+    );
 
   })
   .listen(3000);
