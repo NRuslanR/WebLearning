@@ -1,0 +1,14 @@
+{
+  "name": "testApp",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "mocha *.test.js"
+  },
+  "dependencies": {
+    "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "mocha": "^8.1.1",
+    "supertest": "^4.0.2"
+  }
+}
