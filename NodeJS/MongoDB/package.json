@@ -7,6 +7,6 @@
     "mongodb": "^3.1.0"
   },
   "scripts": {
-    "mongoApp": "node appTemplate.js \"./Updating/app.js\" usersdb users drop"
+    "mongoApp": "node appTemplate.js \"./Adding And Getting/app.js\" usersdb users drop"
   }
 }
