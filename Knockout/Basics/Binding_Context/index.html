@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Knockout - Binding Context</title>
+  </head>
+  <body>
+
+    <div id="content" data-bind="text: $element.id"></div>
+
+    <div id="context" data-bind="with: storage">
+      <p data-bind="text: $root.name"></p>
+      <p data-bind="text: $data.volume"></p>
+      <p data-bind="text: $parent.type"></p>
+      <p>Raw Data: <span data-bind="$rawData.name"></span></p>
+      <p>Parent Raw Data: <span data-bind="$parent.$rawData.type"></span></p>
+    </div>
+
+    <div id="plants" data-bind="foreach: { data: plants }">
+      <p><span data-bind="text: ($index() + 1)"></span>. <span data-bind="text: $data"></span></p>
+    </div>
+
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.5.0.js">
+    </script>
+
+    <script>
+
+      var plantViewModel = {
+
+        name: "Rose",
+        type: "Spiny",
+
+        storage: {
+          name: "wood box",
+          volume: 35
+        }
+
+      };
+
+      ko.applyBindings(plantViewModel, document.getElementById('context'));
+
+      var plantNamesViewModel = {
+        plants: [ "Rose", "Romashka", "Arhikedya", "Aloe" ]
+      };
+
+      ko.applyBindings(plantNamesViewModel, document.getElementById('plants'));
+    
+    </script>
+
+  </body>
+</html>

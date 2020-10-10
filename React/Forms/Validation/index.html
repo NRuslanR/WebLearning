@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>React - Forms Validation</title>
+  </head>
+  <body>
+
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.25.0/babel.min.js"></script>
+
+    <script type="text/babel">
+
+      class UserForm extends React.Component {
+
+        constructor (props)
+        {
+          super(props);
+
+          var nameIsValid = this.validateName(props.name);
+          var ageIsValid = this.validateAge(props.age);
+
+          this.state =
+            {
+              name: props.name,
+              age: props.age,
+              nameIsValid: nameIsValid,
+              ageIsValid: ageIsValid
+            };
+
+          this.onNameChanged = this.onNameChanged.bind(this);
+          this.onAgeChanged = this.onAgeChanged.bind(this);
+          this.onSubmit = this.onSubmit.bind(this);
+        }
+
+        render()
+        {
+          var nameBorderColor =
+            this.state.nameIsValid === true ? "green" : "red";
+
+          var ageBorderColor =
+            this.state.ageIsValid === true ? "green" : "red";
+
+          return <form onSubmit={this.onSubmit}>
+                    <div>
+                        <label for="name">Name:</label>
+                        <input type="text"
+                               name="name" id="name"
+                               value={this.state.name}
+                               onChange={this.onNameChanged}
+                               style={{ borderColor: nameBorderColor }}
+                        />
+                    </div>
+                    <div>
+                        <label for="age">Age:</label>
+                        <input type="number"
+                               name="age" id="age"
+                               value={this.state.age}
+                               onChange={this.onAgeChanged}
+                               style={{ borderColor: ageBorderColor }}
+                        />
+                    </div>
+                    <input type="submit" value="Send"/>
+                 </form>
+        }
+        validateName(name)
+        {
+          return name.trim() !== '';
+        }
+
+        validateAge(age)
+        {
+          return age >= 18;
+        }
+
+        onNameChanged(e)
+        {
+          var nameIsValid = validateName(e.target.value);
+
+          thi.setState({ name: e.target.value, nameIsValid: nameIsValid })
+        }
+
+        onAgeChanged(e)
+        {
+          var age = parseInt(e.target.value),
+              ageIsValid = validateAge(age);
+
+          this.setState({ age: age, ageIsValid: ageIsValid});
+        }
+
+        onSubmit(e)
+        {
+          e.preventDefault();
+
+          if (this.state.nameIsValid === true && this.state.ageIsValid)
+            alert('Successfully confirmed')
+
+          else alert('fail confirmed');
+        }
+      }
+
+      ReactDOM.render(
+        <UserForm name="Ruslan" age="25" />,
+        document.body
+      );
+
+    </script>
+  </body>
+</html>

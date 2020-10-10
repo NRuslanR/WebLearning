@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Knockout - Observables</title>
+  </head>
+  <body>
+    <div id="user">
+      <p data-bind="text: name"></p>
+      <p data-bind="text: age"></p>
+    </div>
+    <button id="changeUserBtn">Change User</button>
+    <script
+        type="text/javascript"
+        src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.5.0.js"
+    >
+
+    </script>
+
+    <script type="text/javascript">
+      var viewModel = {
+
+        name: ko.observable('Ruslan'),
+        age: ko.observable(25)
+
+      };
+
+      ko.applyBindings(viewModel, document.getElementById('user'));
+
+      document.getElementById('changeUserBtn').addEventListener(
+        'click',
+        function (e) {
+
+          var name = prompt('Name:');
+          var age = parseInt(prompt('Age:'));
+
+          viewModel.name(name);
+          viewModel.age(age);
+
+        }
+      );
+
+      var subscription;
+
+      subscription =
+        viewModel.age.subscribe(
+          newValue => {
+            alert('New Age: ' + newValue);
+            subscription.dispose();
+          }
+        );
+
+    </script>
+  </body>
+</html>

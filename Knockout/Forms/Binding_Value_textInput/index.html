@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <form id="login-form">
+      <div
+        <label>Login:</label>&nbsp;
+        <input type="text" data-bind="value: login"/>
+      </div>
+      <div>
+        <label>Password:</label>&nbsp;
+        <input type="password" data-bind="textInput: password"/>
+      </div>
+      <p>Input login: <span data-bind="text: login"></span></p>
+      <p>Input password: <span data-bind="text: password"></span></p>
+    </form>
+
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.5.0.js">
+    </script>
+
+    <script>
+
+      var loginViewModel = {
+
+        login: ko.observable(""),
+        password: ko.observable('')
+
+      };
+
+      ko.applyBindings(loginViewModel, document.getElementById('login-form'));
+
+    </script>
+
+  </body>
+</html>

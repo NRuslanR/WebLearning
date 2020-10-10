@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>React - Complex Components</title>
+  </head>
+  <body>
+    <div id="itemListBlock">
+
+    </div>
+
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.25.0/babel.min.js"></script>
+
+    <script type="text/babel">
+
+      class Item extends React.Component {
+
+        constructor (props)
+        {
+          super(props);
+        }
+
+        render()
+        {
+          return <li><h3>{this.props.name}</h3></li>
+        }
+      }
+
+      class ItemList extends React.Component
+      {
+        constructor (props)
+        {
+          super(props);
+
+          this.state = { items: this.props.data.items };
+
+          this.filter = this.filter.bind(this);
+        }
+
+        filter(text) {
+
+          var filteredItems =
+            this.props.data.items.filter(
+              item => item.toLowerCase().search(text) !== -1
+            );
+
+          this.setState({ items: filteredItems });
+
+        }
+
+        render()
+        {
+          return <div>
+                    <h2>{this.props.data.title}</h2>
+                    <TextFilter placeholder="Поиск" filter={this.filter} />
+                    <ul>
+                      {
+                        this.state.items.map(
+                          item => <Item name={item} />
+                        )
+                      }
+                    </ul>
+                 </div>
+        }
+      }
+
+      class TextFilter extends React.Component
+      {
+        constructor (props)
+        {
+          super(props);
+
+          this.onTextChanged = this.onTextChanged.bind(this);
+          this.setEnabled = this.setEnabled.bind(this);
+        }
+
+        onTextChanged(e)
+        {
+          var text = e.target.value.trim();
+
+          this.props.filter(text);
+        }
+
+        render()
+        {
+          return <div>
+                    <input
+                      id="search"
+                      placeholder={this.props.placeholder}
+                      onChange={this.onTextChanged}
+                    />
+                    <input type="checkbox" checked={true}
+                      onChange={this.onSearchActiveChanged}
+                    />
+                 </div>;
+        }
+
+        onSearchActiveChanged(e) {
+
+          document.getElementById('search').disable = !e.target.checked;
+          //this.setEnabled(e.target.checked);
+
+        }
+
+        setEnabled(enabled)
+        {
+          document.getElementById('search').disable = !enabled;
+        }
+
+      }
+
+      TextFilter.defaultProps = { placeholder: "Search" };
+
+      const itemListViewModel =
+        {
+          title: 'Departments',
+          items: [
+            "Manufactoring",
+            "Sales",
+            "Marketing",
+            "Human Resources",
+            "Finances",
+            "Delivery",
+            "Technical Support"
+          ]
+        };
+
+      ReactDOM.render(
+        <ItemList data={itemListViewModel}/>,
+        document.getElementById('itemListBlock')
+      );
+
+    </script>
+  </body>
+</html>

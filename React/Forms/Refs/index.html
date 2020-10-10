@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>React - Refs</title>
+  </head>
+  <body>
+
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.25.0/babel.min.js"></script>
+
+    <script type="text/babel">
+
+    class UserForm extends React.Component {
+
+      constructor (props)
+      {
+        super(props);
+
+        this.onSubmit = this.onSubmit.bind(this);
+      }
+
+      render()
+      {
+        return <form onSubmit={this.onSubmit}>
+                  <NameField name={this.props.name} ref="nameField" />
+                  <AgeField age={this.props.age} ref="ageField" />
+                  <input type="submit" value="Send"/>
+               </form>
+      }
+
+      onSubmit(e)
+      {
+        e.preventDefault();
+
+        console.log(this.refs.nameField.state.isValid);
+        console.log(this.refs.ageField.state.isValid);
+
+        if (this.refs.nameField.state.isValid === true &&
+            this.refs.ageField.state.isValid === true)
+          alert('Successfully confirmed')
+
+        else alert('fail confirmed');
+      }
+    }
+
+    class NameField extends React.Component
+    {
+      constructor (props)
+      {
+        super(props);
+
+        this.state = { name: props.name, isValid: this.validate(props.name) };
+
+        this.onChanged = this.onChanged.bind(this);
+      }
+
+      onChanged(e)
+      {
+        this.setState(
+          {
+            name: e.target.value,
+            isValid: this.validate(e.target.value)
+          }
+        )
+      }
+
+      validate(name)
+      {
+        return name.trim() !== '';
+      }
+
+      render()
+      {
+        var borderColor =
+          (this.state.isValid === true ) ? 'green' : 'red';
+
+        return <div>
+                  <label>Name:</label>
+                  <input type="text"
+                         value={this.state.name}
+                         onChange={this.onChanged}
+                         style={{ borderColor: borderColor }}
+                  />
+               </div>
+      }
+    }
+
+    class AgeField extends React.Component
+    {
+      constructor (props)
+      {
+        super(props);
+
+        var age = parseInt(props.age);
+
+        this.state = { age: age, isValid: this.validate(age) };
+
+        this.onChanged = this.onChanged.bind(this);
+      }
+
+      validate(age)
+      {
+        return age >= 18;
+      }
+
+      onChanged(e)
+      {
+        var age = parseInt(e.target.value),
+            isValid = this.validate(age);
+
+        this.setState({ age: age, isValid: isValid});
+      }
+
+      render()
+      {
+        var borderColor =
+          (this.state.isValid === true) ? 'green' : 'red';
+
+        return <div>
+                  <label>Age:</label>
+                  <input type="number"
+                         value={this.state.age}
+                         onChange={this.onChanged}
+                         style={{ borderColor: borderColor }}
+                  />
+               </div>
+      }
+    }
+
+    UserForm.defaultProps = { name: "", age: 0 };
+
+    ReactDOM.render(
+      <UserForm />,
+      document.body
+    );
+
+    </script>
+
+  </body>
+</html>

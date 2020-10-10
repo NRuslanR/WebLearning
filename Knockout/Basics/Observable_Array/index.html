@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Knockout - Observable Array</title>
+  </head>
+  <body>
+    <ul id="books" data-bind="foreach: { data: books, as: 'book'}">
+      <li>
+        <p data-bind="text: book.name"></p>
+        <p data-bind="text: book.author"></p>
+      </li>
+    </ul>
+    <button id="addBookBtn">Add Book</button>
+    <button id="sortBooksBtn">Sort Books</button>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.5.0.js">
+
+    </script>
+
+    <script>
+
+      function BookViewModel(name, author)
+      {
+        this.name = name;
+        this.author = author;
+      }
+
+      var booksViewModel = {
+
+        books: ko.observableArray(
+          [
+            new BookViewModel('Design Patterns', 'Erich Gamma'),
+            new BookViewModel('Computer Networks. Top-down approach', 'Unknown')
+          ]
+        )
+      };
+
+      ko.applyBindings(booksViewModel, document.getElementById('books'));
+
+      var addBookBtn = document.getElementById('addBookBtn'),
+          sortBooksBtn = document.getElementById('sortBooksBtn');
+
+      addBookBtn.addEventListener(
+        'click',
+        function (e) {
+
+          var name = prompt('Name:'),
+              author = prompt('Author:');
+
+          if (name.trim() === '' || author.trim() === '') {
+
+            alert('Incorrect book data');
+            return;
+          }
+
+          booksViewModel.books.push(
+            new BookViewModel(name, author)
+          );
+        }
+      );
+
+      sortBooksBtn.addEventListener(
+        'click',
+        function (e) {
+          booksViewModel.books.sort(
+            (left, right) => -left.name.length + right.name.length
+          )
+        }
+      );
+
+    </script>
+
+  </body>
+</html>

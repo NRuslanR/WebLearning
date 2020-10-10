@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <form id="login-form" data-bind="submit: doLogin">
+      <div>
+        <label>Login:</label>
+        <input type="text" data-bind="value: login" />
+      </div>
+      <div>
+        <label>Password:</label>
+        <input type="password" data-bind="value: password" />
+      </div>
+      <button type="submit">Login</button>
+    </form>
+
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.5.0.js">
+    </script>
+
+    <script>
+
+      var loginViewModel = {
+
+        login: ko.observable(),
+        password: ko.observable(),
+        doLogin: function ()
+        {
+          console.log(ko.toJSON(this)));
+        }
+      };
+
+      ko.applyBindings(loginViewModel, document.getElementById('login-form'));
+
+    </script>
+
+  </body>
+</html>

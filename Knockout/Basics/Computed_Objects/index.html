@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Knockout - Computed Objects</title>
+  </head>
+  <body>
+    <p id="name" data-bind="text: fullName"></p>
+    <button id="updateName">Update</button>
+
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.1.min.js"></script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.5.0.js">
+    </script>
+    <script>
+
+      function PersonViewModel(name, surname)
+      {
+        var self = this;
+
+        self.name = ko.observable(name);
+        self.surname = ko.observable(surname);
+        self.fullName = ko.pureComputed(() => self.surname() + ' ' + self.name());
+      }
+
+      var personViewModel = new PersonViewModel('Ruslan', 'Nigmatullin');
+
+      ko.applyBindings(personViewModel, document.getElementById('name'));
+
+      $('#updateName').click(e => {
+
+        var name = prompt('Name:');
+
+        personViewModel.name(name);
+
+      });
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>React - Routing: Basics</title>
+  </head>
+  <body>
+
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/react-router-dom/umd/react-router-dom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.25.0/babel.min.js"></script>
+
+    <script type="text/babel">
+
+      const Router = ReactRouterDOM.BrowserRouter,
+            Switch = ReactRouterDOM.Switch,
+            Route = ReactRouterDOM.Route;
+
+      class Main extends React.Component
+      {
+        render()
+        {
+          return <h1>Main</h1>
+        }
+      }
+
+      class About extends React.Component
+      {
+        render()
+        {
+          return <h1>About</h1>
+        }
+      }
+
+      class NotFound extends React.Component
+      {
+        render()
+        {
+          return <h1>Resource Not Found</h1>
+        }
+      }
+
+      ReactDOM.render(
+        <Router>
+          <Switch>
+            <Route exact path="/" component={Main} />
+            <Route path="/about" component={About} />
+            <Route path="/contacts" children={() => <h3>Contacts Page</h3>} />
+            <Route path='/ad/' children={() => <h1>Ad Blocks Page</h1>} exact />
+            <Route component={NotFound} />
+          </Switch>
+        </Router>,
+        document.body
+      );
+
+    </script>
+  </body>
+
+</html>

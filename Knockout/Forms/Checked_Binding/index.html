@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <div id="visibility">
+      <input type="checkbox" data-bind="checked: isVisible" />
+
+      <div data-bind="visible: isVisible">
+        Hidden Block
+      </div>
+    </div>
+
+    <div id="objects" data-bind="foreach: { data: objects }">
+      <div>
+        <input type="checkbox" data-bind="checked: $data.isAvailable" />
+        <span data-bind="text: $data.name"></span>
+      </div>
+    </div>
+
+    <div id="planets" data-bind="foreach: planets">
+      <div>
+        <input type="radio" data-bind="checkedValue: $data, checked: $root.selectedPlanet" />
+        <span data-bind="text: $data"></span>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.5.0.js">
+    </script>
+
+    <script>
+
+      var visibilityViewModel = {
+
+        isVisible: ko.observable(true)
+
+      };
+
+      var objectsViewModel = {
+
+        objects: ko.observableArray([
+
+          {
+            name: "Table",
+            isAvailable: true
+          },
+          {
+            name: "Computer",
+            isAvailable: false
+          },
+          {
+            name: "Socket",
+            isAvailable: false
+          },
+          {
+            name: "Power Source",
+            isAvailable: true
+          }
+        ])
+      };
+
+      var planetsViewModel = {
+
+        planets: ko.observableArray([ "Jupiter", "Earth", "Mars", "Saturn", "Neuptun", "Mercury" ]),
+        selectedPlanet: ko.observable('Mars')
+
+      };
+
+      ko.applyBindings(visibilityViewModel, document.getElementById('visibility'));
+      ko.applyBindings(objectsViewModel, document.getElementById('objects'));
+      ko.applyBindings(planetsViewModel, document.getElementById('planets'));
+
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Knockout - Options Binding</title>
+  </head>
+  <body>
+
+    <select id="boxes"
+        multiple="true"
+        data-bind="options: boxes,
+          optionsText: 'name',
+          optionsValue: 'id',
+          selectedOptions: selectedBoxes,
+          optionsCaption: 'Choose a box: ',
+          optionsAfterRender: displayBox
+        "
+    ></select>
+
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.5.0.js">
+    </script>
+
+    <script>
+
+      var boxesViewModel = {
+
+        boxes: ko.observableArray([
+          {
+            id: 1,
+            name: "Box1",
+            color: 'Green'
+          },
+          {
+            id: 2,
+            name: "Box2",
+            color: "Red"
+          },
+          {
+            id: 3,
+            name: "Box3",
+            color: "Brown"
+          },
+          {
+            id: 4,
+            name: "Box4",
+            color: "Beige"
+          }
+        ]),
+
+        selectedBoxes: ko.observableArray([2, 3]),
+
+        displayBox: function (option, item) {
+
+          console.log(`${JSON.stringify(item)}`);
+
+        }
+
+      };
+
+      ko.applyBindings(boxesViewModel, document.getElementById('boxes'));
+
+    </script>
+
+  </body>
+</html>

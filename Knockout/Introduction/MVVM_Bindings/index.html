@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Knockout - MVVM: Bindings</title>
+  </head>
+  <body>
+    <h1>Hello, <span id="name" data-bind="text: name"></span></h1>
+    <h3>Now - <span id="day" data-bind='text: (seconds < 30) ? "morning" : "evening"'></span></h3>
+    <script
+        type="text/javascript"
+        src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.5.0.js"
+    >
+
+    </script>
+
+    <script type="text/javascript">
+
+      var viewModel = {
+
+        name: "Nigmatullin Ruslan"
+
+      },
+      dayViewModel = {
+
+        seconds: new Date().getSeconds()
+
+      };
+
+      ko.applyBindings(viewModel, document.getElementById('name'));
+      ko.applyBindings(dayViewModel, document.getElementById('day'));
+      
+    </script>
+
+  </body>
+</html>

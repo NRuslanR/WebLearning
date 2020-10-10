@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Knockout - Array Binding</title>
+  </head>
+  <body>
+    <ul id="array" data-bind="foreach: books">
+      <li>
+        <p>Name: <span data-bind="text: $data.name"></span></p>
+        <p>Author: <span data-bind="text: $data.author"></span></p>
+      </li>
+    </ul>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.5.0.js">
+    </script>
+    <script>
+      var viewModel = {
+
+        books: [
+
+          {
+            name: "Domain-Driven Design",
+            author: "Eric Evans"
+          },
+          {
+            name: "Pure Consciousness's critics",
+            author: "Immanuil Kant"
+          },
+          {
+            name: "Software Architecute",
+            author: "Unknown"
+          },
+          {
+            name: "Patterns of Architectural Applications",
+            author: "Martin Fowler"
+          }
+
+        ]
+
+      };
+
+      ko.applyBindings(viewModel, document.getElementById('array'));
+
+      viewModel.books.push({ name: 'Book1', author: 'Ruslan' });
+      
+    </script>
+  </body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Knockout - Binding Kinds</title>
+
+    <style media="screen">
+      .block {
+
+        color: red;
+        text-decoration:underline;
+        font-style: italic;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="text">
+      <p data-bind="text: message"></p>
+    </div>
+    <p id="html" data-bind="html: message"></p>
+
+    <div id="visible" data-bind="visible: display">
+      Hidden Block
+    </div>
+    <button id="showHiddenBlockBtn">Show Hidden Block</button>
+    <p id="css" data-bind="css: { block: isStyled }">Block for CSS Applying</p>
+    <button id="cssBtn">Reset CSS</button>
+    <p id="style" data-bind="style: { color: colorValue, backgroundColor: backgroundColorValue }">Style Binding</p>
+    <input id="attr" data-bind="attr: { type: typeValue, min: minValue, max: maxValue, value: targetValue }"/>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.5.0.js">
+    </script>
+
+    <script>
+      var textBinding = {
+        message: '<h1>HTML Text</h1>'
+      };
+
+      var displayBinding = {
+
+        display: ko.observable(false)
+
+      };
+
+      var cssBinding = {
+
+        isStyled: ko.observable(true)
+
+      };
+
+      var styleBinding = {
+
+        backgroundColorValue: 'lightgreen',
+        colorValue: 'red'
+
+      };
+
+      var attrBinding = {
+
+        typeValue: 'number',
+        minValue: 5,
+        maxValue: 35,
+        targetValue: 27
+
+      };
+
+      ko.applyBindings(textBinding, document.getElementById('text'));
+      ko.applyBindings(textBinding, document.getElementById('html'));
+      ko.applyBindings(displayBinding, document.getElementById('visible'));
+      ko.applyBindings(cssBinding, document.getElementById('css'));
+      ko.applyBindings(styleBinding, document.getElementById('style'));
+      ko.applyBindings(attrBinding, document.getElementById('attr'));
+
+      var btn = document.getElementById('showHiddenBlockBtn');
+
+      btn.addEventListener(
+        'click',
+        function (e) {
+
+          if (displayBinding.display() === false)
+          {
+            displayBinding.display(true);
+            btn.innerHTML = 'Hide Block';
+          }
+
+          else {
+            displayBinding.display(false);
+            btn.innerHTML = 'Show Block';
+          }
+        }
+      );
+
+      var cssBtn = document.getElementById('cssBtn');
+
+      cssBtn.addEventListener(
+        'click',
+        function (e) {
+
+          if (cssBinding.isStyled() === false)
+          {
+            cssBinding.isStyled(true);
+            cssBtn.innerHTML = 'Reset CSS';
+          }
+
+          else {
+            cssBinding.isStyled(false);
+            cssBtn.innerHTML = 'Set CSS';
+          }
+        }
+      );
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>React - Forms Basics</title>
+  </head>
+  <body>
+
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.25.0/babel.min.js"></script>
+
+    <script type="text/babel">
+
+      class UserForm extends React.Component
+      {
+        constructor (props)
+        {
+          super(props);
+
+          this.state = { name: "" };
+
+          this.onSubmit = this.onSubmit.bind(this);
+          this.onNameChanged = this.onNameChanged.bind(this);
+        }
+
+        render()
+        {
+          return <form onSubmit={this.onSubmit}>
+                    <div>
+                        <label for="name">Name:</label>
+                        <input type="text" name="name" id="name" onChange={this.onNameChanged} value={this.state.name} />
+                    </div>
+                    <input type="submit" value="Send" />
+                 </form>;
+        }
+
+        onSubmit(e)
+        {
+          e.preventDefault();
+          alert('User info sending test');
+        }
+
+        onNameChanged(e)
+        {
+          var changedName = e.target.value.trim();
+
+          this.setState({ name: changedName });
+        }
+      }
+
+      ReactDOM.render(
+        <UserForm />,
+        document.body
+      );
+
+    </script>
+  </body>
+</html>

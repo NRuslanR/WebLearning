@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>React - Resource Management</title>
+  </head>
+  <body>
+    <div id="clockBlock">
+
+    </div>
+    <button onclick="onClockDeletedRequested()">Delete Clock</button>
+
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.25.0/babel.min.js"></script>
+
+    <script type="text/babel">
+
+      class Clock extends React.Component {
+
+        constructor (props)
+        {
+          super(props);
+
+          this.state =
+            {
+              time: new Date().toLocaleTimeString(),
+              label: props.label
+            };
+        }
+
+        componentDidMount()
+        {
+          console.log('componentDidMount()');
+
+          this.timerId =
+            setInterval(
+              () => this.tick(),
+              1000
+            );
+        }
+
+        componentWillUnmount()
+        {
+          console.log('componentWillUnmount()');
+
+          clearInterval(this.timerId);
+        }
+
+        tick() {
+
+          this.setState({ time: new Date().toLocaleTimeString() });
+
+        }
+
+        render()
+        {
+          console.log('render');
+
+          return <div>
+                    <h3>{this.state.label}</h3>
+                    <h3>Current Time - {this.state.time}</h3>
+                 </div>;
+        }
+      }
+
+      ReactDOM.render(
+        <Clock label="Welcome to Awesome Page"></Clock>,
+        document.getElementById('clockBlock')
+      );
+
+      function onClockDeletedRequested(e) {
+
+        ReactDOM.unmountComponentAtNode(
+          document.getElementById('clockBlock')
+        );
+
+      }
+
+    </script>
+
+  </body>
+</html>

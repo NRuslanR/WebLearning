@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Knockout - Event Handling</title>
+  </head>
+  <body>
+
+    <div id="focus">
+      <input data-bind="hasFocus: isFocused, textInput: value" />
+      <div data-bind="visible: isFocused">Input has been focused</div>
+      <div data-bind="text: value"></div>
+    </div>
+
+    <div id="events">
+      <div data-bind="event: { mouseover: mouseOverHandler, mouseout: mouseOutHandler }">
+        <span data-bind="style: { color: textColor }">Events Handling Testing</span>
+      </div>
+    </div>
+
+    <div id="event-params">
+      <div data-bind="foreach: items">
+        <p data-bind="text: $data, event: { mouseover: $parent.mouseOverHandler }"></p>
+      </div>
+      <p data-bind="text: selectedItem"></p>
+    </div>
+
+    <div id="event-bubbling">
+      <div id="container" data-bind="event: { click: containerClick }">
+        <button data-bind="event: { click: buttonClick }, clickBubble: true">Click</button>
+      </div>
+    </div>
+
+    <div id="click-count">
+      <button data-bind="event: { click: increment }">Increment</button>
+      <p>Click count: <span data-bind="text: clickCount"></span></p>
+    </div>
+
+    <div id="submit-event">
+      <form action="http://msdn.com" data-bind="submit: submitHandler">
+        <div>
+          <label>Login:</label>&nbsp;
+          <input name="login" placeholder="Enter a login" type="text" />
+        </div>
+        <div>
+          <label>Password:</label>&nbsp;
+          <input type="password" placeholder="Enter a password" name="password" />
+        </div>
+        <button type="submit">Login</button>
+      </form>
+    </div>
+
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.5.0.js">
+    </script>
+
+    <script>
+
+      var inputViewModel = {
+
+        value: ko.observable(),
+        isFocused: ko.observable(true)
+
+      };
+
+      var eventViewModel = {
+
+        textColor: ko.observable(),
+        mouseOverHandler: function (e) {
+
+          this.textColor("green")
+
+        },
+        mouseOutHandler: function (e) {
+
+          this.textColor("red")
+
+        }
+      };
+
+      function EventParamsViewModel() {
+
+        var self = this;
+
+        self.items = ko.observableArray([ 'Item1', 'Item2', 'Item3' ]);
+        self.selectedItem = ko.observable();
+        self.mouseOverHandler = function (item, e) {
+
+          self.selectedItem(item);
+
+        };
+
+      };
+
+      var eventBubblingViewModel = {
+
+        containerClick: function (e) {
+
+          console.log(`Container click: ${JSON.stringify(e)}`);
+
+        },
+
+        buttonClick: function (e) {
+
+          console.log(`Button click: ${JSON.stringify(e)}`);
+
+        }
+      }
+
+      var clickCountViewModel = {
+
+        clickCount: ko.observable(0),
+        increment: function () {
+
+          this.clickCount(this.clickCount() + 1);
+
+        }
+
+      };
+
+      var eventSubmitViewModel = {
+
+        submitHandler: function (form) {
+
+          alert(
+            `Login: ${form.elements['login'].value},
+             Password: ${form.elements['password'].value}
+            `
+          );
+
+          return true;
+          
+        }
+      }
+
+      ko.options.useOnlyNativeEvents = true;
+
+      ko.applyBindings(inputViewModel, document.getElementById('focus'));
+      ko.applyBindings(eventViewModel, document.getElementById('events'));
+      ko.applyBindings(new EventParamsViewModel(), document.getElementById('event-params'));
+      ko.applyBindings(eventBubblingViewModel, document.getElementById('event-bubbling'));
+      ko.applyBindings(clickCountViewModel, document.getElementById('click-count'));
+      ko.applyBindings(eventSubmitViewModel, document.getElementById('submit-event'));
+
+    </script>
+
+  </body>
+</html>

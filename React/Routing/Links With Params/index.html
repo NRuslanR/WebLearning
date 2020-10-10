@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>React - Routing: Links With Params</title>
+  </head>
+
+  <style>
+    a { margin: 10px }
+    .active { color: red; font-weight: bold }
+  </style>
+
+  <body>
+
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/react-router-dom/umd/react-router-dom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.25.0/babel.min.js"></script>
+
+    <script type="text/babel">
+
+      const Router = ReactRouterDOM.BrowserRouter,
+            Switch = ReactRouterDOM.Switch,
+            Route = ReactRouterDOM.Route,
+            NavLink = ReactRouterDOM.NavLink;
+
+      const booksViewModel =
+        [
+          { id: 1, name: "DDD Best Practies" },
+          { id: 2, name: "MetaPhysics" },
+          { id: 3, name: "Pure consciousness's critics" }
+        ];
+
+      class Main extends React.Component
+      {
+        render()
+        {
+          return <h1>Main</h1>
+        }
+      }
+
+      class About extends React.Component
+      {
+        render()
+        {
+          return <h1>About</h1>
+        }
+      }
+
+      class NotFound extends React.Component
+      {
+        render()
+        {
+          return <h1>Resource Not Found</h1>
+        }
+      }
+
+      class Books extends React.Component
+      {
+        render()
+        {
+          return <div>
+                  <h2>Books:</h2>
+                  <Switch>
+                    <Route exact path="/books" component={BookList} />
+                    <Route exact path="/books/:id" component={Book} />
+                  </Switch>
+                 </div>
+        }
+      }
+
+      class BookList extends React.Component
+      {
+        render()
+        {
+          return <ul>
+                    {
+                      booksViewModel.map(item => {
+
+                        return <li>
+                          <NavLink exact to={`books/${item.id}`}>{item.name}</NavLink>
+                        </li>
+                        
+                      })
+                    }
+                 </ul>
+        }
+      }
+
+      class Book extends React.Component
+      {
+        render()
+        {
+          var bookId = this.props.match.params.id,
+              searchBook = null;
+
+          for (var book of booksViewModel)
+            if (book.id == bookId)
+            {
+              searchBook = book;
+              break;
+            }
+
+          return (searchBook == null) ?
+            <h1>{`Book ${bookId} not found`}</h1> :
+            <h1>{`Book: id - ${searchBook.id}, name - ${searchBook.name}`}</h1>
+        }
+      }
+
+      class Nav extends React.Component
+      {
+        render()
+        {
+          return <nav>
+                    <NavLink exact to="/" activeClassName="active">Main</NavLink>
+                    <NavLink to="/books" activeClassName="active">Books</NavLink>
+                    <NavLink to="/about" activeStyle={{ color: "green", fontWeight: "bold"}}>About</NavLink>
+                 </nav>
+        }
+      }
+      ReactDOM.render(
+          <Router>
+            <div>
+              <Nav />
+              <Switch>
+                <Route exact path="/" component={Main} />
+                <Route path="/about" component={About} />
+                <Route path="/books" component={Books} />
+                <Route component={NotFound} />
+              </Switch>
+            </div>
+          </Router>,
+        document.body
+      );
+
+    </script>
+  </body>
+
+</html>
