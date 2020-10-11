@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Knockout - Server Request-Response</title>
+  </head>
+  <body>
+
+    <form id="login-form" data-bind="submit: doLogin, with: user">
+      <div>
+        <label>Login:</label>
+        <input name="login" data-bind="textInput: login" />
+      </div>
+      <div>
+        <label>Password:</label>
+        <input name="password" type="password" data-bind="textInput: password" />
+      </div>
+      <button type="submit">Login</button>
+    </form>
+
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.5.0.js">
+    </script>
+
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.1.min.js">
+    </script>
+
+    <script>
+
+      var appViewModel = {
+
+        user: {
+
+          login: ko.observable('ruslan'),
+          password: ko.observable('123456')
+
+        },
+
+        doLogin: function () {
+
+          console.log(ko.toJSON(this.user));
+          
+          $.ajax({
+            url: 'http://localhost/create_key.php',
+            type: 'POST',
+            data: ko.toJS(this.user),
+            contentType: 'application/x-www-form-urlencoded'
+          }
+        ).success(data => {
+
+          alert(`Server Response: { key: ${data.key} }`);
+
+        })
+        .error(error => alert(`Server error: ${JSON.stringify(error)}`));
+
+        }
+      }
+
+      ko.applyBindings(appViewModel, document.getElementById('login-form'));
+
+    </script>
+
+  </body>
+</html>

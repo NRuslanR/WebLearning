@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Knockout - Serialization</title>
   </head>
   <body>
 
@@ -29,7 +29,8 @@
         password: ko.observable(),
         doLogin: function ()
         {
-          console.log(ko.toJSON(this)));
+          console.log(ko.toJS(this));
+          console.log(`ko.toJSON: ${ko.toJSON(this)}`);
         }
       };
 
