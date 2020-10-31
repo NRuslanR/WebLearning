@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Vue Application Object</title>
+  </head>
+  <body>
+    <div id="app">
+      <p>Name: {{ name }}</p>
+      <p>Age: {{ age }}</p>
+      <p>{{ displayVueDescription() }}</p>
+      <p>Factorial of {{ n }}: {{ factorial(n) }}</p>
+      <input type="number" v-on:input="changeFactorial" min="1" max="50" value="20" />
+    </div>
+    <script type="text/javascript" src="http://unpkg.com/vue"></script>
+    <script>
+      var appData = {
+        name: 'Ruslan',
+        age: 25,
+        n: 20
+      },
+      appMethods = {
+        displayVueDescription: function() {
+          return 'Vue Basics are learning...';
+        },
+        factorial(num) {
+
+          var result = 1;
+
+          while (num > 0)
+            result *= num--;
+
+          return result;
+        },
+        changeFactorial: function(event)
+        {
+          this.n = event.target.value;
+        }
+      };
+
+      var vue = new Vue({
+        el: '#app',
+        data: appData,
+        methods: appMethods
+      });
+
+    </script>
+  </body>
+</html>

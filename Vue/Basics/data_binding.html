@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div id="app">
+      <p>{{ n > 25 ? 'n is greater than 25' : 'n is less than or equal 25' }}</p>
+      <p><a v-bind:href="link">{{ text }}</a></p>
+      <input type="text" v-on:input="setText" />
+      <p v-once>{{ once }}</p>
+      <div v-html="vue_html"></div>
+      <div>{{ vue_html }}</div>
+    </div>
+    <script type="text/javascript" src="http://unpkg.com/vue"></script>
+    <script>
+      var vue = new Vue({
+        el: '#app',
+        data: {
+          n: 25,
+          text: 'MSDN',
+          link: 'http://msdn.com',
+          once: 'one-time binding example',
+          vue_html: '<h1>Vue Basics are learning...</h1>'
+        },
+        methods: {
+          setText: function (e) {
+            this.once = e.target.value;
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
