@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Vue Two-Way Binding</title>
+  </head>
+  <body>
+    <div id="app">
+      <input type="number" min="1" max="50" v-model:value="number" />
+      <p>Factorial of {{ number }} equal to {{ factorial(number) }}</p>
+    </div>
+    <script type="text/javascript" src="http://unpkg.com/vue"></script>
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          number: 1
+        },
+        methods: {
+          factorial: function (n) {
+
+            let result = 1;
+
+            while (n > 0)
+              result *= n--;
+
+            return result;
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
