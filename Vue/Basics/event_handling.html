@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Vue - Event Handling</title>
+  </head>
+  <body>
+    <div id="app">
+      <button v-on:click="++count1">+</button>
+      <button v-on:click="if (count1 > 0) --count1">-</button>
+      <p>Count: {{ count1 }}</p>
+      <p>
+        <button @click="increase(3, $event)">+ 3</button>
+        <button @click="decrease(2, $event)">- 2</button>
+        <p>Count: {{ count2 }}</p>
+      </p>
+    </div>
+    <script type="text/javascript" src="http://unpkg.com/vue"></script>
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          count1: 0,
+          count2: 0
+        },
+        methods: {
+          increase: function(num, event)
+          {
+            console.log(event);
+            this.count2 += num;
+          },
+          decrease(n, e) {
+            console.log(e);
+            this.count2 -= n;
+          }
+        }
+      })
+    </script>
+  </body>
+</html>
