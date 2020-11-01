@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Vue - Computed Properties</title>
+  </head>
+  <body>
+
+    <div id="active">
+      <input type='text' v-model:value="name" />
+      <input type="text" v-model:value="surname" />
+      <input type="text" v-model:value="fullName" />
+      <p>{{ fullName }}</p>
+    </div>
+
+    <script type="text/javascript" src="http://unpkg.com/vue"></script>
+
+    <script>
+      new Vue({
+        el: '#active',
+        data: {
+          name: '',
+          surname: ''
+        },
+        computed: {
+          fullName: {
+            get: function()
+            {
+              return this.name + ' ' + this.surname;
+            },
+            set: function(newFullName)
+            {
+              var parts = newFullName.split(' ');
+
+              this.name = parts[0];
+              this.surname = parts[parts.length - 1];
+            }
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

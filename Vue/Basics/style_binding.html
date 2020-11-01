@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Vue - Style Binding</title>
+
+    <style>
+
+      .region {
+
+        display: inline-block;
+
+      }
+
+    </style>
+
+  </head>
+  <body>
+
+    <div id="app">
+      <p>
+        <div class="region" v-bind:style="[colorStyle, sizeStyle]"></div>
+        <p>
+          <label>Color:</label>&nbsp;
+          <input type="color" v-model:value="color" />
+        </p>
+        <p>
+          <label>Size (px):</label>&nbsp;
+          <input type="range" min="1" max="1368" v-model:value="size" />&nbsp;
+          {{ size != null ? size + 'px' : '' }}
+        </p>
+      </p>
+    </div>
+
+    <script type="text/javascript" src="http://unpkg.com/vue"></script>
+
+  <script>
+
+    new Vue({
+      el: '#app',
+
+      data: {
+        color: '',
+        size: 1
+      },
+
+      methods: {
+        changeColor: function (e) {
+          this.color = e.target.value;
+        }
+      },
+      computed: {
+
+        colorStyle: function()
+        {
+          console.log('colorStyle activated');
+
+          return {
+            background: this.color
+          }
+        },
+
+        sizeStyle: function() {
+
+          console.log('sizeStyle activated');
+
+          return {
+            width: this.size + 'px',
+            height: this.size + 'px'
+          }
+        }
+
+      }
+    });
+
+  </script>
+  </body>
+</html>

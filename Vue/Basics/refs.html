@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Vue - Refs: Element referring</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1 ref="header">Some Text</h1>
+      <button v-on:click="changeText">Change Text</button>
+    </div>
+    <script type="text/javascript" src="http://unpkg.com/vue"></script>
+    <script>
+      new Vue({
+        el: '#app',
+        methods: {
+          changeText: function (e) {
+            this.$refs.header.innerText = 'Vue refs feature used';
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

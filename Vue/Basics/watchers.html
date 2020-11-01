@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Vue - Watchers</title>
+  </head>
+  <body>
+    <div id="app">
+      <div>
+        <label>Number:</label>&nbsp;
+        <input type="number" min="1" max="200" value="1" v-model:value="number" />
+      </div>
+      {{ result }}
+    </div>
+    <script type="text/javascript" src="http://unpkg.com/vue"></script>
+    <script>
+      new Vue({
+        el: '#app',
+
+        data: {
+          number: 1,
+          result: null
+        },
+
+        watch: {
+          number: function(n)
+          {
+            if (n >= 0)
+              this.factorialAsync(n);
+          }
+        },
+
+        methods: {
+          factorialAsync(n)
+          {
+            this.result = 'Factorial is calculating...';
+
+            var self = this;
+
+            setTimeout(
+              () => self.result = this.factorial(n),
+              1000
+            );
+
+          },
+          factorial: function(n)
+          {
+            var result = 1;
+
+            while (n > 0)
+              result *= n--;
+
+            return result;
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

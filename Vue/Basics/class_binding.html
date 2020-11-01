@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Vue - Class Binding</title>
+
+    <style>
+
+      .block {
+
+        background-color: lightgray;
+        display: inline-block;
+        width: 200px;
+        height: 200px;
+        margin: 10px;
+        text-align: center;
+
+      }
+
+      .active-color {
+        background-color: red;
+      }
+
+      .bounded {
+
+        border: 2px solid blue;
+
+      }
+
+      .boldText {
+        font-weight: bold;
+      }
+
+      .roundedCorners {
+        border-radius: 20px;
+      }
+
+      .small {
+        width: 20px;
+        height: 20px;
+      }
+
+      .medium {
+        width: 50px;
+        height: 50px;
+      }
+
+      .big {
+        width: 110px;
+        height: 110px;
+      }
+
+    </style>
+
+  </head>
+  <body>
+    <div id="app">
+
+      <div
+        class="block"
+        v-bind:class="{ 'active-color': hasActiveColor, bounded: hasBound }"
+        v-on:click="hasActiveColor=!hasActiveColor; hasBound=!hasBound"
+      >
+      </div>
+
+      <div
+        class="block"
+        v-bind:class="classObject"
+        v-on:click="hasBoldText=!hasBoldText; hasRoundedCorners=!hasRoundedCorners"
+      >
+        Text
+      </div>
+
+      <p>
+        <div class="block" v-bind:class="[className, size]"></div>
+        <p>
+          <label>Class Name:</label>&nbsp;
+          <input type="text" v-model:value="className" />
+        </p>
+        <p>
+          <label>Size:</label>&nbsp;
+          <input type="text" v-model:value="size" />
+        </p>
+      </p>
+
+    </div>
+
+    <script type="text/javascript" src="http://unpkg.com/vue"></script>
+
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          hasActiveColor: false,
+          hasBound: false,
+          hasBoldText: false,
+          hasRoundedCorners: false,
+          className: '',
+          size: ''
+        },
+        computed: {
+          classObject: function() {
+            return {
+              boldText: this.hasBoldText,
+              roundedCorners: this.hasRoundedCorners
+            }
+          }
+        }
+      })
+    </script>
+
+  </body>
+</html>
