@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Vue - Arrays Managing</title>
+    </head>
+
+    <body>
+
+        <div id="app">
+
+            <input type="number" min="0" v-bind:max="end+1" v-model="start"/>
+            &nbsp;
+            <input type="number" min="0" v-bind:max="end+1" v-model="end" />
+
+            <ul>
+                <li v-for="(item, index) in items">
+                    <div>
+                        <p>{{ item }}</p>
+                        <button v-on:click='removeItem(index)'>Remove</button>
+                    </div>
+                </li>
+            </ul>
+    
+        </div>
+
+        <script type="text/javascript" src="http://unpkg.com/vue@next"></script>
+
+        <script>
+
+            var _items =
+            [
+                "Item 1",
+                "Item 2",
+                "Item 3",
+                "Item 4",
+                "Item 5"
+            ];
+
+            Vue.createApp({
+
+                data()
+                {
+                    return {
+
+                        start: 0,
+                        end: _items.length - 1,
+                        removedItemIndex: -1,
+                        _items: _items
+
+                    }
+                },
+
+                methods: {
+
+                        removeItem(itemIndex)
+                        {
+
+                            this._items.splice(itemIndex, 1);
+                        }
+                },
+
+                computed: {
+
+                        items() {
+
+                            return this._items.slice(this.start, this.end);
+
+                        }
+                }
+
+            }).mount('#app');
+
+        </script>
+    </body>
+</html>
