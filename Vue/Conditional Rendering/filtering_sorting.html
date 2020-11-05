@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <title>Vue - Filtering And Sorting</title>
+    </head>
+
+    <body>
+
+        <div id="app">
+
+            <input type="text" v-model="language" />
+
+            <ul>
+                <li v-for="lan in languages">
+                    <p>{{ lan }}</p>
+                </li>
+            </ul>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th><a href="#" v-on:click='sortParam="title"'>Product</a></th>
+                        <th><a href="#" v-on:click='sortParam="company"'>Company</a></th>
+                    </tr>
+                    <tbody>
+                        <tr v-for="product in products">
+                            <td>{{ product.title }}</td>
+                            <td>{{ product.company }}</td>
+                        </tr>
+                    </tbody>
+                </thead>
+            </table>
+    
+        </div>
+
+        <script type="text/javascript" src="http://unpkg.com/vue@next"></script>
+
+        <script>
+
+            Vue.createApp({
+
+                data() {
+
+                    return {
+                        language: '',
+                        _languages: [
+                            "Russian",
+                            "English",
+                            "Romain",
+                            "Island",
+                            "Korian",
+                            "French"
+                        ],
+                        _products: [
+
+                            {
+                                title: 'Mouse Rx-12',
+                                company: 'Zeos Ex'
+                            },
+                            {
+                                title: 'Keyboard ZX',
+                                company: 'RameRZ'
+                            },
+                            {
+                                title: 'Accelerator',
+                                company: 'Zyxel RPDwjdw'
+                            }
+                        ],
+                        sortParam: ''
+                    }
+                },
+
+                computed: {
+
+                    languages() {
+
+                        let _lan = this.language;
+
+                        if (this.language === '')
+                            return this._languages;
+
+                        return this._languages.filter((value) => {
+
+                            return value.includes(_lan);
+
+                        });
+                    },
+
+                    products() {
+
+                        switch (this.sortParam)
+                        {
+                            case 'title': 
+                            {
+                                return this._products.sort(
+                                    (p1, p2) => 
+                                        p1.title.toLowerCase() < p2.title.toLowerCase() ?
+                                            -1 :
+                                            p1.title.toLowerCase() == p2.title.toLowerCase() ?
+                                            0 : 1
+                                );
+                            }
+
+                            case 'company':
+                            {
+                                return this._products.sort(
+                                    (p1, p2) => 
+                                        p1.company.toLowerCase() < p2.company.toLowerCase() ?
+                                            -1 :
+                                            p1.company.toLowerCase() == p2.company.toLowerCase() ?
+                                            0: 1
+                                );
+                            }
+
+                            default: return this._products;
+                        }
+                    }
+                }
+
+            }).mount('#app');
+
+        </script>
+
+    </body>
+</html> 
