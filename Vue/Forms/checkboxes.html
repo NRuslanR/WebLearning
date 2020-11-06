@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <title>Vue - Checkboxes</title>
+    </head>
+
+    <body>
+
+        <div id="app" class="col-sm-4">
+         
+            <input type="checkbox" v-model="light" true-value="on" false-value="off" />
+            <span v-if="light==='on'">Enabled</span>
+            <span v-else>Disabled</span>
+
+            <h2>User List:</h2>
+            <p>
+                <template v-for="user in users">
+                    <input type="checkbox" v-bind:value="user" v-model="selectedUsers" />
+                    <label>{{ user.name }}</label>
+                    <br>
+                </template>
+
+                <ul>
+                    <li v-for="user in selectedUsers">
+                        <p>
+                            {{ user.name }} - {{ user.age }}
+                        </p>
+                    </li>
+                </ul>
+            </p>
+        </div>
+
+
+        <script type="text/javascript" src="http://unpkg.com/vue@next"></script>
+
+        <script>
+
+            Vue.createApp({
+                data() {
+                    return {
+                      
+                        light: true,
+                        users: [
+                            { name: 'Ruslan', age: 25 },
+                            { name: 'Rumiya', age: 26 },
+                            { name: 'Andrey', age: 37 },
+                            { name: 'Nikolay', age: 56 }
+                        ],
+                        selectedUsers: []
+                    }
+                }
+            }).mount('#app');
+
+        </script>
+
+    </body>
+</html> 

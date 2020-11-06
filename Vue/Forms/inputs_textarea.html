@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <title>Vue - inputs and textarea</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    </head>
+
+    <body>
+
+        <div id="app" class="col-sm-4">
+            <label>Login</label>
+            <input type="text" v-model="login" class="form-control"/>
+
+            <label>Password</label>
+            <input type="text" v-model="password" class="form-control" />
+
+            <label>Age</label>
+            <input type="number" min="18" max="100" v-model="age" class="form-control" />
+
+            <label>Reg Date</label>
+            <input type="date" v-model="reg_date" class="form-control" /> 
+
+            <textarea v-model="comment" style="white-space: pre-line;">{{ comment }}</textarea>
+
+            <p>
+                <p>Login: {{ login }}</p>
+                <p>Password: {{ password }}</p>
+                <p>Age: {{ age }}</p>
+                <p>Registration Date: {{ reg_date }}</p>
+                <p style="white-space: pre-line;">Comment: {{ comment }}</p>
+            </p>
+        </div>
+
+
+        <script type="text/javascript" src="http://unpkg.com/vue@next"></script>
+
+        <script>
+
+            Vue.createApp({
+                data() {
+                    return {
+                        login: '',
+                        password: '',
+                        age: 3,
+                        reg_date: new Date(),
+                        comment: 'Comment...'
+                    }
+                }
+            }).mount('#app');
+
+        </script>
+
+    </body>
+</html> 

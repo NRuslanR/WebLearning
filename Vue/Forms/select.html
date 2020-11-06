@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Vue - Forms: select</title>
+    </head>
+
+    <body>
+        
+        <div id="app">
+
+            <select v-model="selectedItems" multiple>
+                <option>Item 1</option>
+                <option>Item 2</option>
+                <option>Item 3</option>
+            </select>
+            <p>Selected: {{ selectedItems }}</p>
+
+            <h1>Array Binding:</h1>
+
+            <select v-model="selectedUsers" multiple>
+                <template v-for="user in users">
+                    <option v-bind:value="user">{{ user.name }}</option>
+                </template>
+            </select>
+
+            <h2>Selected users:</h2>
+
+            <ul>
+                <template v-for="selectedUser in selectedUsers">
+                    <li>
+                        <p>{{ selectedUser.name }}</p>
+                        <p>{{ selectedUser.age }}</p>
+                    </li>
+                </template>
+            </ul>
+
+        </div>
+
+        <script type="text/javascript" src="http://unpkg.com/vue@next"></script>
+
+        <script>
+
+            Vue.createApp({
+                data() {
+                    return {
+                        selectedItems: [],
+                        users: [
+                            { name: 'Ruslan', age: 25 },
+                            { name: 'Andrey', age: 37 },
+                            { name: 'Nikolay', age: 45 }
+                        ],
+                        selectedUsers: []
+                    }
+                }
+            })
+            .mount('#app');
+
+        </script>
+
+    </body>
+
+</html>

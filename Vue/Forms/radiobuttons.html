@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <title>Vue - Radio Buttons</title>
+    </head>
+
+    <body>
+
+        <div id="app">
+
+            <template v-for="stack in stacks">
+                <input type="radio" v-bind:value="stack" v-model="selectedStack" />
+                <label>{{ stack.name }}</label>
+                <br>
+            </template>
+
+            <p v-if="selectedStack != null">{{ selectedStack.name }} - {{ selectedStack.owner }}</p>
+        </div>
+
+
+        <script type="text/javascript" src="http://unpkg.com/vue@next"></script>
+
+        <script>
+
+            Vue.createApp(
+                {
+                    data() {
+                        return {
+
+                            selectedStack: null,
+                            stacks: [
+                                { name: "ASP.NET MVC/C#/NET Core", owner: "Microsoft" },
+                                { name: "PHP/MySQL/Apache/Linux", owner: "Unknown Owner" },
+                                { name: "Java/Spring/Spring Boot MVC", owner: "Oracle" },
+                                { name: "Ruby On Rails", owner: "Unknown Owner"}
+                            ]
+                        }
+                    }
+                }
+            ).mount('#app');
+
+        </script>
+
+    </body>
+</html> 
