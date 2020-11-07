@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Vue - Slots: Introduction</title>
+    </head>
+
+    <body>
+        
+        <div id="app">
+
+            <child><h1>Vue Title</h1></child>
+            <br><br>
+            <child></child>
+            
+        </div>
+
+        <script type="text/javascript" src="http://unpkg.com/vue@next"></script>
+
+        <script>
+
+            Vue.createApp({
+
+                data() {
+
+                    return {}
+                },
+
+                components: {
+
+                    child: {
+
+                        template: `<div>
+                                   <slot>Default Slot Content</slot>
+                                   <h1>Child Component</h1>
+                                   <slot></slot>
+                                   </div>`
+
+                    }
+                }
+            })
+            .mount('#app');
+
+        </script>
+
+    </body>
+</html>

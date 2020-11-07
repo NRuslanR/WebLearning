@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Vue - Slots: Scoped Slots</title>
+    </head>
+
+    <body>
+        
+        <div id="app">
+
+            <user-list>
+                <template v-slot:user-info="data">
+                    <h2>User Info:</h2>
+                    <h3>Name: {{ data.user.name }}</h3>
+                    <h3>Age: {{ data.user.age }}</h3>
+                </template>
+            </user-list>
+            
+        </div>
+
+        <script type="text/javascript" src="http://unpkg.com/vue@next"></script>
+
+        <script>
+
+            class User
+            {
+                name;
+                age;
+
+                constructor(name, age)
+                {
+                    this.name = name;
+                    this.age = age;
+                }
+            }
+
+            Vue.createApp({
+
+                data() {
+
+                    return {}
+                },
+
+                components: {
+
+                    userList: {
+
+                        data() {
+
+                            return {
+
+                                users: [
+
+                                    new User('Nigmatullin Ruslan', 25),
+                                    new User('Ramazanova Rumiya', 26),
+                                    new User('Valery Yakovishin', 29)
+
+                                ]
+                            }
+                        },
+
+                        template: `<div>
+                                   <ul>
+                                   <li v-for="user in users">
+                                   <slot name="user-info" v-bind:user="user"></slot>
+                                   </li>
+                                   </ul>
+                                   </div>`
+                    }
+                }
+            })
+            .mount('#app');
+
+        </script>
+
+    </body>
+</html>

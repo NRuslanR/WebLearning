@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Vue - Slots: Named Slots</title>
+    </head>
+
+    <body>
+        
+        <div id="app">
+
+            <container>
+
+                <template v-slot:header>
+                    <h1>container Header</h1>
+                </template>
+
+                <template v-slot:default>
+                    <h2>container Content</h2>
+                </template>
+
+                <template v-slot:footer>
+                    <h3>container Footer</h3>
+                </template>
+
+            </container>
+
+            <h1>Default container:</h1>
+            
+            <container>
+
+                <template v-slot:default>
+                    <h2>Other container Content</h2>
+                </template>
+
+            </container>
+
+        </div>
+
+        <script type="text/javascript" src="http://unpkg.com/vue@next"></script>
+
+        <script>
+
+            Vue.createApp({
+
+                data() {
+
+                    return {}
+                },
+
+                components: {
+
+                    container: {
+
+                        template: `<div>
+                                   <slot name="header">Header is absent at {{ new Date().toLocaleDateString() }}</slot>
+                                   <slot></slot>
+                                   <slot name="footer">Footer is absent at {{ new Date().toLocaleDateString() }}</slot>
+                                   </div>`
+
+                    }
+                }
+            })
+            .mount('#app');
+
+        </script>
+
+    </body>
+</html>
