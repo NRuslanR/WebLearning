@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Vue - Components: Mixins</title>
+    </head>
+
+    <body>
+        
+        <div id="app">
+
+            <light></light>
+            <latch></latch>
+
+        </div>
+
+        <script type="text/javascript" src="http://unpkg.com/vue@next"></script>
+
+        <script>
+
+            const toggleMixin = {
+
+                data: function() {
+
+                    return {
+
+                        state: true,
+                        onCaption: 'on',
+                        offCaption: 'off'
+                    }
+                },
+
+                methods: {
+
+                    toggle() {
+
+                        this.state = !this.state;
+                    }
+                }
+            };
+
+            Vue.createApp({
+
+                components: {
+
+                    light: {
+
+                        mixins: [toggleMixin],
+                        template: `<div>
+                                   <h1>{{ header }}</h1>
+                                   <button v-on:click="toggle" v-show="state">{{ onCaption }}</button>
+                                   <button v-on:click="toggle" v-show="!state">{{ offCaption }}</button>
+                                   </div>`,
+                        computed: {
+
+                            header: function()
+                            {
+                                return this.state === true ? 'Light is on' : 'Light is off';
+                            }
+                        }
+                    },
+
+                    latch: {
+
+                        mixins: [toggleMixin],
+                        template: `<div>
+                                   <h1>{{ header }}</h1>
+                                   <button v-on:click="toggle" v-show="state">{{ onCaption }}</button>
+                                   <button v-on:click="toggle" v-show="!state">{{ offCaption }}</button>
+                                   </div>`,
+                        computed: {
+
+                            header: function() {
+
+                                return this.state === true ? 'Latch is latched' : 'Latch is unlatched';
+                            }
+                        }
+                    }
+                }
+            })
+            .mount('#app');
+
+        </script>
+
+    </body>
+</html>

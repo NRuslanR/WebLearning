@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Vue - Components: Creating</title>
+    </head>
+
+    <body>
+        
+        <div id="app">
+
+            <Test v-for="num in count"></Test>
+
+        </div>
+
+        <script type="text/javascript" src="http://unpkg.com/vue@next"></script>
+
+        <script>
+
+            var app = Vue.createApp({
+                data() {
+                    return {
+                        count: 5
+                    }
+                }
+            });
+
+            app.component(
+                'Test',
+                {
+                    template: '<h1>Test Component</h1>'
+                }
+            );
+
+            app.mount('#app');
+
+        </script>
+
+    </body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Vue - Components: Outside Changing</title>
+    </head>
+
+    <body>
+        
+        <div id="app">
+
+            <user-form v-bind:users="users"></user-form>
+            <user-item 
+                v-for="(user, index) in users" 
+                v-bind:user="user" 
+                v-bind:index="index"
+                v-on:ondelete="deleteUser"
+            >
+            </user-item>
+        
+        </div>
+
+        <script type="text/javascript" src="http://unpkg.com/vue@next"></script>
+
+        <script>  
+
+            Vue.createApp({
+                
+                data() {
+
+                    return {
+
+                        users: [
+                            { name: 'Ruslan', age: 25 },
+                            { name: 'Andrey', age: 29 },
+                            { name: 'Sergey', age: 34 }
+                        ]
+                    }
+                },
+
+                methods: {
+
+                    deleteUser(userIndex)
+                    {
+                        this.users.splice(userIndex, 1);
+                    }
+                },
+
+                components: {
+
+                    userForm: {
+
+                        props: ['users'],
+                        data() {
+
+                            return {
+
+                                name: undefined, 
+                                age: undefined 
+                            }
+                        },
+
+                        template: `<div>
+                                   <p>
+                                   <label>Name:</label>
+                                   &nbsp;
+                                   <input type="text" v-model="name" />
+                                   </p>
+                                   <p>
+                                   <label>Age:</label>&nbsp;
+                                   <input type="number" min="1" max="100" v-model="age" />
+                                   </p>
+                                   <p><button v-on:click="addUser">Add User</button></p>
+                                   </div>`,
+
+                        methods: {
+
+                            addUser(e) {
+
+                                this.users.push({ name: this.name, age: this.age });
+                            }
+                        }
+                    },
+
+                    userItem: {
+
+                        props: ['user', 'index'],
+                        template: `<div>
+                                    <p>Name: {{ user.name }}</p>
+                                    <p>Age: {{ user.age }}</p>
+                                    <p><button v-on:click="deleteRequested">Delete</button></p>
+                                   </div>`,
+                        methods: {
+                            deleteRequested() {
+
+                                this.$emit('ondelete', this.index);
+                            }
+                        }
+                    }
+                }
+            })
+            .mount('#app');
+
+        </script>
+
+    </body>
+
+</html>

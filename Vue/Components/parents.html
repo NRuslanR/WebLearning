@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Vue - Components: Parent Components, Nesting, Refs</title>
+        
+        <style>
+
+            .user-info {
+
+                border-bottom: 1px solid #888;
+
+            }
+
+        </style>
+
+    </head>
+
+    <body>
+        
+        <div id="app">
+            <user-list v-bind:users='usersViewModel'></user-list>
+        </div>
+
+        <script type="text/javascript" src="http://unpkg.com/vue@next"></script>
+
+        <script>
+
+            function UserViewModel(name, age)
+            {
+                this.name = name;
+                this.age = age;
+            }
+
+            Vue.createApp({
+
+                data() {
+
+                    return {
+
+                        usersViewModel: [
+                            new UserViewModel('Ruslan', 25),
+                            new UserViewModel('Andrey', 28),
+                            new UserViewModel('Nikolay', 56)
+                        ]
+                    }
+                },
+
+                components: {
+
+                    UserList: {
+                        
+                        props: {
+
+                            users: {
+
+                                type: Array,
+                                required: true
+                            }
+                        },
+
+                        methods: {
+
+                            changeVisible: function (event) {
+
+                                this.$refs.userInfoRef.visible =
+                                    !this.$refs.userInfoRef.visible;
+                            }
+                        },
+
+                        template: `<div>
+                                  <UserInfo ref="userInfoRef" className="user-info" v-for="userViewModel in users" v-bind:user="userViewModel"></UserInfo>
+                                  <button v-on:click="changeVisible($event)">Show/Hide</button>
+                                  </div>`,
+                            
+                        components: {
+
+                            UserInfo: {
+
+                                data() {
+
+                                    return {
+
+                                        visible: true
+                                    }
+                                },
+
+                                props: {
+
+                                    user: {
+
+                                        type: Object,
+                                        required: true
+                                    },
+
+                                    className: {
+
+                                        type: String,
+                                        required: false,
+                                        default: 'user-info'
+                                    }
+                                },
+
+                                template: `<div v-if="visible" v-bind:class="className">
+                                          <p>Name: {{ user.name }}</p>
+                                          <p>Age: {{ user.age }}</p>
+                                          </div>`
+                            }
+                        }
+                    }
+                }
+                
+            }).mount('#app');
+   
+            
+        </script>
+
+    </body>
+</html> 

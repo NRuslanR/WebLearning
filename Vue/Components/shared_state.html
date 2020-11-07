@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Vue - Components: Shared State</title>
+    </head>
+
+    <body>
+        
+        <div id="app">
+
+            <h1>{{ header }}</h1>
+            <Component></Component>
+            <Component></Component>
+
+        </div>
+
+        <script type="text/javascript" src="http://unpkg.com/vue@next"></script>
+
+        <script>
+
+            let sharedState = {
+
+                header: 'Component Header',
+                count: null
+            };
+
+            Vue.createApp({
+                data() {
+
+                    return {
+
+                        header: 'Application Header'
+                    }
+                },
+
+                components: {
+
+                    Component: {
+
+                        data() {
+
+                            return sharedState;
+                        },
+
+                        template: '<h2>{{ header }} <i>{{ typeof ' + 
+                                  'count !== "undefined" ? count : "" }}</i></h2>' +
+                                  '<button v-on:click="increase($event)">Increase</button>',
+
+                        methods: {
+
+                            increase(e) {
+
+                                console.log(e);
+
+                                if (typeof this.count === 'undefined')
+                                    this.count = 1;
+
+                                else ++this.count;
+
+                            }
+                        }
+
+
+                    }
+                }
+            })
+            .mount('#app');
+            
+        </script>
+
+    </body>
+</html>

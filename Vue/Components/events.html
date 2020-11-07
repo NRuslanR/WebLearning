@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Vue - Components: Events</title>
+    </head>
+
+    <body>
+        
+        <div id="app">
+
+            <h1>Parent user name: {{ name }}</h1>
+           <user-edit v-bind:name="name" v-on:onnamechanged="changeName($event)"></user-edit>
+        
+        </div>
+
+        <script type="text/javascript" src="http://unpkg.com/vue@next"></script>
+
+        <script>
+
+            Vue.createApp({
+
+                data() {
+
+                    return {
+
+                        name: 'Ruslan Nigmatullin'
+                    }
+                },
+
+                methods: {
+
+                    changeName: function (newName, event)
+                    {
+                        console.log(event);
+
+                        this.name = newName;
+                    }
+                },
+
+                components: {
+
+                    userEdit: {
+
+                        props: ['name'],
+                        data() {
+
+                            return {
+
+                                userName: this.name
+                            }
+                        },
+                        template: `<div>
+                                   <input type="text" v-model="userName" v-on:input="changeUserName" />
+                                   <h2>Child user name: {{ userName }}</h2>
+                                   </div>`,
+
+                        methods: {
+
+                            changeUserName: function() {
+
+                                this.$emit('onnamechanged', this.userName);
+                            }
+                        }
+                    }
+                }
+            })
+            .mount("#app");
+
+        </script>
+
+    </body>
+</html>

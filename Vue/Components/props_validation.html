@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Vue - Components: Props Validation, Passing Objects And Arrays</title>
+    </head>
+
+    <body>
+        
+        <div id="app">
+
+            <input type="text" v-model="name" /><br>
+            <input type="number" min="1" max="100" v-model.number="age" /><br>
+
+            <h1>Passing primitive properties:</h1>
+            <User v-bind:name="name" v-bind:age="age"></User>
+
+            <h1>Passing object:</h1>
+            <User1></User1>
+
+            <h1>Pasing array:</h1>
+            <User2></User2>
+        </div>
+
+        <script type="text/javascript" src="http://unpkg.com/vue@next"></script>
+
+        <script>
+
+            function User(name, age)
+            {
+                this.name = name;
+                this.age = age;
+            }
+
+            Vue.createApp({
+
+                data() {
+
+                    return {
+
+                        
+                            name: 'Ruslan',
+                            age: 25 
+               
+                    }
+                },
+
+                components: {
+
+                    User: {
+
+                        props: {
+
+                           name: {
+
+                            type: String,
+                            required: true,
+                            default: 'Ruslan',
+                            validator: function(value) {
+
+                                return value.trim() !== '' && value.length > 4;
+
+                            }
+                           },
+
+                           age: {
+
+                                type: Number,
+                                required: true,
+                                default: 18,
+                                validator: function (value)
+                                {
+                                    return value >= 4 && value <= 100;
+                                }
+                           }
+                            
+                        },
+
+                        template: '<h3>Name: {{ name }}, Age: {{ age }}</h3>'
+                    },
+
+                    User1: {
+
+                        props: {
+
+                            user: {
+
+                                type: Object,
+                                default: function() {
+
+                                    return {
+
+                                        name: 'Ruslan',
+                                        age: 25
+                                    }
+                                }
+                            }
+                        },
+
+                        template: '<h3>User: {{ JSON.stringify(user) }}</h3>'
+                    },
+
+                    User2: {
+
+                        props: {
+
+                            users: {
+
+                                type: Array,
+                                default: function () {
+
+                                    return [
+                                        new User('Ruslan', 25),
+                                        new User('Andrey', 28),
+                                        new User('Elena', 31)
+                                    ]
+
+                                }
+                            }
+                        },
+
+                        template: '<ul>' +
+                                  '<template v-for="(user, i) in users">' +
+                                  '<li>' +
+                                  '<p>{{ i + 1 }}) {{ user.name }}</p>' +
+                                  '<p>{{ user.age }}</p>' +
+                                  '</li>' +
+                                  '</template>' +
+                                  '</ul>'
+                    }
+                }
+            })
+            .mount('#app');
+            
+        </script>
+
+    </body>
+</html>

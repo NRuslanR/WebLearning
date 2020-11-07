@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Vue - Components: Local Registration</title>
+    </head>
+
+    <body>
+        
+        <div id="app">
+
+            <input type="number" v-model.number="blockCount" />
+            
+            <Test v-for="num in testCount"></Test>
+            <Block v-for="num in blockCount"></Block>
+
+        </div>
+
+        <script type="text/javascript" src="http://unpkg.com/vue@next"></script>
+
+        <script>
+
+            Vue.createApp({
+                data() {
+                    return {
+                        testCount: 3,
+                        blockCount: 4
+                    }
+                },
+
+                components: {
+                    
+                    Test: {
+
+                        template: '<h1>Test Component</h1>'
+                    },
+
+                    Block: {
+
+                        template: '<div style="background: lightgreen; border: 2px solid green; margin: 10px; display: inline-block; width: 200px; height: 200px"></div>'
+                    }
+                }
+            })
+            .mount('#app');
+
+        </script>
+
+    </body>
+</html>
