@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Vue - Routing: Named Views</title>
+
+        <style>
+
+            .menu {
+
+                display: inline-block;
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+
+            }
+
+            .menu-item
+            {
+                display: inline-block;
+            }
+
+            .left-side-rounded {
+
+                border-top-left-radius: 15px;
+                border-bottom-left-radius: 15px;
+            }
+
+            .right-side-rounded {
+
+                border-top-right-radius: 15px;
+                border-bottom-right-radius: 15px;
+            }
+
+            .menu-item-content
+            {
+                padding: 10px;
+                display: block;
+                text-decoration: none;
+                text-align: center;
+            }
+
+            .green-background
+            {
+                background-color: lightgreen;
+                color: green;
+            }
+
+            .green-background:hover, .router-link-active
+            {
+                background-color: green;
+                color: lightgreen;
+            }
+
+        </style>
+
+    </head>
+
+    <body>
+        
+        <div id="app">
+
+            <router-view name="navigation"></router-view>
+            <router-view></router-view>
+            <router-view name="footer"></router-view>
+
+        </div>
+
+        <script type="text/javascript" src="http://unpkg.com/vue@next"></script>
+        <script type="text/javascript" src="http://unpkg.com/vue-router@next"></script>
+
+        <script>
+
+            const Navigation = {
+
+                template: `<div>
+                            <ul class="menu">
+                                <li class="menu-item">
+                                    <router-link to="/" class="menu-item-content green-background left-side-rounded">
+                                        Home
+                                    </router-link>
+                                </li>
+                                <li class="menu-item">
+                                    <router-link to="/about" class="menu-item-content green-background">
+                                        About
+                                    </router-link>
+                                </li>
+                                <li class="menu-item">
+                                    <router-link to="/contacts" class="menu-item-content green-background right-side-rounded">
+                                        Contacts
+                                    </router-link>
+                                </li>
+                            </ul>
+                            </div>
+                            `
+            },
+
+            Home = {
+
+                template: '<h1>Home Page</h1>'
+            },
+
+            About = {
+
+                template: '<h1>About Page</h1>'
+            },
+
+            Contacts = {
+
+                template: '<h1>Contacts Page</h1>'
+            },
+
+            Footer = {
+
+                template: '<h3>&copy 2002 - {{ new Date().getFullYear() }}. All rights reserved.</h3>'
+            };
+
+            const routes = [
+
+                {
+                    path: '/',
+                    components: {
+
+                        navigation: Navigation,
+                        default: Home
+                    }
+                },
+
+                {
+                    path: '/about',
+                    components: {
+
+                        navigation: Navigation,
+                        default: About,
+                        footer: Footer
+                    }
+                },
+
+                {
+                    path: '/contacts',
+                    components: {
+                        navigation: Navigation,
+                        default: Contacts,
+                        footer: Footer
+                    }
+                }
+            ];
+
+            var router = VueRouter.createRouter({
+
+                history: VueRouter.createWebHistory(),
+                routes: routes
+            });
+
+            var app = Vue.createApp({});
+
+            app.use(router);
+            app.mount('#app');
+
+        </script>
+
+    </body>
+</html>
