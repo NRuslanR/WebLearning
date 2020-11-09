@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Vue - Routing: Route Parameters</title>
+
+        <style>
+
+            .menu {
+
+                list-style-type: none;
+                padding: 0;
+                display: inline-block;
+
+            }
+
+            .menu-item {
+
+                display: inline-block;
+                padding: 10px;
+
+            }
+
+            .menu-item-content:hover
+            {
+                color: #888;
+            }
+
+            .menu-item-content
+            {
+                text-decoration: none;
+                text-align: center;
+                display: inline-block;
+                width: 100%;
+                height: 100%;
+                cursor: pointer;
+            }
+
+            .border
+            {
+                border: 1px solid #888;
+            }
+
+            .border-not-left 
+            {
+                border-top: 1px solid #888;
+                border-right: 1px solid #888;
+                border-bottom: 1px solid #888;
+            }
+
+            .gray-text 
+            {
+                color: #666;
+            }
+
+            .active {
+
+                color: red;
+            }
+
+        </style>
+
+    </head>
+
+    <body>
+        
+        <div id="app">
+
+            <ul class="menu">
+                <li class="menu-item border">
+                    <router-link class="menu-item-content gray-text" active-class="active" to="/">
+                        Home
+                    </router-link>
+                </li>
+
+                <li class="menu-item border-not-left">
+                    <router-link class="menu-item-content gray-text" active-class="active" to="/kinds">
+                        All Kinds
+                    </router-link>
+                </li>
+
+                <li class="menu-item border-not-left">
+                    <router-link class="menu-item-content gray-text" active-class="active" to="/kinds/1">
+                        All Trees
+                    </router-link>
+                </li>
+
+                <li class="menu-item border-not-left">
+                    <router-link class="menu-item-content gray-text" active-class="active" to="/kinds/1/scorn">
+                        Tree "ScoRn"
+                    </router-link>
+                </li>
+                
+
+                <li class="menu-item border-not-left">
+                    <router-link clas="menu-item-content gray-text" active-class="active" to="/about">
+                        About
+                    </router-link>
+                </li>
+            </ul>
+
+            <router-view></router-view>
+            
+        </div>
+
+        <script type="text/javascript" src="http://unpkg.com/vue@next"></script>
+        <script type="text/javascript" src="http://unpkg.com/vue-router@next"></script>
+
+        <script>
+
+            const Home = {
+
+                template: '<h2>Home</h2>'
+            },
+            About = {
+
+                template: '<h2>About</h2>'
+            },
+            Kinds = {
+
+                template: `<div>
+                           <div v-if="$route.params.kindId == 1 && $route.params.itemId != null">
+                            <h2>Tree - {{ $route.params.itemId.toUpperCase() }}</h2>
+                           </div>
+                           <div v-else-if="$route.params.kindId === 1 && $route.params.itemId == null">
+                            <h2>Tree List</h2>
+                           </div>
+                           <div v-else-if="$route.params.kindId != null">
+                            <h2>Kind {{ $route.params.kindId }} List</h2>
+                           </div>
+                           <div v-else>
+                            <h2>Kind Id: {{ $route.params.kindId }}</h2>
+                            <h2>Item Id: {{ $route.params.itemId }}</h2>
+                           </div>
+                           </div>`
+            };
+
+            const Routes = [
+
+                {
+                    path: '/',
+                    component: Home,
+                },
+                {
+                    path: '/about',
+                    component: About
+                },
+                {
+                    path: '/kinds/:kindId?/:itemId?',
+                    component: Kinds
+                }
+            ];
+
+            var router = VueRouter.createRouter({
+
+                history: VueRouter.createWebHistory(),
+                routes: Routes
+            });
+
+            var app = Vue.createApp({});
+
+            app.use(router);
+            app.mount('#app');
+
+        </script>
+
+    </body>
+</html>

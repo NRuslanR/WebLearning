@@ -1,5 +1,5 @@
 {
     "scripts": {
-        "start": "node app.js introduction.html"
+        "start": "nodemon app.js nested_routes.html"
     }
 }

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Vue - Routing: Nested Routes</title>
+
+        <style>
+
+            .menu {
+
+                display: inline-block;
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+
+            }
+
+            .menu-item
+            {
+                display: inline-block;
+            }
+
+            .menu-item-content
+            {
+                padding: 10px;
+                display: block;
+                text-decoration: none;
+                text-align: center;
+            }
+
+            .green-background
+            {
+                background-color: lightgreen;
+                color: green;
+            }
+
+            .green-background:hover, .router-link-active
+            {
+                background-color: green;
+                color: lightgreen;
+            }
+
+        </style>
+
+    </head>
+
+    <body>
+        
+        <div id="app">
+
+          <ul class="menu">
+
+              <li class="menu-item">
+                <router-link to="/" class="menu-item-content green-background">
+                    Home
+                </router-link>
+              </li>
+
+              <li class="menu-item">
+                <router-link to="/about" class="menu-item-content green-background">
+                    About
+                </router-link>
+              </li>
+
+              <li class="menu-item">
+                <router-link to="/kinds" class="menu-item-content green-background">
+                    Kinds
+                </router-link>
+              </li>
+
+          </ul>
+
+          <router-view></router-view>
+
+        </div>
+
+        <script type="text/javascript" src="http://unpkg.com/vue@next"></script>
+        <script type="text/javascript" src="http://unpkg.com/vue-router@next"></script>
+
+        <script>
+
+            const Home = {
+
+                template: '<h2>Home</h2>'
+            },
+
+            About = {
+
+                template: '<h2>About</h2>'
+            },
+
+            Kinds = {
+
+                template: `<div v-if="$route.params.kindId == null">
+                            <h2>Choose a kind:</h2>
+                            <ul class="menu">
+                            <li class="menu-item">
+                            <router-link to="/kinds/1" class="menu-item-content green-background">
+                                Trees
+                            </router-link>
+                            </li>
+                            <li class="menu-item">
+                            <router-link to="/kinds/2" class="menu-item-content green-background">
+                                Birds
+                            </router-link>
+                            </li>
+                            </ul>
+                            </div>
+                            <div v-else>
+                                <router-view></router-view>
+                            </div>
+                            `
+
+            },
+            
+            Kind = {
+
+                template:  `<div>
+                            <div v-if="$route.params.kindId==1">
+                            <div v-if="$route.params.itemId==null">
+                            <h2>Choose a tree:</h2>
+                            <ul class="menu">
+                            <li class="menu-item">
+                            <router-link to="/kinds/1/items/1" class="menu-item-content green-background">
+                                Spruce
+                            </router-link>
+                            </li>
+                            <li class="menu-item">
+                            <router-link to="/kinds/1/items/2" class="menu-item-content green-background">
+                                Aspen
+                            </router-link>
+                            </li>
+                            <li class="menu-item">
+                            <router-link to="/kinds/1/items/3" class="menu-item-content green-background">
+                                Oak
+                            </router-link>
+                            </li>
+                            </ul>
+                            </div>
+                            <div v-else>
+                                <router-view></router-view>
+                            </div>
+                            </div>
+                            <div v-else-if="$route.params.kindId==2">
+                            <div v-if="$route.params.itemId==null">
+                            <h2>Choose a Bird:</h2>
+                            <ul class="menu">
+                            <li class="menu-item">
+                            <router-link to="/kinds/2/items/1" class="menu-item-content green-background">
+                                Crow
+                            </router-link>
+                            </li>
+                            <li class="menu-item">
+                            <router-link to="/kinds/2/items/2" class="menu-item-content green-background">
+                                Sparrow
+                            </router-link>
+                            </li>
+                            <li class="menu-item">
+                            <router-link to="/kinds/2/items/3" class="menu-item-content green-background">
+                                Dove
+                            </router-link>
+                            </li>
+                            </ul>
+                            </div>
+                            <div v-else>
+                                <router-view></router-view>
+                            </div>
+                            </div>
+                            <div v-else>
+                                <h2>Error routing for kind id={{ $route.params.kindId }}</h2>
+                            </div>
+                            </div>
+                            `
+            },
+
+            KindItems = {
+
+                template:   `<div v-if="$route.params.kindId==1">
+                                <h2 v-if="$route.params.itemId==1">Spruce</h2>
+                                <h2 v-else-if="$route.params.itemId==2">Aspen</h2>
+                                <h2 v-else>Oak</h2>
+                            </div>
+                            <div v-else-if="$route.params.kindId==2">
+                                <h2 v-if="$route.params.itemId==1">Crow</h2>
+                                <h2 v-else-if="$route.params.itemId==2">Sparrow</h2>
+                                <h2 v-else>Dove</h2>
+                            </div>
+                            <div v-else>
+                                <h2>Kind Id: {{ $route.params.kindId }}</h2>
+                                <h2>Item Id: {{ $route.params.itemId }}</h2>
+                            </div>
+                            `
+            }
+            
+            NotFound = {
+
+                template: '<h2>Page Not Found</h2>'
+            };
+
+            const routes = [
+
+                {
+                    path: '/',
+                    component: Home
+                },
+                {
+                    path: '/about',
+                    component: About
+                },
+                {
+                    path: '/kinds',
+                    component: Kinds,
+                    children: [
+
+                        {
+                            path: ':kindId',
+                            component: Kind,
+                            children: [
+
+                                {
+                                    path: 'items/:itemId',
+                                    component: KindItems
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    path: '/greedy(.*)*',
+                    component: NotFound
+                }
+            ];
+
+            var router = VueRouter.createRouter({
+
+                history: VueRouter.createWebHistory(),
+                routes: routes
+            });
+
+            var app = Vue.createApp({});
+
+            app.use(router);
+            app.mount('#app');
+
+        </script>
+
+    </body>
+</html>
