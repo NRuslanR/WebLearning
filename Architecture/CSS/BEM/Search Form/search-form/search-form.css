@@ -1,0 +1,16 @@
+@import "__item/search-form__item.css" all;
+@import "__item/_states/search-form__item_disabled.css";
+@import "__item/_states/search-form__item_enabled.css";
+@import "__submit/search-form__submit.css";
+@import "__submit/_sizes/search-form__submit_sizes.css";
+@import "__text-field/search-form__text-field.css";
+@import "_line_item_states/search-form__line_item_disabled.css";
+@import "_line_item_states/search-form__line_item_enabled.css";
+
+.search-form
+{
+    display: inline-block;
+    background-color: rgb(168, 168, 230);
+    padding: 10px;
+}
+

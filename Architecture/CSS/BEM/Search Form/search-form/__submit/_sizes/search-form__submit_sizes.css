@@ -1,0 +1,17 @@
+.search-form__submit_size_s
+{
+    width: 20%;
+    height: 20%;
+}
+
+.search-form__submit_size_m
+{
+    width: 30%;
+    height: 40%;
+}
+
+.search-form__submit_size_l
+{
+    width: 50%;
+    height: 50%;
+}

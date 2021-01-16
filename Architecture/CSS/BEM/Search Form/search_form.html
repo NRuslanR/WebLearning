@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>CSS BEM Example</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="search-form/search-form.css">
+    </head>
+    <body>
+        <form class="search-form" action="#">
+            <div class="search-form__item search-form__item_enabled">
+                <label for="search-input">Search:</label>
+                <input type="text" id="search-input" name="search-input" class="search-form__text-field"/>
+            </div>
+            <button 
+                class="search-form__submit
+                        search-form__submit_size_l  
+                        search-form__line_item_enabled"
+            >Search</button>
+        </form>
+    </body>
+</html>
