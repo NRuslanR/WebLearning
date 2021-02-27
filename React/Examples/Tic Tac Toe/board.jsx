@@ -1,75 +1,15 @@
 const React = require('react'),
-      Square = require('./square.jsx');
+      Square = require('./square.jsx'),
+      calculateWinner = require('./calculateWinner.js');
 
 class Board extends React.Component {
-  
-    constructor(props)
-    {
-      super(props);
-      this.state = {
-        squares: Array(9).fill(null),
-        xIsNext: true
-      }
-    }
     
     renderSquare(i) {
-      return <Square title={this.state.squares[i]} onClick={() => this.handleClick(i) } />;
-    }
-  
-    handleClick(i)
-    {
-      if (this.calculateWinner(this.state.squares) || this.state.squares[i]) return;
-      
-      const squares = this.state.squares.slice();
-      
-      squares[i] = this.state.xIsNext ? 'X' : '0';
-      
-      this.setState(
-        { 
-          squares: squares,
-          xIsNext: !this.state.xIsNext
-        }
-      );
-    }
-    
-    calculateWinner(squares)
-    {
-      const lines = [
-        
-        [0, 1, 2],
-        [3, 4, 5],
-        [6, 7, 8],
-        
-        [0, 3, 6],
-        [1, 4, 7],
-        [2, 5, 8],
-        
-        [0, 4, 8],
-        [2, 4, 6]
-      ];
-      
-      for (let i = 0; i < lines.length; ++i)
-        {
-          const [a, b, c] = lines[i];
-          
-          if (squares[a] && squares[a] === squares[b] && squares[b] === squares[c]) return squares[a];
-        }
-      
-      return null;
+      return <Square title={this.props.squares[i]} onClick={() => this.props.onClick(i) } />;
     }
 
     render() 
     {   
-        const winner = this.calculateWinner(this.state.squares);
-        
-        let status;
-        
-        if (winner)
-          status = 'Winner:' + winner;
-        
-        else 
-          status = 'Next Player: ' + (this.state.xIsNext ? "X" : "O");
-    
         return (
           <div>
             <div className="status">{status}</div>
