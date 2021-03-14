@@ -2,7 +2,7 @@ class Store
 {
     constructor (dispatcher)
     {
-        dispatcher.register(reduce);
+        dispatcher.register(this.reduce);
     }
 
     reduce(action)
@@ -10,3 +10,5 @@ class Store
         throw "Store's reduce not implemented";
     }
 }
+
+module.export = Store;
