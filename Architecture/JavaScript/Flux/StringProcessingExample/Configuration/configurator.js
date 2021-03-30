@@ -26,4 +26,4 @@ class StringProcessingConfigurator
     }
 }
 
-module.export = StringProcessingConfigurator;
+module.exports = StringProcessingConfigurator;

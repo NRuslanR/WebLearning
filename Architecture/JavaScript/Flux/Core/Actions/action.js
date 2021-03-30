@@ -20,4 +20,4 @@ class Action
     }
 }
 
-module.export = Action;
+module.exports = Action;

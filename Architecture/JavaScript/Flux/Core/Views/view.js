@@ -6,4 +6,4 @@ class View
     }
 }
 
-module.export = View;
+module.exports = View;

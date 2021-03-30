@@ -11,4 +11,4 @@ class Store
     }
 }
 
-module.export = Store;
+module.exports = Store;

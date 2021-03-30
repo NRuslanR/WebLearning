@@ -14,4 +14,4 @@ class StringProcessingSummarizeTableView extends View
     }
 }
 
-module.export = StringProcessingSummarizeTableView;
+module.exports = StringProcessingSummarizeTableView;

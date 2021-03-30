@@ -8,4 +8,4 @@ class LoggingStore extends Store
     }
 }
 
-module.export = LoggingStore;
+module.exports = LoggingStore;

@@ -5,9 +5,8 @@ module.export = {
     entry: './app.js',
 
     output: {
-        path: __dirname,
-        filename: 'index.js',
-        publicPath: '/'
+        path: path.resolve(__dirname, 'public'),
+        filename: 'index.js'
     },
 
     module: {
@@ -25,10 +24,5 @@ module.export = {
                 }
             }
         }
-    },
-
-    resolve: {
-
-        extensions: [ '.js' ]
     }
 }

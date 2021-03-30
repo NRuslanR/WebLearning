@@ -15,4 +15,4 @@ class StringProcessingSummarizeListView extends View
     }
 }
 
-module.export = StringProcessingSummarizeListView;
+module.exports = StringProcessingSummarizeListView;

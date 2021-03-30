@@ -8,4 +8,4 @@ class StringProcessingAction extends Action
     }
 }
 
-module.export = StringProcessingAction;
+module.exports = StringProcessingAction;

@@ -15,4 +15,4 @@ class StringProcessingStore extends ViewStore
     }
 }
 
-module.export = StringProcessingStore;
+module.exports = StringProcessingStore;

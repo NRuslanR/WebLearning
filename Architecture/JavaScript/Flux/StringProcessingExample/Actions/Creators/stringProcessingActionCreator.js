@@ -17,4 +17,4 @@ class StringProcessingActionCreator extends ActionCreator
 
 var actionCreator = null;
 
-module.export = { StringProcessingActionCreator, actionCreator }
+module.exports = { StringProcessingActionCreator, actionCreator }

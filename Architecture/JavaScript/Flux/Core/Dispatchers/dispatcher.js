@@ -79,4 +79,4 @@ class Dispatcher
     }
 }
 
-module.export = Dispatcher;
+module.exports = Dispatcher;

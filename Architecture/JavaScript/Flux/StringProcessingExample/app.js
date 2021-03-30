@@ -1,4 +1,4 @@
-import { actionCreator } from './Actions/Creators/stringProcessingActionCreator.js';
+const actionCreator = require('./Actions/Creators/stringProcessingActionCreator.js').actionCreator;
 const StringProcessingConfigurator = require('./Configuration/configurator.js');
 
 $(() => {

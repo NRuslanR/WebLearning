@@ -1,3 +1,5 @@
+const Store = require('./store.js');
+
 class ViewStore extends Store
 {
     constructor(dispatcher)
@@ -41,4 +43,4 @@ class ViewStore extends Store
     }
 }
 
-module.export = ViewStore;
+module.exports = ViewStore;
