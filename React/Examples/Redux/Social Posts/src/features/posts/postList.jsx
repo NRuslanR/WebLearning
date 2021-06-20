@@ -1,5 +1,7 @@
 const React = require('react'),
-      { useSelector } = require('react-redux');
+      { useSelector } = require('react-redux'),
+      { Link } = require('react-router-dom'),
+      PostAuthor = require('./postAuthor.jsx');
 
 module.exports = 
     function PostList()
@@ -11,6 +13,9 @@ module.exports =
                     <article className="post-excerpt" key={post.id}>
                         <h3>{post.title}</h3>
                         <p className="post-content">{post.content}</p>
+                        Author: <PostAuthor authorId={post.userId} /> 
+                        <br/>
+                        <Link to={`/posts/${post.id}`}>View Post</Link>
                     </article>
                 ));
 

@@ -1,34 +1,28 @@
 const React = require('react'),
       useState = React.useState,
-      { useDispatch } = require('react-redux'),
-      { nanoid } = require('@reduxjs/toolkit'),
-      { postAdded } = require('./postsSlice.js');
+      { useDispatch, useSelector } = require('react-redux'),
+      { postAdded } = require('./postsSlice.jsx');
 
 module.exports =
     function AddPostForm()
     {
         const [title, setTitle] = useState('');
         const [content, setContent] = useState('');
+        const [userId, setUserId] = useState('');
         
         const dispatch = useDispatch();
 
+        const canSave = Boolean(title) && Boolean(content) && Boolean(userId);
+
+        const users = useSelector(state => state.users);
+
         const onSavePostClicked = () => {
 
-            if (title && content)
-            {
-                dispatch(
-                    postAdded(
-                        {
-                            id: Number(nanoid()),
-                            title,
-                            content
-                        }
-                    )
-                )
-            }
+            dispatch(postAdded(title, content, userId));
 
             setTitle('');
             setContent('');
+            setUserId('')
         };
 
         return (
@@ -36,6 +30,25 @@ module.exports =
             <section>
                 <h2>Add New Post</h2>
                 <form>
+                    <div>
+                        <label htmlFor="postAuthor">Author:</label>
+                        <select 
+                            id="postAuthor" 
+                            value={userId} 
+                            onChange={e => setUserId(Number(e.target.value))}
+                        >
+                            <option value=""></option>
+                            {
+                                users.map(user => {
+                                    return (
+                                        <option key={user.id} value={user.id}>
+                                            {user.name}
+                                        </option>
+                                    );
+                                })
+                            }
+                        </select>
+                    </div>
                     <div>
                         <label>Post Title:</label>
                         <br/>
@@ -56,6 +69,7 @@ module.exports =
                     <button 
                         type="button"
                         onClick={onSavePostClicked}
+                        disabled={!canSave}
                     >
                         Save Post
                     </button>

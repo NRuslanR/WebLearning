@@ -6,8 +6,10 @@ const React = require('react'),
           Redirect
       } = require('react-router-dom'),
       PostList = require('../features/posts/postList.jsx'),
-      AddPostForm = require('../features/posts/addPostForm.jsx');
-const addPostForm = require('../features/posts/addPostForm.jsx');
+      AddPostForm = require('../features/posts/addPostForm.jsx'),
+      SinglePostPage = require('../features/posts/singlePostPage.jsx'),
+      Navbar = require('./navbar.jsx'),
+      EditPostPage = require('../features/posts/EditPostPage.jsx');
 
 module.exports =
       function App()
@@ -15,6 +17,7 @@ module.exports =
           return (
   
             <BrowserRouter>
+                <Navbar />
                 <div className="App">
                     <Switch>
                         <Route 
@@ -27,6 +30,8 @@ module.exports =
                                 </React.Fragment>
                             )}
                         />
+                        <Route exact path="/posts/:postId" component={SinglePostPage} />
+                        <Route exact path="/editPost/:postId" component={EditPostPage} />
                         <Redirect to="/" />
                     </Switch>
                 </div>
