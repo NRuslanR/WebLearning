@@ -1,7 +1,9 @@
 const React = require('react'),
       { useSelector } = require('react-redux'),
       { Link } = require('react-router-dom'),
-        PostAuthor = require('./postAuthor.jsx');
+        PostAuthor = require('./postAuthor.jsx'),
+        TimeAgo = require('./timeAgo.jsx'),
+        ReactionButtons = require('./reactionButtons.jsx');
 
 module.exports = ({ match }) => {
 
@@ -23,7 +25,9 @@ module.exports = ({ match }) => {
                 <h2>{post.title}</h2>
                 <p>{post.content}</p>
                 Author: <PostAuthor authorId={post.userId} />
+                <TimeAgo timestamp={post.date} />
                 <br></br>
+                <ReactionButtons post={post} />
                 <Link to={`/editPost/${post.id}`}>Edit</Link>
             </article>
         </section>
