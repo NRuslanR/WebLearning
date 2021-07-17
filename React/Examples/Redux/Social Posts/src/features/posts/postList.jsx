@@ -3,12 +3,13 @@ const React = require('react'),
       { Link } = require('react-router-dom'),
       PostAuthor = require('./postAuthor.jsx'),
       TimeAgo = require('./timeAgo.jsx'),
-      ReactionButtons = require('./reactionButtons.jsx');
+      ReactionButtons = require('./reactionButtons.jsx'),
+      { selectAllPosts } = require('./postsSlice.jsx');
 
 module.exports = 
     function PostList()
     {
-        const posts = useSelector(state => state.posts),
+        const posts = useSelector(selectAllPosts),
               orderedPosts =
                 posts.slice().sort((a, b) => b.date.localeCompare(a.date)),
 

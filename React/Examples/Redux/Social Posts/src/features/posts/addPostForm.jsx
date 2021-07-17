@@ -35,7 +35,7 @@ module.exports =
                         <select 
                             id="postAuthor" 
                             value={userId} 
-                            onChange={e => setUserId(Number(e.target.value))}
+                            onChange={e => setUserId(e.target.value)}
                         >
                             <option value=""></option>
                             {

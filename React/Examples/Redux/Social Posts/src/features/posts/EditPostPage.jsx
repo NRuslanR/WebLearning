@@ -2,12 +2,13 @@ const React = require('react'),
       useState = React.useState,
       { useDispatch, useSelector} = require('react-redux'),
       { useHistory } = require('react-router-dom'),
-      { postUpdated } = require('./postsSlice.jsx');
+      { postUpdated } = require('./postsSlice.jsx'),
+      { selectPostById } = require('./postsSlice.jsx');
 
 module.exports = ({ match }) => {
 
     const { postId } = match.params,
-            post = useSelector(state => state.posts).find(p => p.id == postId);
+            post = useSelector(selectPostById);
 
     if (!post)
     {

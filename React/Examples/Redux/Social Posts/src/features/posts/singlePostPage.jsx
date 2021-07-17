@@ -3,12 +3,13 @@ const React = require('react'),
       { Link } = require('react-router-dom'),
         PostAuthor = require('./postAuthor.jsx'),
         TimeAgo = require('./timeAgo.jsx'),
-        ReactionButtons = require('./reactionButtons.jsx');
+        ReactionButtons = require('./reactionButtons.jsx'),
+      { selectPostById } = require('./postsSlice.jsx');
 
 module.exports = ({ match }) => {
 
     const { postId } = match.params,
-            post = useSelector(state => state.posts.find(post => post.id == postId));
+            post = useSelector(selectPostById);
 
     if (!post)
     {
