@@ -1,3 +1,4 @@
+/*
 const React = require('react'),
       {
           BrowserRouter,
@@ -10,8 +11,23 @@ const React = require('react'),
       SinglePostPage = require('../features/posts/singlePostPage.jsx'),
       Navbar = require('./navbar.jsx'),
       EditPostPage = require('../features/posts/EditPostPage.jsx');
+*/
 
-module.exports =
+import React from 'react';
+import {
+          BrowserRouter,
+          Switch,
+          Route,
+          Redirect
+      } from 'react-router-dom';
+import PostList from '../features/posts/postList.jsx';
+import AddPostForm from'../features/posts/addPostForm.jsx';
+import SinglePostPage from'../features/posts/singlePostPage.jsx';
+import Navbar from './navbar.jsx';
+import EditPostPage from '../features/posts/EditPostPage.jsx';
+
+//module.exports =
+export default
       function App()
       {
           return (

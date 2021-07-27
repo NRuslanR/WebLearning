@@ -1,11 +1,19 @@
+/*
 const 
-    { createSlice, nanoid } = require('@reduxjs/toolkit'),
+    { createSlice, nanoid, createAsyncThunk } = require('@reduxjs/toolkit'),
     { sub } = require('date-fns'),
+    client = require('../../../api/client.js');
+*/
+import { createSlice, nanoid, createAsyncThunk } from '@reduxjs/toolkit';
+import { sub } from 'date-fns';
+import client from '../../../api/client.js';
+
+const
     initialReactions = { thumbsUp: 0, hooray: 0, heart: 0, rocket: 0, eyes: 0 },
     reactionsList = [
         { ...initialReactions },
         { ...initialReactions }
-    ],
+    ];
 
 const 
     initialState = {
@@ -14,6 +22,18 @@ const
         state: 'idle',
         error: null
     };
+
+const
+    fetchPosts = 
+        createAsyncThunk(
+            'posts/getAllPosts', 
+            async () => (await client.getPosts()).posts
+        ),
+    addNewPost =
+        createAsyncThunk(
+            'posts/addNewPost',
+            async (post) => await client.addPost(post)
+        );
 
 const
     postsSlice = 
@@ -26,12 +46,12 @@ const
 
                         reducer(posts, action)
                         {
-                            posts.items.push(action.payload);
+             
                         },
 
                         prepare(title, content, userId)
                         {
-                            throw 'prepare not implemented';
+                          
                         }
                     },
 
@@ -57,6 +77,39 @@ const
                         if (post) ++post.reactions[reaction];                     
                     }
 
+                },
+
+                extraReducers: {
+                    [fetchPosts.pending]: (posts, action) => {
+
+                        posts.state = 'loading';
+                    },
+
+                    [fetchPosts.fulfilled]: (posts, action) => {
+
+                        posts.state = 'succeeded';
+                        posts.items = posts.items.concat(action.payload);
+
+                    },
+
+                    [fetchPosts.rejected]: (posts, action) => {
+
+                        posts.state = 'failed';
+                        posts.error = action.error.message;
+                    },
+
+                    [addNewPost.fulfilled]: (posts, action) => {
+
+                        posts.items.push(action.payload);
+
+                        console.log('addNewPost.fulfilled ' + JSON.stringify(posts));
+
+                    },
+
+                    [addNewPost.rejected]: (post, action) => {
+
+                        console.log('addNewPost.rejected: ' + action.error.message);
+                    }
                 }
             }
         );
@@ -65,15 +118,21 @@ const { postAdded, postUpdated, reactionAdded } = postsSlice.actions;
 
 const 
     selectAllPosts = state => state.posts.items,
-    selectPostById = (state, postId) => state.posts.items.find(p => p.id == postId);
+    selectPostById = (state, postId) => state.posts.items.find(p => p.id == postId),
+    postsReducer = postsSlice.reducer;
 
-module.exports = {
 
-    postsReducer: postsSlice.reducer,
-    postAdded,
-    postUpdated,
-    reactionAdded,
-    selectAllPosts,
-    selectPostById
+//module.exports = 
+export
+    {
 
-};
+        postsReducer,
+        postAdded,
+        postUpdated,
+        reactionAdded,
+        selectAllPosts,
+        selectPostById,
+        fetchPosts,
+        addNewPost
+
+    };

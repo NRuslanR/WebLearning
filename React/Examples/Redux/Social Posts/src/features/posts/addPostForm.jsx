@@ -1,28 +1,56 @@
+/*
 const React = require('react'),
       useState = React.useState,
       { useDispatch, useSelector } = require('react-redux'),
       { postAdded } = require('./postsSlice.jsx');
+*/
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { unwrapResult } from '@reduxjs/toolkit';
+import { addNewPost } from './postsSlice.jsx';
 
-module.exports =
-    function AddPostForm()
+//module.exports =
+export
+    default function AddPostForm()
     {
         const [title, setTitle] = useState('');
         const [content, setContent] = useState('');
         const [userId, setUserId] = useState('');
+        const [addNewPostStatus, setAddNewPostStatus] = useState('idle');
         
         const dispatch = useDispatch();
 
-        const canSave = Boolean(title) && Boolean(content) && Boolean(userId);
+        const canSave = 
+            [title, content, userId].every(Boolean) && addNewPostStatus === 'idle';
 
         const users = useSelector(state => state.users);
 
         const onSavePostClicked = () => {
 
-            dispatch(postAdded(title, content, userId));
+            if (!canSave) return;
+            
+            setAddNewPostStatus('pending');
 
-            setTitle('');
-            setContent('');
-            setUserId('')
+            try
+            {           
+                const result = dispatch(addNewPost({ title, content, userId }));
+
+                unwrapResult(result);
+
+                setTitle('');
+                setContent('');
+                setUserId('')
+            }
+
+            catch(err)
+            {
+                console.error(`Failed to add new post: `, err);
+            }
+
+            finally
+            {
+                setAddNewPostStatus('idle')
+            }
         };
 
         return (

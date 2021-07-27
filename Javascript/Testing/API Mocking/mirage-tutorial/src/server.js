@@ -4,13 +4,13 @@ const
 module.exports = () => {
 
     createServer({
-
+/*
         serializers: {
             reminder: RestSerializer.extend({
                 include: ["list"],
                 embed: true
             })
-        },
+        },*/
         
         models: {
 

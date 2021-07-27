@@ -1,32 +1,38 @@
 const path = require('path');
 
-module.exports = {
+module.exports = 
+    {
 
-    cache: false,
-    entry: './src/index.jsx',
-    output: {
+        cache: false,
+        entry: './src/index.jsx',
+        output: {
 
-        path: path.resolve(__dirname, 'public'),
-        filename: 'index.js'
-    },
-    module: {
+            path: path.resolve(__dirname, 'public'),
+            filename: 'index.js'
+        },
+        module: {
 
-        rules: [
+            rules: [
 
-            {
-                test: /(\.jsx$|\.js$)/,
-                exclude: /node_modules/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {
+                {
+                    test: /(\.jsx$|\.js$)/,
+                    exclude: /node_modules/,
+                    use: {
+                        loader: 'babel-loader',
+                        options: {
 
-                        presets: [
-                            '@babel/preset-env', 
-                            '@babel/preset-react'
-                        ]
+                            presets: [
+                                '@babel/preset-env', 
+                                '@babel/preset-react'
+                            ],
+
+                            plugins: [
+                                "@babel/transform-runtime"
+                            ]
+                    
+                        }
                     }
                 }
-            }
-        ]
+            ]
+        }
     }
-}

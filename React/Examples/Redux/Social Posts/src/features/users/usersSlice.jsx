@@ -1,23 +1,48 @@
-const { createSlice } = require('@reduxjs/toolkit'),
-        usersSlice =
-            createSlice(
-                {
-                    name: 'users',
+//const { createSlice } = require('@reduxjs/toolkit');
 
-                    initialState: [
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import client from '../../../api/client.js';
 
-                        { id: 1, name: 'Dmitry Ruslanov' },
-                        { id: 2, name: 'Sergey Viktorov' }
-                    ],
+export
+const
+    fetchUsers = createAsyncThunk('users/getAllUsers', async () => {
 
-                    reducers: {
+        return (await client.getUsers()).users;
+
+    });
+
+const
+    usersSlice =
+        createSlice(
+            {
+                name: 'users',
+
+                initialState: [
+
+                ],
+
+                reducers: {
+
+                },
+
+                extraReducers: {
+
+                    [fetchUsers.fulfilled]: (state, action) => {
+
+                        return action.payload;
 
                     }
                 }
-            );
+            }
+        );
 
-module.exports = {
+const usersReducer = usersSlice.reducer;
 
-    usersReducer: usersSlice.reducer
+
+//module.exports = 
+export
+{
+
+    usersReducer
     
 }
