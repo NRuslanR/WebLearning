@@ -13,6 +13,8 @@ export default
             <nav>
                 <h1>Redux Essentials Example</h1>
                 <Link to="/">Posts</Link>
+                <br/>
+                <Link to="/users">Users</Link>
             </nav>
         );
     };

@@ -25,7 +25,7 @@ export
 
         const users = useSelector(state => state.users);
 
-        const onSavePostClicked = () => {
+        const onSavePostClicked = async () => {
 
             if (!canSave) return;
             
@@ -33,7 +33,7 @@ export
 
             try
             {           
-                const result = dispatch(addNewPost({ title, content, userId }));
+                const result = await dispatch(addNewPost({ title, content, userId }));
 
                 unwrapResult(result);
 

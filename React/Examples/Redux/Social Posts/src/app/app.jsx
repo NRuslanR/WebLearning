@@ -25,6 +25,8 @@ import AddPostForm from'../features/posts/addPostForm.jsx';
 import SinglePostPage from'../features/posts/singlePostPage.jsx';
 import Navbar from './navbar.jsx';
 import EditPostPage from '../features/posts/EditPostPage.jsx';
+import UserList from '../features/users/userList.jsx';
+import UserPage from '../features/users/userPage.jsx';
 
 //module.exports =
 export default
@@ -48,6 +50,8 @@ export default
                         />
                         <Route exact path="/posts/:postId" component={SinglePostPage} />
                         <Route exact path="/editPost/:postId" component={EditPostPage} />
+                        <Route exact path="/users" component={UserList} />
+                        <Route exact path="/users/:userId" component={UserPage} />
                         <Redirect to="/" />
                     </Switch>
                 </div>

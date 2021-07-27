@@ -237,7 +237,7 @@ export default function Server()
 
                         var postAttrs = JSON.parse(request.requestBody);
 
-                        var newPost = schema.posts.create(postAttrs);
+                        var newPost = schema.posts.create({ ...postAttrs, date: new Date().toISOString() });
 
                         schema.reactionLists.create(createReactionListAttributesForPost(newPost));
 

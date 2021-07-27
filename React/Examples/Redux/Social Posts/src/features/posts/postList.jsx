@@ -25,7 +25,7 @@ export
             posts = useSelector(selectAllPosts),
             postsStatus = useSelector(state => state.posts.state),
             error = useSelector(state => state.posts.error);
-
+            
         useEffect(
             () => {
                 if (postsStatus == 'idle')

@@ -102,13 +102,6 @@ const
 
                         posts.items.push(action.payload);
 
-                        console.log('addNewPost.fulfilled ' + JSON.stringify(posts));
-
-                    },
-
-                    [addNewPost.rejected]: (post, action) => {
-
-                        console.log('addNewPost.rejected: ' + action.error.message);
                     }
                 }
             }
