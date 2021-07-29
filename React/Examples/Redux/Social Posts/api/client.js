@@ -2,16 +2,27 @@ import { format } from "date-fns";
 
 function Client(serverBasePath) {
 
-    var formatPost = post => {
+    const 
+        formatPost = post => {
 
-        var userId = post.user.id;
+            var userId = post.user.id;
 
-        delete post.user;
+            delete post.user;
 
-        post.userId = userId;
+            post.userId = userId;
 
-        return post;
-    };
+            return post;
+        },
+        formatNotification = notification => {
+
+            var userId = notification.user.id;
+
+            delete notification.user;
+
+            notification.userId = userId;
+
+            return notification;
+        };
 
     this.getPosts = async () => {
 
@@ -95,6 +106,23 @@ function Client(serverBasePath) {
             );
 
         return await response.json();
+    }
+
+    this.getNotificationsSince = async (timestamp) => {
+
+        var response =
+            await fetch(
+                `${serverBasePath}/fakeApi/notifications?since=${timestamp}`,
+                {
+                    method: 'GET'
+                }
+            );
+
+        var notifications = (await response.json()).notifications;
+
+        notifications.forEach(notification => formatNotification(notification));
+        
+        return notifications;
     }
 }
 

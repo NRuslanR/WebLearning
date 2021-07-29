@@ -50,8 +50,14 @@ export default function Server()
 
                             return serialized;
                         }
+                    }),
+
+                notification:
+                    RestSerializer.extend({
+                        include: ['user'],
+                        embed: true
                     })
-                
+
             },
 
             factories: {
@@ -71,6 +77,29 @@ export default function Server()
                         return faker.date.past().toISOString();
                     }
 
+                }),
+
+                notification: Factory.extend({
+
+                    date()
+                    {
+                        return faker.date.past().toISOString();
+                    },
+
+                    message(i)
+                    {
+                        return `Some message ${i + 1}`;
+                    },
+
+                    read()
+                    {
+                        return false;
+                    },
+
+                    new()
+                    {
+                        return true;
+                    }
                 }),
 
                 reactionList: Factory.extend({
@@ -131,7 +160,8 @@ export default function Server()
             models: {
 
                 user: Model.extend({
-                    posts: hasMany()
+                    posts: hasMany(),
+                    notifications: hasMany()
                 }),
 
                 post: Model.extend({
@@ -141,6 +171,10 @@ export default function Server()
 
                 reactionList: Model.extend({
                     post: belongsTo()
+                }),
+
+                notification: Model.extend({
+                    user: belongsTo()
                 })
             },
 
@@ -151,6 +185,7 @@ export default function Server()
                         'user', 
                         { 
                             name: 'Nigmatullin Ruslan',
+                            notifications: server.createList('notification', 3)
                         }
                     );
 
@@ -163,19 +198,21 @@ export default function Server()
                         'user', 
                         { 
                             name: 'Valery Yakovishin',
+                            notifications: server.createList('notification', 5)
                         }
                     );
 
                 server
                     .createList("post", 2, { user: someUser })
                         .forEach(post => server.create("reactionList", { post }));
+
             },
 
             routes()
             {
                 this.urlPrefix = "http://localhost:3000";
 
-                const getRandomTiming = (min, max) => min + Math.ceil(Math.random() * (max - min));
+                const getRandomNumber = (min, max) => min + Math.ceil(Math.random() * (max - min));
 
                 const createReactionListAttributesForPost = (post) => {
 
@@ -195,6 +232,26 @@ export default function Server()
 
                 };
 
+                const createRandomNotifications = (schema) => {
+
+                    const 
+                        notificationCount = schema.notifications.all().models.length,
+                        newNotificationCount = getRandomNumber(0, 3),
+                        users = schema.users.all().models;
+
+                    for (let i = 1; i <= newNotificationCount; ++i)
+                    {
+                        schema.notifications.create({
+                            message: `Some message ${notificationCount + i}`,
+                            user: users[getRandomNumber(0, users.length - 1)],
+                            date: new Date().toISOString(),
+                            read: false,
+                            new: true
+                        })
+                    }
+
+                };
+
                 this.get(
                     '/fakeApi/posts',
                     (schema, request) => {
@@ -203,7 +260,7 @@ export default function Server()
 
                     },
                     {
-                        timing: getRandomTiming(500, 2000)
+                        timing: getRandomNumber(500, 2000)
                     }
                 );
 
@@ -216,7 +273,7 @@ export default function Server()
                         return schema.posts.find(postId);
                     },
                     {
-                        timing: getRandomTiming(500, 2000)
+                        timing: getRandomNumber(500, 2000)
                     }
                 );
 
@@ -227,9 +284,33 @@ export default function Server()
                         return schema.users.all();
                     },
                     {
-                        timing: getRandomTiming(500, 2000)
+                        timing: getRandomNumber(500, 2000)
                     }
                 ),
+
+                this.get(
+                    '/fakeApi/notifications',
+                    (schema, request) => {
+
+                        const since = request.queryParams.since;
+
+                        const notifications = since ?
+                                schema
+                                .notifications
+                                .where(
+                                    notification => new Date(notification.date) > new Date(since)
+                                )
+                                :
+                                schema.notifications.all();
+
+                        createRandomNotifications(schema);
+
+                        return notifications;
+                    },
+                    {
+                        timing: getRandomNumber(500, 2000)
+                    }
+                );
 
                 this.post(
                     '/fakeApi/posts',
@@ -244,7 +325,7 @@ export default function Server()
                         return newPost;
                     },
                     {
-                        timing: getRandomTiming(500, 1200)
+                        timing: getRandomNumber(500, 1200)
                     }
                 )
 
@@ -263,7 +344,7 @@ export default function Server()
                         post.userId = postAttrs.userId;
                     },
                     {
-                        timing: getRandomTiming(500, 1000)
+                        timing: getRandomNumber(500, 1000)
                     }
                 );
                 
@@ -276,7 +357,7 @@ export default function Server()
                         schema.posts.find(postId).destroy();
                     },
                     {
-                        timing: getRandomTiming(1000, 2000)
+                        timing: getRandomNumber(1000, 2000)
                     }
                 );
             }

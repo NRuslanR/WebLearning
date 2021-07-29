@@ -27,6 +27,7 @@ import Navbar from './navbar.jsx';
 import EditPostPage from '../features/posts/EditPostPage.jsx';
 import UserList from '../features/users/userList.jsx';
 import UserPage from '../features/users/userPage.jsx';
+import NotificationList from '../features/notifications/notificationList.jsx';
 
 //module.exports =
 export default
@@ -52,6 +53,7 @@ export default
                         <Route exact path="/editPost/:postId" component={EditPostPage} />
                         <Route exact path="/users" component={UserList} />
                         <Route exact path="/users/:userId" component={UserPage} />
+                        <Route exact path='/notifications' component={NotificationList} />
                         <Redirect to="/" />
                     </Switch>
                 </div>

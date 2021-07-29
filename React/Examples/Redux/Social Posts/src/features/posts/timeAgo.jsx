@@ -16,8 +16,9 @@ export default function TimeAgo({ timestamp })
         {
             const 
                 date = parseISO(timestamp),
-                timePeriod = formatDistanceToNow(date),
-                timeAgo = `${timePeriod} ago`;
+                timePeriod = formatDistanceToNow(date);
+
+            timeAgo = `${timePeriod} ago`;
         }
 
         return (
