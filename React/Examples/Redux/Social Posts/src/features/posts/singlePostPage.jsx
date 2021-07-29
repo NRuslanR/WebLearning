@@ -20,7 +20,7 @@ export default function SinglePostPage({ match })
     {
 
         const { postId } = match.params,
-                post = useSelector(selectPostById);
+                post = useSelector(state => selectPostById(state, postId));
 
         if (!post)
         {
@@ -38,7 +38,7 @@ export default function SinglePostPage({ match })
                     <p>{post.content}</p>
                     Author: <PostAuthor authorId={post.userId} />
                     <TimeAgo timestamp={post.date} />
-                    <br></br>
+                    <br/>
                     <ReactionButtons post={post} />
                     <Link to={`/editPost/${post.id}`}>Edit</Link>
                 </article>

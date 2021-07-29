@@ -15,6 +15,7 @@ import PostAuthor from './postAuthor.jsx';
 import TimeAgo from './timeAgo.jsx';
 import ReactionButtons from './reactionButtons.jsx';
 import { selectAllPosts, fetchPosts } from './postsSlice.jsx';
+import PostExcerpt from './postExcerpt.jsx';
 
 //module.exports = 
 export
@@ -53,19 +54,7 @@ export
                     posts.slice().sort((a, b) => b.date.localeCompare(a.date)),
 
                 renderedPosts = 
-                    orderedPosts.map(post => {
-
-                        return <article className="post-excerpt" key={post.id}>
-                            <h3>{post.title}</h3>
-                            <p className="post-content">{post.content}</p>
-                            Author: <PostAuthor authorId={post.userId} /> 
-                            <TimeAgo timestamp={post.date} />
-                            <br/>
-                            <ReactionButtons post={post} />
-                            <br/>
-                            <Link to={`/posts/${post.id}`}>View Post</Link>
-                        </article>
-                    });
+                    orderedPosts.map(post => <PostExcerpt key={post.id} post={post} />);
 
             content = renderedPosts;
         }

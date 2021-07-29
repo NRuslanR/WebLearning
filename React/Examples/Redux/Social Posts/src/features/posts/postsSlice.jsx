@@ -4,7 +4,7 @@ const
     { sub } = require('date-fns'),
     client = require('../../../api/client.js');
 */
-import { createSlice, nanoid, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, nanoid, createAsyncThunk, createSelector } from '@reduxjs/toolkit';
 import { sub } from 'date-fns';
 import client from '../../../api/client.js';
 
@@ -112,6 +112,11 @@ const { postAdded, postUpdated, reactionAdded } = postsSlice.actions;
 const 
     selectAllPosts = state => state.posts.items,
     selectPostById = (state, postId) => state.posts.items.find(p => p.id == postId),
+    selectPostsByUser = createSelector([
+        selectAllPosts, (state, userId) => userId
+    ],
+    (posts, userId) => posts.filter(post => post.userId == userId)
+    ),
     postsReducer = postsSlice.reducer;
 
 
@@ -126,6 +131,7 @@ export
         selectAllPosts,
         selectPostById,
         fetchPosts,
-        addNewPost
+        addNewPost,
+        selectPostsByUser
 
     };
