@@ -4,7 +4,14 @@ const
     { sub } = require('date-fns'),
     client = require('../../../api/client.js');
 */
-import { createSlice, nanoid, createAsyncThunk, createSelector } from '@reduxjs/toolkit';
+import { 
+    createSlice, 
+    nanoid, 
+    createAsyncThunk, 
+    createSelector,
+    createEntityAdapter
+} 
+from '@reduxjs/toolkit';
 import { sub } from 'date-fns';
 import client from '../../../api/client.js';
 
@@ -15,15 +22,11 @@ const
         { ...initialReactions }
     ];
 
-const 
-    initialState = {
-
-        items: [],
-        state: 'idle',
-        error: null
-    };
-
 const
+    postsAdapter =
+        createEntityAdapter({
+            sortComparer: (a, b) => b.date.localCompare(a.date)
+        }),
     fetchPosts = 
         createAsyncThunk(
             'posts/getAllPosts', 
@@ -36,13 +39,20 @@ const
         );
 
 const
+    initialState =
+        postsAdapter.getInitialState({
+            state: 'idle',
+            error: null
+        });
+
+const
     postsSlice = 
         createSlice(
             {
                 name: 'posts',
                 initialState,
                 reducers: {
-                    postAdded: {
+                    /*postAdded: {
 
                         reducer(posts, action)
                         {
@@ -53,18 +63,18 @@ const
                         {
                           
                         }
-                    },
+                    },*/
 
                     postUpdated: (posts, action) => {
 
-                        const dataToUpdate = action.payload;
+                        const { id, title, content } = action.payload;
 
-                        var postToUpdate = posts.items.find(p => p.id === dataToUpdate.id);
+                        var postToUpdate = posts.entities[id];
 
                         if (!postToUpdate) return;
                 
-                        postToUpdate.title = dataToUpdate.title;
-                        postToUpdate.content = dataToUpdate.content;
+                        postToUpdate.title = title;
+                        postToUpdate.content = content;
 
                     },
 
@@ -72,14 +82,16 @@ const
                     {
                         const 
                             { postId, reaction } = action.payload,
-                            post = posts.items.find(post => post.id == postId);
+                            post = posts.entities[postId];
 
-                        if (post) ++post.reactions[reaction];                     
+                        if (post) 
+                            ++post.reactions[reaction];                     
                     }
 
                 },
 
-                extraReducers: {
+                extraReducers(builder) {
+                    /*
                     [fetchPosts.pending]: (posts, action) => {
 
                         posts.state = 'loading';
@@ -102,16 +114,42 @@ const
 
                         posts.items.push(action.payload);
 
-                    }
+                    }*/
+                    builder
+                        .addCase(fetchPosts.pending, (posts, action) => {
+
+                            posts.state = 'loading';
+                        })
+                        .addCase(fetchPosts.fulfilled, (posts, action) => {
+
+                            posts.state = 'succeeded';
+
+                            postsAdapter.upsertMany(posts, action.payload);
+                        })
+                        .addCase(fetchPosts.rejected, (posts, action) => {
+
+                            posts.state = 'failed';
+
+                            posts.error = action.error.message;
+                        })
+                        .addCase(addNewPost.fulfilled, postsAdapter.addOne);
                 }
             }
         );
 
-const { postAdded, postUpdated, reactionAdded } = postsSlice.actions;
+const { postUpdated, reactionAdded } = postsSlice.actions;
+
+const {
+
+    selectAll: selectAllPosts,
+    selectById: selectPostById,
+    selectIds: selectPostIds
+
+} = postsAdapter.getSelectors(state => state.posts);
 
 const 
-    selectAllPosts = state => state.posts.items,
-    selectPostById = (state, postId) => state.posts.items.find(p => p.id == postId),
+    /*selectAllPosts = state => state.posts.items,
+    selectPostById = (state, postId) => state.posts.items.find(p => p.id == postId),*/
     selectPostsByUser = createSelector([
         selectAllPosts, (state, userId) => userId
     ],
@@ -125,11 +163,11 @@ export
     {
 
         postsReducer,
-        postAdded,
         postUpdated,
         reactionAdded,
         selectAllPosts,
         selectPostById,
+        selectPostIds,
         fetchPosts,
         addNewPost,
         selectPostsByUser

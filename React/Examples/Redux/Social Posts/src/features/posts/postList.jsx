@@ -14,7 +14,7 @@ import { Link } from 'react-router-dom';
 import PostAuthor from './postAuthor.jsx';
 import TimeAgo from './timeAgo.jsx';
 import ReactionButtons from './reactionButtons.jsx';
-import { selectAllPosts, fetchPosts } from './postsSlice.jsx';
+import { selectPostIds, fetchPosts } from './postsSlice.jsx';
 import PostExcerpt from './postExcerpt.jsx';
 
 //module.exports = 
@@ -23,7 +23,6 @@ export
     {
         const 
             dispatch = useDispatch(),
-            posts = useSelector(selectAllPosts),
             postsStatus = useSelector(state => state.posts.state),
             error = useSelector(state => state.posts.error);
             
@@ -50,11 +49,9 @@ export
         else if (postsStatus == 'succeeded')
         {
             const
-                orderedPosts =
-                    posts.slice().sort((a, b) => b.date.localeCompare(a.date)),
-
+                orderedPostIds = useSelector(selectPostIds),
                 renderedPosts = 
-                    orderedPosts.map(post => <PostExcerpt key={post.id} post={post} />);
+                    orderedPostIds.map(postId => <PostExcerpt key={postId} postId={postId} />);
 
             content = renderedPosts;
         }
