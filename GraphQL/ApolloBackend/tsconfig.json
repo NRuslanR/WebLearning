@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "experimentalDecorators": true,
+        "moduleResolution": "node",
+        "allowJs": true,
+        "esModuleInterop": true,
+        "target": "ES2022",
+        "module": "CommonJS"
+    },
+    "include": [
+        "src"
+    ]
+}
