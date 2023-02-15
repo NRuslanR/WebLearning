@@ -20,4 +20,39 @@ export const postMutationsInputs = gql`
 
         postId: ID!
     }
+
+    input AddCommentInput
+    {
+        text: String!
+        authorId: ID!
+    }
+
+    input UpdateCommentInput
+    {
+        commentId: ID!
+        text: String!
+    }
+
+    input AddPostCommentsInput {
+
+        postId: ID!
+        comments: [AddCommentInput!]!
+    }
+
+    input UpdatePostCommentsInput {
+
+        postId: ID!
+        comments: [UpdateCommentInput!]!
+    }
+
+    input RemovePostCommentsInput {
+        postId: ID!
+        commentIds: [ID!]
+    }
+
+    type CommentsOutput
+    {
+        postId: ID!
+        comments: [Comment!]!
+    }
 `;

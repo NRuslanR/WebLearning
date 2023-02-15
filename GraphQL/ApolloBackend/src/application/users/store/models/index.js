@@ -48,8 +48,8 @@ const
 
         User.associate = () => {
 
-            User.hasOne(UserAddress);
-            UserAddress.belongsTo(User);
+            UserAddress.hasOne(User);
+            User.belongsTo(UserAddress);
 
         };
         

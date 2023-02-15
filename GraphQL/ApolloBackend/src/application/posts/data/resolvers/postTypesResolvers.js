@@ -113,8 +113,38 @@ export const postTypesResolvers = {
             await postsService.removePost(input.postId);
 
             return input.postId;
-        }
+        },
 
+        addComments: async (_, { input }, context) => {
+
+            const postsService = context.injector.get(PostsService);
+
+            return {
+                postId: input.postId,
+                comments: await postsService.putComments(input.postId, input.comments)
+            };
+
+        },
+
+        updateComments: async (_, { input }, context) => {
+
+            const postsService = context.injector.get(PostsService);
+
+            return {
+                postId: input.postId,
+                comments: await postsService.updateComments(input.postId, input.comments)
+            }
+        },
+
+        removeComments: async (_, { input }, context) => {
+
+            const postsService = context.injector.get(PostsService);
+
+            return {
+                postId: input.postId,
+                comments: await postsService.removeComments(input.postId, input.commentIds)
+            };
+        }
     },
 
 };

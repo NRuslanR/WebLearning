@@ -51,10 +51,10 @@ export const definePostModel = (sequelize) => {
         tableName: 'posts',
         timestamps: false
     });
-
+    
     Post.associate = () => {
 
-        Post.hasMany(Comment);
+        Post.hasMany(Comment, { onDelete: 'cascade' });
         Comment.belongsTo(Post);
 
         User.hasMany(Post, {

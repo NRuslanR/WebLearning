@@ -5,7 +5,7 @@ export const usersQueriesDef = gql`
     extend type Query {
 
         users: [User]
-        userById(input: FindUserByIdInput!): User
+        userById(input: FindUserByIdInput!): User!
     }
 
 `
