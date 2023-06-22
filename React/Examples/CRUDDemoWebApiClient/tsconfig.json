@@ -1,0 +1,16 @@
+{
+    "exclude": [
+        "node_modules"
+    ],
+    "include": [
+        "src/**/*"
+    ],
+    "compilerOptions": {
+        "allowJs": true,
+        "target": "ES5",
+        "module": "CommonJS",
+        "jsx": "react",
+        "noImplicitAny": true,
+        "outDir": "./dist"
+    }
+}
